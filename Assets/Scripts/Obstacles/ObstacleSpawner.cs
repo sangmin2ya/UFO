@@ -4,36 +4,36 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-    [Header("½ºÆù ÇÒ ¿ÀºêÁ§Æ®")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®")]
     [SerializeField] GameObject obstacle;
 
-    // XÃà, YÃà ¹è¿­ ÃÊ±âÈ­ °ª
+    // Xï¿½ï¿½, Yï¿½ï¿½ ï¿½è¿­ ï¿½Ê±ï¿½È­ ï¿½ï¿½
     public const int Xlength = 25;
     public const int Ylength = 15;
-    [Header("Áß½É 0,0À¸·ÎºÎÅÍ XÃà, YÃàÀÇ ±æÀÌÀÇ Æø")]
+    [Header("ï¿½ß½ï¿½ 0,0ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ Xï¿½ï¿½, Yï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½")]
     public float xRange = 0;
     public float yRange = 0;
-    [Header("¿ÀºêÁ§Æ® Áö¸§")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½")]
     public float obstacleRadius;
 
-    [Header("¿ÀºêÁ§Æ® »ý¼º °¹¼ö/°£°Ý(ÃÖ¼Ú°ª~ÃÖ´ñ°ª)")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½(ï¿½Ö¼Ú°ï¿½~ï¿½Ö´ï¿½)")]
     public int[] spawnCount = new int[2];
     public float[] Interval = new float[2];
-    [Header("¿ÀºêÁ§Æ® ¿©·¯°³ »ý¼º ½Ã »ý¼º °£°Ý")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     [Range(0, 3)] public float spawnInterval;
 
-    [Header("¿ÀºêÁ§Æ® ¹è¿­(Å©±â¸¦ ÁöÁ¤ÇØÁÖ¸é ±× Å©±â¸¸Å­ÀÇ ¹üÀ§ ³»¿¡¼­ »ý¼º)")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½è¿­(Å©ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½ï¿½ Å©ï¿½â¸¸Å­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)")]
     public int[] topObstacleList = new int[Xlength];
     public int[] bottomObstacleList = new int[Xlength];
     public int[] leftObstacleList = new int[Ylength];
     public int[] rightObstacleList = new int[Ylength];
 
-    [Header("ÆÛ¼¾Æ®´Â ¿ÀºêÁ§Æ® ¹è¿­ °ª Áß Á¦ÀÏ Å« °ª +1·Î ÇØÁÖ¼¼¿ä")]
+    [Header("ï¿½Û¼ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½è¿­ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å« ï¿½ï¿½ +1ï¿½ï¿½ ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½")]
     public float[] percents = new float[Xlength+1];
 
     void Start()
     {
-        // °¢ ¹æÇâ Á¤º¸ ¹è¿­ °¡ÁßÄ¡¸¦ ÁÖ±â À§ÇÑ ¼ýÀÚ ÃÊ±âÈ­
+        // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         for (int i = 0; i < topObstacleList.Length; i++)
         {
             topObstacleList[i] = 1;
@@ -56,7 +56,7 @@ public class ObstacleSpawner : MonoBehaviour
             int count = Random.Range(spawnCount[0], spawnCount[1]+1);
             for (int i = 0; i < count; i++)
             {
-                SpwanObstacle(); 
+                SpawnObstacle(); 
                 yield return new WaitForSeconds(spawnInterval);
             }
             float tempinterval = Random.Range(Interval[0], Interval[1]);
@@ -64,9 +64,9 @@ public class ObstacleSpawner : MonoBehaviour
         }
     }
 
-    public void SpwanObstacle()
+    public void SpawnObstacle()
     {
-        // ¹æÇâÀº °¢ 25%
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ 25%
         int direction = Random.Range(0, 4);
         int index = 0;
         float tempnum;
@@ -76,14 +76,14 @@ public class ObstacleSpawner : MonoBehaviour
             case 0:
                 for (int i = 0; i<topObstacleList.Length; i++)
                 {
-                    // °¢ ¹è¿­ÀÇ ¼ýÀÚ¸¦ ¿ª¼ö·Î ÇÑ È®·üÀ» °è¼Ó ´õÇØ³ª°¡°í
+                    // ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø³ï¿½ï¿½ï¿½ï¿½ï¿½
                     percents[i + 1] = percents[i] + 1/ (float)topObstacleList[i];
                 }
 
-                // ±× ´õÇÑ °ªÀÇ ÃÑÇÕ±îÁö ¹üÀ§¿¡¼­ ·£´ýÀ¸·Î °ªÀ» ÇÏ³ª »Ì¾Æ¼­
+                // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Õ±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ ï¿½Ì¾Æ¼ï¿½
                 tempnum = Random.Range(0, percents[topObstacleList.Length]);
 
-                // ±× °ªÀÌ ¿ª¼ö·Î ÇÑ °ªÀÇ ¹üÀ§¿¡ ÀÖÀ¸¸é ±× °ªÀ¸·Î ¼³Á¤
+                // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 for (int i = topObstacleList.Length; i > 0; i--)
                 {
                     if (tempnum < percents[i])
@@ -92,13 +92,13 @@ public class ObstacleSpawner : MonoBehaviour
                     }
                 }
 
-                // ±×·¸°Ô ±¸ÇÑ ¹è¿­Àº 1ºÎÅÍ ½ÃÀÛÀÌ¾î¼­ 1 »©ÁÜ(percents[i+1]ÀÓ)
+                // ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¾î¼­ 1 ï¿½ï¿½ï¿½ï¿½(percents[i+1]ï¿½ï¿½)
                 index--;
-                // ±× ¹øÂ° ¹è¿­¿¡ ¿ÀºêÁ§Æ® Ãß°¡Çß´Ù°í ¹è¿­¿¡ °ª Ãß°¡
+                // ï¿½ï¿½ ï¿½ï¿½Â° ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ß°ï¿½ï¿½ß´Ù°ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ ï¿½ß°ï¿½
                 topObstacleList[index]++;
                 GameObject obstacleTop = GameObject.Instantiate(obstacle, new Vector2(-xRange + obstacleRadius * index, yRange), Quaternion.identity);
-                // ¹è¿­¿¡ ¹æÇâ ÀúÀå
-                obstacleTop.GetComponent<Obstacle>().start = 0;
+                // ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                obstacleTop.GetComponent<ItemMovement>().start = 0;
                 break;
 
             case 1:
@@ -120,7 +120,7 @@ public class ObstacleSpawner : MonoBehaviour
                 index--;
                 bottomObstacleList[index]++;
                 GameObject obstacleBottom = GameObject.Instantiate(obstacle, new Vector2(-xRange + obstacleRadius * index, -yRange), obstacle.transform.rotation);
-                obstacleBottom.GetComponent<Obstacle>().start = 1;
+                obstacleBottom.GetComponent<ItemMovement>().start = 1;
                 break;
 
             case 2:
@@ -142,7 +142,7 @@ public class ObstacleSpawner : MonoBehaviour
                 index--;
                 leftObstacleList[index]++;
                 GameObject obstacleLeft = GameObject.Instantiate(obstacle, new Vector2(-xRange, -yRange + obstacleRadius * index), obstacle.transform.rotation);
-                obstacleLeft.GetComponent<Obstacle>().start = 2;
+                obstacleLeft.GetComponent<ItemMovement>().start = 2;
                 break;
 
             case 3:
@@ -164,7 +164,7 @@ public class ObstacleSpawner : MonoBehaviour
                 index--;
                 rightObstacleList[index]++;
                 GameObject obstacleRight = GameObject.Instantiate(obstacle, new Vector2(xRange, -yRange + obstacleRadius * index), obstacle.transform.rotation);
-                obstacleRight.GetComponent<Obstacle>().start = 3;
+                obstacleRight.GetComponent<ItemMovement>().start = 3;
                 break;
         }
     }

@@ -13,7 +13,7 @@ public class FuelManager : MonoBehaviour
 
     void Start()
     {
-        //_fuelBar = GameObject.Find("FuelBar").GetComponent<Image>();
+        _fuelBar = GameObject.Find("Fuel_Image").GetComponent<Image>();
     }
 
     void Update()

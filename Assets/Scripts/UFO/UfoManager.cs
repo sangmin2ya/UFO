@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UfoManager : MonoBehaviour
 {
     //Data
-    public List<GameObject> _AttacedObjects { get; set; } //수정필요
+    public List<ItemInfo> _AttacedObjects;//수정필요
     [SerializeField] private float _setSpeed;
     [SerializeField] private int _maxStuckCount;
     public float _speed { get; private set; }
@@ -15,11 +15,11 @@ public class UfoManager : MonoBehaviour
     public MagnetState _magnetState { get; set; }
     //Image
     private Image _speedBar;
-
+    private Image _lifeBar;
     void Start()
     {
-        _AttacedObjects = new List<GameObject>();
-        //_speedBar = GameObject.Find("SpeedBar").GetComponent<Image>();
+        _AttacedObjects = new List<ItemInfo>();
+        _speedBar = GameObject.Find("Speed_Image").GetComponent<Image>();
         _speed = _setSpeed;
         _accelSpeed = _setSpeed * 2f;
     }
@@ -32,7 +32,7 @@ public class UfoManager : MonoBehaviour
     /// </summary>
     private void UpdateSpeed()
     {
-        _speed = Mathf.Max(0, _setSpeed * ((_maxStuckCount - _AttacedObjects.Count) / _maxStuckCount));
+        _speed = Mathf.Max(0, _setSpeed * ((_maxStuckCount - _AttacedObjects.Count) / (float)_maxStuckCount));
         _accelSpeed = _speed * 2f;
         UpdateSpeedUI();
         if (_speed <= 0)
@@ -42,14 +42,14 @@ public class UfoManager : MonoBehaviour
     }
     private void AttachObject(GameObject obj)
     {
-        // obj.GetComponent<ItemInfo>().Freeze();
+        obj.GetComponent<ItemInfo>().Freeze();
         obj.transform.SetParent(transform);
-        _AttacedObjects.Add(obj);
+        _AttacedObjects.Add(obj.GetComponent<ItemInfo>());
     }
     private void DetachObject(GameObject obj)
     {
         // obj.GetComponent<ItemInfo>().DestroyItem();
-        _AttacedObjects.Remove(obj);
+        _AttacedObjects.Remove(obj.GetComponent<ItemInfo>());
     }
     private void DestroyUfo()
     {
@@ -57,8 +57,10 @@ public class UfoManager : MonoBehaviour
     }
     private void UpdateSpeedUI()
     {
+        if (_lifeBar != null)
+            _lifeBar.fillAmount = _speed / _setSpeed;
         if (_speedBar != null)
-            _speedBar.fillAmount = _speed / _setSpeed;
+            _speedBar.fillAmount = GetComponent<Rigidbody2D>().velocity.magnitude * 2 / _setSpeed;
     }
     /// <summary>
     /// 충돌시 쓰레기면 부착, 아이템이면 효과적용 후 삭제
@@ -67,16 +69,26 @@ public class UfoManager : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Item"))
         {
-            //     if (collision.GetComponent<ItemInfo>()._itemType == ItemType.Item)
-            //     {
-            //         //아이템 효과 적용하는 함수
-            //         //collision.GetComponent<ItemInfo>().DestroyItem();
-            //     }
-            //     else if (collision.GetComponent<ItemInfo>()._itemType == ItemType.Obstacle)
-            //     {
-            //         AttachObject(collision.gameObject);
-            //     }
-            // }
+            if (collision.GetComponent<ItemInfo>().type == ItemType.Item)
+            {
+                //아이템 효과 적용하는 함수
+                collision.GetComponent<ItemInfo>().DestroyItem();
+            }
+            else if (collision.GetComponent<ItemInfo>().type == ItemType.Obstacle)
+            {
+                AttachObject(collision.gameObject);
+            }
+        }
+    }
+    /// <summary>
+    /// 자식 객체에 충돌시 부착 처리
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnChildTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GetComponent<ItemInfo>().type == ItemType.Obstacle)
+        {
+            AttachObject(collision.gameObject);
         }
     }
 }
