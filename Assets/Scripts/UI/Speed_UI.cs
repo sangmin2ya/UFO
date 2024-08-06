@@ -6,13 +6,13 @@ using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 
 public class Speed_UI : MonoBehaviour
 {
-    [Header("ÀÌ¹ÌÁö")]
+    [Header("ï¿½Ì¹ï¿½ï¿½ï¿½")]
     public Image[] Handle = new Image[2];
 
 
-    [Header("º¯¼ö ¼³Á¤")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField] bool isFuel = false;
-    [SerializeField] bool isSwap = false;
+    public bool isSwap = false;
     public float fuel_Time = 10;
     float t_fuel = 0;
 
@@ -44,22 +44,27 @@ public class Speed_UI : MonoBehaviour
 
         else if (isSwap)
         {
+            Debug.Log("Swap");
             t_Swap += Time.deltaTime / swap_Time;
             speed_Slider.fillAmount = t_Swap >= 1 ? 1 : t_Swap;
 
-            if(t_Swap >= 1) t_Swap = 0;
+            if (t_Swap >= 1)
+            {
+                t_Swap = 0;
+                isSwap = false;
+            }
             return;
         }
 
         t_Speed += Time.deltaTime / speed_Time;
         Camera.main.GetComponent<CameraShake>().shakeMagnitude = .02f * t_Speed;
 
-        foreach(var x in Handle)
+        foreach (var x in Handle)
         {
-            x.color = new Color(1, 1 - t_Speed, 1 - t_Speed);
+            x.color = new Color(1, 1 - t_Speed, 1 - t_Speed, 0.3f);
         }
-        speed_Slider.fillAmount = t_Speed >= 1 ? 1 : t_Speed;
+        //speed_Slider.fillAmount = t_Speed >= 1 ? 1 : t_Speed;
 
-        if(t_Speed >= 1) t_Speed = 0;
+        if (t_Speed >= 1) t_Speed = 0;
     }
 }

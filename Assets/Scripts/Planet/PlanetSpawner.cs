@@ -23,7 +23,7 @@ public class PlanetSpawner : MonoBehaviour
         foreach (var point in SpawnPoints)
         {
             int rand = Random.Range(0, 101);
-            if (rand <= 20 && x <= 4)
+            if (rand <= 10 && x <= 4)
             {
                 x += 1;
                 int planet_rand = Random.Range(0, Planets.Length);

@@ -21,14 +21,14 @@ public class Handle : MonoBehaviour
         float xHor = Input.GetAxisRaw("Horizontal");
         if (dir != xHor) t_Rotate = 0;
 
-        if (xHor > 0) //¿ìÈ¸Àü
+        if (xHor > 0) //ï¿½ï¿½È¸ï¿½ï¿½
         {
             t_Rotate += Time.deltaTime;
-            rectTransform.localRotation = Quaternion.Euler(Vector3.Lerp(new Vector3(0, 0, rectTransform.localRotation.z), new Vector3(0, 0, -20), t_Rotate / Rotate_Time));
+            rectTransform.localRotation = Quaternion.Euler(Vector3.Lerp(new Vector3(0, 0, rectTransform.localRotation.z), new Vector3(0, 0, -5), t_Rotate / Rotate_Time));
         }
         else if (xHor < 0) {
             t_Rotate += Time.deltaTime;
-            rectTransform.localRotation = Quaternion.Euler(Vector3.Lerp(new Vector3(0, 0, rectTransform.localRotation.z), new Vector3(0, 0, 20), t_Rotate / Rotate_Time));
+            rectTransform.localRotation = Quaternion.Euler(Vector3.Lerp(new Vector3(0, 0, rectTransform.localRotation.z), new Vector3(0, 0, 5), t_Rotate / Rotate_Time));
         }
         else
         {
