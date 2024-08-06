@@ -6,55 +6,56 @@ public class ItemMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
 
-    // �� ũ��(ī�޶� ����)
+    // size of camera view
     public Vector2 viewSize;
 
-    // ������, ��ֹ� �ӵ�
+    // item speed
     public float obstacleSpeed = 5f;
 
-    // ������, ��ֹ� ���� �ð�
+    // destroy time of item
     private float destroyTime = 5f;
 
-    // ������ �����ϱ� ���� ����
     private float angleRange = 0.5f;
 
     public int start;
 
-    // �ڼ� ���� ����
-    public float magnetRange = 5f;
+    // Magnetic influence range
+    public float magnetRange = 2.5f;
 
-    // ������� �ӵ�
     public float pullPower = 1f;
 
-    // �о����� �ӵ�
     public float pushPower = 0.5f;
 
-    // �÷��̾� ����
+    // player
     private Transform player;
     private UfoManager _playerUfoManager;
+
+    // item
+    private ItemInfo itemInfo;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         _playerUfoManager = player.GetComponent<UfoManager>();
 
-        // ������ �����ǿ� ���� ���ư��� ���� ������
+        // Set movement direction
         Vector2 direction = GetMovementDirection(transform.position);
 
         Debug.Log(direction);
 
         rb = GetComponent<Rigidbody2D>();
 
-        // ���� ����ȭ �ϰ� velocity ������
+        // Normalize direction and set speed
         rb.velocity = direction.normalized * obstacleSpeed;
 
-        // ���� ������ �� �ڿ� �Ҹ�
-        Destroy(gameObject, destroyTime);
+
+        // Check during destroyTime
+        StartCoroutine(CheckAndDestroy());
     }
 
     void Update()
     {
-        // �÷��̾���� �Ÿ� ���
+        // Calculate distance from player
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
         if (distanceToPlayer <= magnetRange)
@@ -63,6 +64,7 @@ public class ItemMovement : MonoBehaviour
         }
     }
 
+    // Movement settings according to magnetism
     void AdjustDirectionBasedOnMagnetism(float distanceToPlayer)
     {
         Vector2 directionToPlayer = (player.position - transform.position).normalized;
@@ -71,23 +73,35 @@ public class ItemMovement : MonoBehaviour
         
         if (itemInfo.magnetState == _playerUfoManager._magnetState)
         {
-            // ���� ���̸� �ݴ� �������� ���ư�
-            rb.velocity = -directionToPlayer * obstacleSpeed * pushPower; // ������ �ݴ� ��������
+            // Magnetism is the same as the player.
+            rb.velocity = -directionToPlayer * obstacleSpeed * pushPower; 
         }
         else
         {
-            // �ٸ� ���̸� �÷��̾� ������ ���ư�
-            rb.velocity = directionToPlayer * obstacleSpeed * pullPower; // ������ �÷��̾� ������
+            // Magnetism is different from the player
+            rb.velocity = directionToPlayer * obstacleSpeed * pullPower;
         }
         
     }
 
+    IEnumerator CheckAndDestroy()
+    {
+        yield return new WaitForSeconds(destroyTime);
 
+        // Stuck 상태가 아닌 경우에만 파괴
+        if (itemInfo.type != ItemType.Stuck)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
+    // Set movement direction
     Vector2 GetMovementDirection(Vector2 spawnPosition)
     {
         Vector2 direction = Vector2.zero;
 
-        // ���� ��ġ�� ���� ���� ����
+        // Set direction based on spawn location
         if (spawnPosition.y > viewSize.y) // Top
         {
             direction = new Vector2(Random.Range(-angleRange, angleRange), -1f);
@@ -105,18 +119,18 @@ public class ItemMovement : MonoBehaviour
             direction = new Vector2(-1f, Random.Range(-angleRange, angleRange));
         }
 
-        // ����� ������ ���ư��� �ʵ��� ���� ����
+        // Adjust direction to avoid flying into the nearby plane
         if (Mathf.Abs(spawnPosition.x) > Mathf.Abs(spawnPosition.y))
         {
-            // �¿찡 �� �ִٸ� ���� ���⸸ �ٲٱ�
+            // If left and right are further apart, just change the up and down direction.
             direction.x = (spawnPosition.x > 0) ? -1f : 1f;
-            direction.y = Random.Range(-angleRange, angleRange); // ���� �������� ����� ������ ���ư��� �ʵ��� ��
+            direction.y = Random.Range(-angleRange, angleRange); // Avoid flying to the nearest surface in the horizontal direction.
         }
         else
         {
-            // ���ϰ� �� �ִٸ� �¿� ���⸸ �ٲٱ�
+            // If the top and bottom are further apart, just change the left and right directions.
             direction.y = (spawnPosition.y > 0) ? -1f : 1f;
-            direction.x = Random.Range(-angleRange, angleRange); // ���� �������� ����� ������ ���ư��� �ʵ��� ��
+            direction.x = Random.Range(-angleRange, angleRange); // Avoid flying towards the near surface in the vertical direction.
         }
 
         return direction;
