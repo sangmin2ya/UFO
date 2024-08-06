@@ -33,6 +33,7 @@ public class PlanetSpawner : MonoBehaviour
                     var planet = Instantiate(Planets[planet_rand], point.position, Quaternion.identity);
                     float random_scale = Random.Range(minSize, maxSize+1);
                     planet.transform.localScale = new Vector3(random_scale, random_scale, random_scale);
+                    planet.GetComponent<SpriteRenderer>().sortingOrder = Mathf.FloorToInt(random_scale);
                     planet.GetComponent<SpriteRenderer>().color = new Color(Random.Range(0, 1f) / (5.5f - random_scale), Random.Range(0, 1f) / (5.5f - random_scale), Random.Range(0, 1f) / (5.5f - random_scale));
                     planet.GetComponent<Planet>().speed = .0075f * random_scale;
                 }
