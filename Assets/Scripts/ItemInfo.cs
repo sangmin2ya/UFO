@@ -101,7 +101,7 @@ public class ItemInfo : MonoBehaviour
 
     public void DestroyItem()
     {
-
+        // 아이템이 자연스러운 애니메이션 등을 재생하며 삭제
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
