@@ -130,6 +130,9 @@ MonoBehaviour:
   viewSize: {x: 18, y: 10}
   obstacleSpeed: 5
   start: 0
+  magnetRange: 5
+  pullPower: 1
+  pushPower: 0.5
 --- !u!114 &8085729660635997123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +147,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: 0
   type: 0
+  magnetState: 0
+  ability: 0
   index_ability: 0
 --- !u!58 &556243590872808448
 CircleCollider2D:

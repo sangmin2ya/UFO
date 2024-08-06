@@ -20,8 +20,24 @@ public class ItemMovement : MonoBehaviour
 
     public int start;
 
+    // 자성 반응 범위
+    public float magnetRange = 5f;
+
+    // 당겨지는 속도
+    public float pullPower = 1f;
+
+    // 밀어지는 속도
+    public float pushPower = 0.5f;
+
+    // 플레이어 정보
+    private Transform player;
+    private PlayerMagnet playerMagnet;
+
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerMagnet = player.GetComponent<PlayerMagnet>();
+
         // 리스폰 포지션에 따라 날아가는 방향 정해줌
         Vector2 direction = GetMovementDirection(transform.position);
 
@@ -35,6 +51,37 @@ public class ItemMovement : MonoBehaviour
         // 접촉 안했을 때 자연 소멸
         Destroy(gameObject, destroyTime);
     }
+
+    void Update()
+    {
+        // 플레이어와의 거리 계산
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+        if (distanceToPlayer <= magnetRange)
+        {
+            AdjustDirectionBasedOnMagnetism(distanceToPlayer);
+        }
+    }
+
+    void AdjustDirectionBasedOnMagnetism(float distanceToPlayer)
+    {
+        Vector2 directionToPlayer = (player.position - transform.position).normalized;
+        ItemInfo itemInfo = GetComponent<ItemInfo>();
+
+        
+        if (itemInfo.magnetState == playerMagnet.magnetState)
+        {
+            // 같은 극이면 반대 방향으로 날아감
+            rb.velocity = -directionToPlayer * obstacleSpeed * pushPower; // 빠르게 반대 방향으로
+        }
+        else
+        {
+            // 다른 극이면 플레이어 쪽으로 날아감
+            rb.velocity = directionToPlayer * obstacleSpeed * pullPower; // 빠르게 플레이어 쪽으로
+        }
+        
+    }
+
 
     Vector2 GetMovementDirection(Vector2 spawnPosition)
     {
