@@ -357,7 +357,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -428,10 +428,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1817179401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2747e86bdd26d684c94571d9607efecb, type: 3}
+  m_Script: {fileID: 11500000, guid: aabb7f99779e9754f80f6457aa50e968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magnetState: 0
+  _AttacedObjects: []
+  _setSpeed: 5
+  _maxStuckCount: 20
 --- !u!1001 &3464167944673676735
 PrefabInstance:
   m_ObjectHideFlags: 0
