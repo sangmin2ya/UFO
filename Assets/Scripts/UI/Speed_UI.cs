@@ -46,25 +46,27 @@ public class Speed_UI : MonoBehaviour
         {
             Debug.Log("Swap");
             t_Swap += Time.deltaTime / swap_Time;
-            speed_Slider.fillAmount = t_Swap >= 1 ? 1 : t_Swap;
+            speed_Slider.fillAmount = t_Swap >= 0.5 ? 1 : (t_Swap / 0.5f);
 
-            if (t_Swap >= 1)
+            if (t_Swap >= 0.5)
             {
                 t_Swap = 0;
                 isSwap = false;
             }
             return;
         }
-
-        t_Speed += Time.deltaTime / speed_Time;
-        Camera.main.GetComponent<CameraShake>().shakeMagnitude = .02f * t_Speed;
-
-        foreach (var x in Handle)
+        else
         {
-            x.color = new Color(1, 1 - t_Speed, 1 - t_Speed, 0.3f);
-        }
-        //speed_Slider.fillAmount = t_Speed >= 1 ? 1 : t_Speed;
+            t_Speed += Time.deltaTime / speed_Time;
+            Camera.main.GetComponent<CameraShake>().shakeMagnitude = .02f * t_Speed;
 
-        if (t_Speed >= 1) t_Speed = 0;
+            foreach (var x in Handle)
+            {
+                x.color = new Color(1, 1 - t_Speed, 1 - t_Speed, 0.3f);
+            }
+            //speed_Slider.fillAmount = t_Speed >= 1 ? 1 : t_Speed;
+
+            if (t_Speed >= 1) t_Speed = 0;
+        }
     }
 }

@@ -14,6 +14,7 @@ public class UfoManager : MonoBehaviour
     public float _accelSpeed { get; private set; }
     public MagnetState _magnetState { get; set; }
     //Image
+    [SerializeField] private List<Sprite> _magnetSprites;
     private Image _speedBar;
     private Image _weightBar;
     private Image _magnetImg;
@@ -21,7 +22,7 @@ public class UfoManager : MonoBehaviour
     {
         _AttacedObjects = new List<ItemInfo>();
         _speedBar = GameObject.Find("Speed_Image").GetComponent<Image>();
-        _magnetImg = GameObject.Find("Magnet_Image").GetComponent<Image>();
+        _magnetImg = GameObject.Find("Current_Magnet").GetComponent<Image>();
         _speed = _setSpeed;
         _accelSpeed = _setSpeed * 2f;
     }
@@ -64,7 +65,8 @@ public class UfoManager : MonoBehaviour
         if (_speedBar != null)
             _speedBar.fillAmount = GetComponent<Rigidbody2D>().velocity.magnitude * 2 / _setSpeed;
         if (_magnetImg != null)
-            _magnetImg.color = _magnetState == MagnetState.N ? Color.blue : Color.red;
+            _magnetImg.sprite = _magnetState == MagnetState.N ? _magnetSprites[0] : _magnetSprites[1];
+        transform.Find("Circle").GetComponent<SpriteRenderer>().color = _magnetState == MagnetState.S ? new Color(0, 1, 1, 0.07f) : new Color(1, 0, 0, 0.07f);
     }
     /// <summary>
     /// 충돌시 쓰레기면 부착, 아이템이면 효과적용 후 삭제

@@ -31,8 +31,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.71, y: -4.45, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c082024c8ff909347aeb093cbf7807a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
   viewSize: {x: 18, y: 10}
   obstacleSpeed: 5
   start: 0
-  magnetRange: 5
+  magnetRange: 2.5
   pullPower: 1
   pushPower: 0.5
 --- !u!114 &8085729660635997123
@@ -149,7 +149,8 @@ MonoBehaviour:
   type: 1
   magnetState: 0
   ability: 0
-  index_ability: 0
+  spriteN: {fileID: 21300000, guid: d673d99500dab194788ef33af59d60f4, type: 3}
+  spriteS: {fileID: 21300000, guid: c082024c8ff909347aeb093cbf7807a7, type: 3}
 --- !u!58 &556243590872808448
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -182,6 +183,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.01, y: 0}
   serializedVersion: 2
-  m_Radius: 0.65
+  m_Radius: 0.23

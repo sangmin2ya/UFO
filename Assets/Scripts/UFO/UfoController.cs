@@ -28,7 +28,7 @@ public class UfoController : MonoBehaviour
         _transform = GetComponent<Transform>();
         _ufoManager = GetComponent<UfoManager>();
         _fuelManager = GetComponent<FuelManager>();
-        _swapImage = GameObject.Find("Speed_Image").GetComponent<Speed_UI>();
+        _swapImage = GameObject.Find("Swap_Magnet").GetComponent<Speed_UI>();
         _mainCamera = Camera.main;
     }
     void Start()

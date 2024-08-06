@@ -173,7 +173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d6cdaaadfaa9941845d085f8a47783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isAccel: 0
 --- !u!114 &6527334810959848785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +188,9 @@ MonoBehaviour:
   _AttacedObjects: []
   _setSpeed: 10
   _maxStuckCount: 20
+  _magnetSprites:
+  - {fileID: -834393638, guid: 06170d1ceb62db54d95b9cbc16d1800d, type: 3}
+  - {fileID: 1258329884, guid: 06170d1ceb62db54d95b9cbc16d1800d, type: 3}
 --- !u!114 &966754622030283914
 MonoBehaviour:
   m_ObjectHideFlags: 0
