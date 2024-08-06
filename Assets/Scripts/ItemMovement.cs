@@ -32,6 +32,7 @@ public class ItemMovement : MonoBehaviour
         // 방향 정규화 하고 velocity 정해줌
         rb.velocity = direction.normalized * obstacleSpeed;
 
+        // 접촉 안했을 때 자연 소멸
         Destroy(gameObject, destroyTime);
     }
 
