@@ -15,11 +15,11 @@ public class UfoManager : MonoBehaviour
     public MagnetState _magnetState { get; set; }
     //Image
     private Image _speedBar;
-
+    private Image _lifeBar;
     void Start()
     {
         _AttacedObjects = new List<GameObject>();
-        //_speedBar = GameObject.Find("SpeedBar").GetComponent<Image>();
+        _speedBar = GameObject.Find("Speed_Image").GetComponent<Image>();
         _speed = _setSpeed;
         _accelSpeed = _setSpeed * 2f;
     }
@@ -57,8 +57,10 @@ public class UfoManager : MonoBehaviour
     }
     private void UpdateSpeedUI()
     {
+        if (_lifeBar != null)
+            _lifeBar.fillAmount = _speed / _setSpeed;
         if (_speedBar != null)
-            _speedBar.fillAmount = _speed / _setSpeed;
+            _speedBar.fillAmount = (GetComponent<Rigidbody2D>().velocity.magnitude * 2) / _setSpeed;
     }
     /// <summary>
     /// 충돌시 쓰레기면 부착, 아이템이면 효과적용 후 삭제
