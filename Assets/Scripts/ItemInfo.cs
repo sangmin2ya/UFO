@@ -4,29 +4,29 @@ using UnityEngine;
 
 public class ItemInfo : MonoBehaviour
 {
-    // ¾ÆÀÌÅÛÀÇ Å©±â
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½
     public float size;
 
-    // ¾ÆÀÌÅÛÀÇ Å¸ÀÔ. (Item, Obstacle, Stuck)
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½. (Item, Obstacle, Stuck)
     public ItemType type;
 
-    // N±Ø, S±Ø, Off »óÅÂ
+    // Nï¿½ï¿½, Sï¿½ï¿½, Off ï¿½ï¿½ï¿½ï¿½
     public MagnetState magnetState;
 
-    // ¾ÆÀÌÅÛ ´É·Â Á¾·ù
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½É·ï¿½ ï¿½ï¿½ï¿½ï¿½
     public ItemAbility ability;
 
-    // ¾ÆÀÌÅÛ, Àå¾Ö¹°ÀÇ ´É·Â ±¸ºÐ À§ÇÑ ¹øÈ£
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ ï¿½É·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
     public int index_ability;
 
     private void Start()
     {
-        // ·£´ýÀ¸·Î N±Ø S±Ø Á¤ÇØÁÜ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Nï¿½ï¿½ Sï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         magnetState = (Random.value > 0.5f) ? MagnetState.N : MagnetState.S;
     }
 
 
-    // ¾ÆÀÌÅÛÀÇ ´É·Â¿¡ µû¸¥ Çàµ¿À» Á¤ÀÇ
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½É·Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½àµ¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void ExecuteAbility()
     {
         switch (type)
@@ -38,73 +38,74 @@ public class ItemInfo : MonoBehaviour
                 ExecuteObstacleAbility();
                 break;
             default:
-                Debug.Log("Å¸ÀÔÀÌ ÁöÁ¤µÇÁö ¾ÊÀ½");
+                Debug.Log("Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
                 break;
         }
     }
 
     private void ExecuteItemAbility()
     {
-        // index_ability¿¡ µû¸¥ Item ´É·Â ±¸Çö
+        // index_abilityï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Item ï¿½É·ï¿½ ï¿½ï¿½ï¿½ï¿½
         switch (ability)
         {
-            case ItemAbility.FuelFilling: // ¿¬·á ÃæÀü
+            case ItemAbility.FuelFilling: // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 FuelFilling();
                 break;
-            case ItemAbility.SurfaceCleaning: // ºÎÂø Àå¾Ö¹° Á¦°Å
+            case ItemAbility.SurfaceCleaning: // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½ï¿½
                 SurfaceCleaning();
                 break;
-            case ItemAbility.PoleChange: // ¸Ê¿¡ ÀÖ´Â ¸ðµç ¿ÀºêÁ§Æ® ÇÏ³ªÀÇ poleÀ¸·Î ÀüÈ¯
+            case ItemAbility.PoleChange: // ï¿½Ê¿ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ï³ï¿½ï¿½ï¿½ poleï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
                 PoleChange();
                 break;
         }
     }
 
-    // Àå¾Ö¹°ÀÇ Á¾·ù´Â N ±Ø°ú S ±Ø¸¸ ±¸ºÐÇØÁÖ¸é µÊ. º°µµÀÇ ´É·Â ¾øÀ½. ÇÃ·¹ÀÌ¾î¿¡°Ô ºÙ±â¸¸ ÇÔ.
+    // ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ N ï¿½Ø°ï¿½ S ï¿½Ø¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½É·ï¿½ ï¿½ï¿½ï¿½ï¿½. ï¿½Ã·ï¿½ï¿½Ì¾î¿¡ï¿½ï¿½ ï¿½Ù±â¸¸ ï¿½ï¿½.
     private void ExecuteObstacleAbility()
     {
         Debug.Log(magnetState);
     }
 
 
-    // Item_ÇÃ·¹ÀÌ¾î ¿¬·á ÃæÀü
+    // Item_ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void FuelFilling()
     {
-        Debug.Log("¿¬·á ÃæÀü");
-        // ¿¬·á º¯¼ö ÂüÁ¶ÇØ¼­ °ª¸¸ ´Ã·ÁÁÖ¸é µÊ.
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ö¸ï¿½ ï¿½ï¿½.
 
         DestroyItem();
     }
 
-    // Item_ ºÎÂø Àå¾Ö¹° Á¦°Å
+    // Item_ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void SurfaceCleaning()
     {
-        Debug.Log("ºÎÂø Àå¾Ö¹° Á¦°Å");
-        // ÇÃ·¹ÀÌ¾î¿Í Á¢ÃË ½Ã, ÀÚ½Ä ¿ÀºêÁ§Æ® Áß Stuck Å¸ÀÔ ¾ÆÀÌÅÛÀ» »èÁ¦
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½ï¿½");
+        // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ Stuck Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
         DestroyItem();
     }
 
     public void PoleChange()
     {
-        Debug.Log("pole ÀüÈ¯");
-        // ¹è¿­¿¡ ÀÖ´Â ¾ÆÀÌÅÛµéÀÇ magnetState À» ÀüÈ¯
-        // N ±Ø S ±Ø ·£´ý?
+        Debug.Log("pole ï¿½ï¿½È¯");
+        // ï¿½è¿­ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ûµï¿½ï¿½ï¿½ magnetState ï¿½ï¿½ ï¿½ï¿½È¯
+        // N ï¿½ï¿½ S ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½?
 
         DestroyItem();
     }
 
-    // Stuck_ItemType À» stuck À¸·Î ¹Ù²Ù°í, ÀÌµ¿ Á¤Áö
+    // Stuck_ItemType ï¿½ï¿½ stuck ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ù°ï¿½, ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
     public void Freeze()
     {
         this.type = ItemType.Stuck;
         this.magnetState = MagnetState.Off;
-        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        GetComponent<ItemMovement>().enabled = false;
+        GetComponent<Rigidbody2D>().isKinematic = true;
     }
 
     public void DestroyItem()
     {
-        // ¾ÆÀÌÅÛÀÌ ÀÚ¿¬½º·¯¿î ¾Ö´Ï¸ÞÀÌ¼Ç µîÀ» Àç»ýÇÏ¸ç »èÁ¦
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½
         Destroy(gameObject);
     }
 
@@ -113,6 +114,10 @@ public class ItemInfo : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             ExecuteAbility();
+        }
+        if (collision.CompareTag("Item") && this.type == ItemType.Stuck)
+        {
+            transform.parent.SendMessage("OnChildTriggerEnter2D", collision, SendMessageOptions.DontRequireReceiver);
         }
     }
 }

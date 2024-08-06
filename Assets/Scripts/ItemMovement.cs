@@ -6,55 +6,55 @@ public class ItemMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
 
-    // ¸Ê Å©±â(Ä«¸Þ¶ó ¹üÀ§)
+    // ï¿½ï¿½ Å©ï¿½ï¿½(Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½)
     public Vector2 viewSize;
 
-    // ¾ÆÀÌÅÛ, Àå¾Ö¹° ¼Óµµ
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Ö¹ï¿½ ï¿½Óµï¿½
     public float obstacleSpeed = 5f;
 
-    // ¾ÆÀÌÅÛ, Àå¾Ö¹° Á¦°Å ½Ã°£
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
     private float destroyTime = 5f;
 
-    // °¢µµ¸¦ ¼³Á¤ÇÏ±â À§ÇÑ ¹üÀ§
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private float angleRange = 0.5f;
 
     public int start;
 
-    // ÀÚ¼º ¹ÝÀÀ ¹üÀ§
+    // ï¿½Ú¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public float magnetRange = 5f;
 
-    // ´ç°ÜÁö´Â ¼Óµµ
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½
     public float pullPower = 1f;
 
-    // ¹Ð¾îÁö´Â ¼Óµµ
+    // ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½
     public float pushPower = 0.5f;
 
-    // ÇÃ·¹ÀÌ¾î Á¤º¸
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½
     private Transform player;
-    private PlayerMagnet playerMagnet;
+    private UfoManager _playerUfoManager;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        playerMagnet = player.GetComponent<PlayerMagnet>();
+        _playerUfoManager = player.GetComponent<UfoManager>();
 
-        // ¸®½ºÆù Æ÷Áö¼Ç¿¡ µû¶ó ³¯¾Æ°¡´Â ¹æÇâ Á¤ÇØÁÜ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         Vector2 direction = GetMovementDirection(transform.position);
 
         Debug.Log(direction);
 
         rb = GetComponent<Rigidbody2D>();
 
-        // ¹æÇâ Á¤±ÔÈ­ ÇÏ°í velocity Á¤ÇØÁÜ
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È­ ï¿½Ï°ï¿½ velocity ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         rb.velocity = direction.normalized * obstacleSpeed;
 
-        // Á¢ÃË ¾ÈÇßÀ» ¶§ ÀÚ¿¬ ¼Ò¸ê
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ú¿ï¿½ ï¿½Ò¸ï¿½
         Destroy(gameObject, destroyTime);
     }
 
     void Update()
     {
-        // ÇÃ·¹ÀÌ¾î¿ÍÀÇ °Å¸® °è»ê
+        // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
         if (distanceToPlayer <= magnetRange)
@@ -69,15 +69,15 @@ public class ItemMovement : MonoBehaviour
         ItemInfo itemInfo = GetComponent<ItemInfo>();
 
         
-        if (itemInfo.magnetState == playerMagnet.magnetState)
+        if (itemInfo.magnetState == _playerUfoManager._magnetState)
         {
-            // °°Àº ±ØÀÌ¸é ¹Ý´ë ¹æÇâÀ¸·Î ³¯¾Æ°¨
-            rb.velocity = -directionToPlayer * obstacleSpeed * pushPower; // ºü¸£°Ô ¹Ý´ë ¹æÇâÀ¸·Î
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½Ý´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½
+            rb.velocity = -directionToPlayer * obstacleSpeed * pushPower; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ý´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         }
         else
         {
-            // ´Ù¸¥ ±ØÀÌ¸é ÇÃ·¹ÀÌ¾î ÂÊÀ¸·Î ³¯¾Æ°¨
-            rb.velocity = directionToPlayer * obstacleSpeed * pullPower; // ºü¸£°Ô ÇÃ·¹ÀÌ¾î ÂÊÀ¸·Î
+            // ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½
+            rb.velocity = directionToPlayer * obstacleSpeed * pullPower; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         }
         
     }
@@ -87,7 +87,7 @@ public class ItemMovement : MonoBehaviour
     {
         Vector2 direction = Vector2.zero;
 
-        // ½ºÆù À§Ä¡¿¡ µû¶ó ¹æÇâ ¼³Á¤
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (spawnPosition.y > viewSize.y) // Top
         {
             direction = new Vector2(Random.Range(-angleRange, angleRange), -1f);
@@ -105,18 +105,18 @@ public class ItemMovement : MonoBehaviour
             direction = new Vector2(-1f, Random.Range(-angleRange, angleRange));
         }
 
-        // °¡±î¿î ¸éÀ¸·Î ³¯¾Æ°¡Áö ¾Êµµ·Ï ¹æÇâ Á¶Á¤
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ ï¿½Êµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (Mathf.Abs(spawnPosition.x) > Mathf.Abs(spawnPosition.y))
         {
-            // ÁÂ¿ì°¡ ´õ ¸Ö´Ù¸é »óÇÏ ¹æÇâ¸¸ ¹Ù²Ù±â
+            // ï¿½Â¿ì°¡ ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¸¸ ï¿½Ù²Ù±ï¿½
             direction.x = (spawnPosition.x > 0) ? -1f : 1f;
-            direction.y = Random.Range(-angleRange, angleRange); // °¡·Î ¹æÇâÀ¸·Î °¡±î¿î ¸éÀ¸·Î ³¯¾Æ°¡Áö ¾Êµµ·Ï ÇÔ
+            direction.y = Random.Range(-angleRange, angleRange); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ ï¿½Êµï¿½ï¿½ï¿½ ï¿½ï¿½
         }
         else
         {
-            // »óÇÏ°¡ ´õ ¸Ö´Ù¸é ÁÂ¿ì ¹æÇâ¸¸ ¹Ù²Ù±â
+            // ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½ ï¿½Â¿ï¿½ ï¿½ï¿½ï¿½â¸¸ ï¿½Ù²Ù±ï¿½
             direction.y = (spawnPosition.y > 0) ? -1f : 1f;
-            direction.x = Random.Range(-angleRange, angleRange); // ¼¼·Î ¹æÇâÀ¸·Î °¡±î¿î ¸éÀ¸·Î ³¯¾Æ°¡Áö ¾Êµµ·Ï ÇÔ
+            direction.x = Random.Range(-angleRange, angleRange); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ ï¿½Êµï¿½ï¿½ï¿½ ï¿½ï¿½
         }
 
         return direction;
