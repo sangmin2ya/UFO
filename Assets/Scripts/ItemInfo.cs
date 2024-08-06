@@ -4,25 +4,52 @@ using UnityEngine;
 
 public class ItemInfo : MonoBehaviour
 {
-    // �������� ũ��
     public float size;
 
-    // �������� Ÿ��. (Item, Obstacle, Stuck)
+    // type of item. (Item, Obstacle, Stuck)
     public ItemType type;
 
-    // N��, S��, Off ����
+    // N, S, Off state
     public MagnetState magnetState;
 
-    // ������ �ɷ� ����
+    // ability of item (FuelFilling, SurfaceCleaning, PoleChange)
     public ItemAbility ability;
 
-    // ������, ��ֹ��� �ɷ� ���� ���� ��ȣ
-    public int index_ability;
+    // Sprite Renderer
+    private SpriteRenderer spriteRenderer;
+
+    // N, S, Off sprite
+    public Sprite spriteN;
+    public Sprite spriteS;
+    //public Sprite spriteOff;
 
     private void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
         // �������� N�� S�� ������
         magnetState = (Random.value > 0.5f) ? MagnetState.N : MagnetState.S;
+
+        // change sprite
+        UpdateSprite();
+    }
+
+    public void UpdateSprite()
+    {
+        switch (magnetState)
+        {
+            case MagnetState.N:
+                spriteRenderer.sprite = spriteN;
+                break;
+            case MagnetState.S:
+                spriteRenderer.sprite = spriteS;
+                break;
+            /*
+            case MagnetState.Off:
+                spriteRenderer.sprite = spriteOff;
+                break;
+            */
+        }
     }
 
 
@@ -38,7 +65,7 @@ public class ItemInfo : MonoBehaviour
                 ExecuteObstacleAbility();
                 break;
             default:
-                Debug.Log("Ÿ���� �������� ����");
+                Debug.Log("Type not specified");
                 break;
         }
     }
@@ -67,34 +94,28 @@ public class ItemInfo : MonoBehaviour
     }
 
 
-    // Item_�÷��̾� ���� ����
     public void FuelFilling()
     {
-        Debug.Log("���� ����");
-        // ���� ���� �����ؼ� ���� �÷��ָ� ��.
+        Debug.Log("Fuel Filling");
 
         DestroyItem();
     }
 
-    // Item_ ���� ��ֹ� ����
     public void SurfaceCleaning()
     {
-        Debug.Log("���� ��ֹ� ����");
-        // �÷��̾�� ���� ��, �ڽ� ������Ʈ �� Stuck Ÿ�� �������� ����
+        Debug.Log("Surface Cleaning");
 
         DestroyItem();
     }
 
     public void PoleChange()
     {
-        Debug.Log("pole ��ȯ");
-        // �迭�� �ִ� �����۵��� magnetState �� ��ȯ
-        // N �� S �� ����?
+        Debug.Log("Pole Change");
 
         DestroyItem();
     }
 
-    // Stuck_ItemType �� stuck ���� �ٲٰ�, �̵� ����
+    // Change ItemType to stuck and stop moving
     public void Freeze()
     {
         this.type = ItemType.Stuck;
@@ -105,7 +126,7 @@ public class ItemInfo : MonoBehaviour
 
     public void DestroyItem()
     {
-        // �������� �ڿ������� �ִϸ��̼� ���� ����ϸ� ����
+        // Play Effect
         Destroy(gameObject);
     }
 
