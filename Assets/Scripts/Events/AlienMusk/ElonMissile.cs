@@ -6,7 +6,7 @@ public class ElonMissile : MonoBehaviour
 {
     [SerializeField] float speed = 1f;
     [SerializeField] float burst_Time = 5f;
-    GameObject player; 
+    GameObject player;
     Animator anim;
     bool shooted = false;
     Vector2 direction;
@@ -22,6 +22,7 @@ public class ElonMissile : MonoBehaviour
         if (isFollowPlayer)
         {
             GetComponent<SpriteRenderer>().sprite = state == MagnetState.N ? missiles[0] : missiles[1];
+            GetComponent<SpriteRenderer>().color = state == MagnetState.N ? new Color(1, 0.5f, 0.5f, 1) : new Color(0.5f, 0.5f, 1f, 1);
             GetComponentInChildren<TrailRenderer>().colorGradient = state == MagnetState.N ? gradients[0] : gradients[1];
         }
         else
@@ -40,7 +41,7 @@ public class ElonMissile : MonoBehaviour
     {
         if (!shooted) return;
         t_burst += Time.deltaTime;
-        if(t_burst > burst_Time)
+        if (t_burst > burst_Time)
         {
             var effect = Instantiate(BurstEffect, transform.position, Quaternion.identity);
             Destroy(effect, 1);
@@ -59,7 +60,6 @@ public class ElonMissile : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
     }
-
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

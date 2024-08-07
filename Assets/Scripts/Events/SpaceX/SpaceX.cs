@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SpaceX : MonoBehaviour
 {
@@ -22,17 +24,20 @@ public class SpaceX : MonoBehaviour
     bool _isTimeBubble = false;
     bool _isStorm = false;
     [SerializeField] Vector2 timescale_min_max;
-    [SerializeField]GameUIManager UImanager;
-
+    [SerializeField] GameUIManager UImanager;
+    [SerializeField] private int _patternCount = 0;
+    [SerializeField] private int _hpCount = 0;
     private void Start()
     {
         UImanager = GameObject.Find("Canvas").GetComponent<GameUIManager>();
         Player = GameObject.FindGameObjectWithTag("Player");
         InvokeRepeating("occur_Random_Event", 5, 20f);
+
     }
 
     private void Update()
     {
+        CheckEnd();
         if (event_Start)
         {
             t_Event += Time.deltaTime;
@@ -73,6 +78,12 @@ public class SpaceX : MonoBehaviour
     void occur_Random_Event()
     {
         t_Event = 0;
+        _patternCount++;
+        if (_patternCount == 3)
+        {
+            OccurMagnetPattern();
+            return;
+        }
         event_Start = true;
         int rand = Random.Range(0, 4);
         switch (rand)
@@ -83,10 +94,78 @@ public class SpaceX : MonoBehaviour
             case 3: CosmicStorm(); break;
         }
     }
+    private void OccurMagnetPattern()
+    {
+        _patternCount = 0;
+        CancelInvoke("occur_Random_Event");
+        UImanager.showEvent("ìŠ¤í˜ì´ìŠ¤ Xê°€ í¬ê¸° " + (_hpCount * 2 + 3) + "ì˜ ê°•ë ¥í•œ ìê¸°ì¥ì„ ë°œìƒì‹œí‚µë‹ˆë‹¤!");
+        MagnetPattern();
+    }
+    private void MagnetPattern()
+    {
+        Camera.main.GetComponent<CameraShake>().StopCameraShake();
+        Camera.main.GetComponent<CameraShake>().startCameraShake(0.01f, 5);
 
+        Invoke("CompareMass", 8);
+    }
+    private void CompareMass()
+    {
+        if (Player.GetComponent<UfoManager>()._AttacedObjects.Count > (_hpCount * 2 + 3))
+        {
+            _hpCount++;
+            UImanager.showEvent("ë”ìš± ê°•ë ¥í•œ ìê¸°ì¥ìœ¼ë¡œ ìŠ¤í˜ì´ìŠ¤ Xì—ê²Œ ë°˜ê²©í–ˆìŠµë‹ˆë‹¤!");
+            GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>().OnBomb();
+            Player.GetComponent<UfoManager>().ClearAll();
+        }
+        else
+        {
+            GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>().OnBomb();
+            Player.GetComponent<UfoManager>().ClearAll();
+        }
+        InvokeRepeating("occur_Random_Event", 10, 20f);
+    }
+    private void CheckEnd()
+    {
+        if (_hpCount == 3)
+        {
+            GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>().OnBomb();
+            Player.GetComponent<UfoManager>().ClearAll();
+            UImanager.showEvent("ìŠ¤í˜ì´ìŠ¤ Xë¥¼ ë¬¼ë¦¬ì³¤ìŠµë‹ˆë‹¤!");
+            CancelInvoke("occur_Random_Event");
+            StartCoroutine(EndEvent());
+            StartCoroutine(FadeOutImage());
+        }
+    }
+    IEnumerator EndEvent()
+    {
+        Camera.main.GetComponent<CameraShake>().startCameraShake(0.01f, 5);
+        GameObject go = transform.Find("Burst").gameObject;
+        for (int i = 0; i < 5; i++)
+        {
+            yield return new WaitForSeconds(1);
+            go.transform.GetChild(i).gameObject.SetActive(true);
+        }
+    }
+    IEnumerator FadeOutImage()
+    {
+        yield return new WaitForSeconds(3);
+        Image img = GameObject.Find("BlackOut").GetComponent<Image>();
+        Color originalColor = img.color;
+        Color targetColor = new Color(originalColor.r, originalColor.g, originalColor.b, 1);
+
+        float elapsedTime = 0;
+        while (elapsedTime < 2)
+        {
+            img.color = Color.Lerp(originalColor, targetColor, elapsedTime / 2);
+            elapsedTime += Time.fixedDeltaTime;
+            yield return null;
+        }
+        img.color = targetColor;
+        SceneManager.LoadScene("HappyEnding");
+    }
     void CosmicStorm()
     {
-        UImanager.showEvent("¿ìÁÖ ÆøÇ³ÀÌ ¸ô¾ÆÃÄ ½Ã¾ß°¡ Á¦ÇÑµË´Ï´Ù !");
+        UImanager.showEvent("ìš°ì£¼ í­í’ì´ ëª°ì•„ì³ ì‹œì•¼ê°€ ì œí•œë©ë‹ˆë‹¤ !");
 
         _isStorm = true;
         Player.GetComponent<UfoController>()._isStorm = true;
@@ -99,8 +178,7 @@ public class SpaceX : MonoBehaviour
         UImanager.showTimeBubbleEffect();
         float x = Random.Range(timescale_min_max.x, timescale_min_max.y);
         Time.timeScale = x;
-        UImanager.showEvent(x >= 1 ? "Å¸ÀÓ ¹öºí·Î ÀÎÇØ ½Ã°£ÀÌ »¡¶óÁı´Ï´Ù !" : "Å¸ÀÓ ¹öºí·Î ÀÎÇØ ½Ã°£ÀÌ ´À·ÁÁı´Ï´Ù..");
-
+        UImanager.showEvent(x >= 1 ? "íƒ€ì„ ë²„ë¸”ë¡œ ì¸í•´ ì‹œê°„ì´ ë¹¨ë¼ì§‘ë‹ˆë‹¤ !" : "íƒ€ì„ ë²„ë¸”ë¡œ ì¸í•´ ì‹œê°„ì´ ëŠë ¤ì§‘ë‹ˆë‹¤..");
     }
 
     void EMP()
@@ -110,7 +188,7 @@ public class SpaceX : MonoBehaviour
 
     public void setEmpState()
     {
-        UImanager.showEvent("EMP ¹ßµ¿ ! ´çºĞ°£ ÀÚ¼º º¯°æÀÌ ºÒ°¡´ÉÇÕ´Ï´Ù.");
+        UImanager.showEvent("EMP ë°œë™ ! ë‹¹ë¶„ê°„ ìì„± ë³€ê²½ì´ ë¶ˆê°€ëŠ¥í•©ë‹ˆë‹¤.");
         Player.GetComponent<UfoController>()._isEMP = true;
         _isEmp = true;
     }

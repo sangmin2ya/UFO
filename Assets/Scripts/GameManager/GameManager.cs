@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
     //Game State
     public int _stage { get; private set; } //Current Stage
     public int _score { get; private set; } //Obsatcle Count?

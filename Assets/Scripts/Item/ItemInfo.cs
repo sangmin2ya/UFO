@@ -63,7 +63,10 @@ public class ItemInfo : MonoBehaviour
                     spriteRenderer.sprite = spriteS;
                     break;
                 case MagnetState.Off:
-                    spriteRenderer.color = new Color(77f / 255f, 77f / 255f, 77f / 255f);
+                    if (gameObject != null)
+                    {
+                        spriteRenderer.color = new Color(77f / 255f, 77f / 255f, 77f / 255f);
+                    }
                     break;
             }
         }
@@ -74,23 +77,23 @@ public class ItemInfo : MonoBehaviour
                 case ItemAbility.FuelFilling:
                     spriteRenderer.sprite = spriteA;
 
-                    if (magnetState == MagnetState.N) spriteRenderer.color = new Color(0, 0, 1);
+                    if (magnetState == MagnetState.N) spriteRenderer.color = new Color(1, 0, 0);
                     else
-                        spriteRenderer.color = new Color(1, 0, 0);
+                        spriteRenderer.color = new Color(0, 0, 1);
                     break;
                 case ItemAbility.SurfaceCleaning:
                     spriteRenderer.sprite = spriteB;
                     if (magnetState == MagnetState.N)
-                        spriteRenderer.color = new Color(0, 0, 1);
-                    else
                         spriteRenderer.color = new Color(1, 0, 0);
+                    else
+                        spriteRenderer.color = new Color(0, 0, 1);
                     break;
                 case ItemAbility.PoleChange:
                     spriteRenderer.sprite = spriteC;
                     if (magnetState == MagnetState.N)
-                        spriteRenderer.color = new Color(0, 0, 1);
-                    else
                         spriteRenderer.color = new Color(1, 0, 0);
+                    else
+                        spriteRenderer.color = new Color(0, 0, 1);
                     break;
             }
         }
@@ -176,19 +179,31 @@ public class ItemInfo : MonoBehaviour
         {
             case ItemType.Item: // Item
                 GameObject.Find("ItemSpawnController").GetComponent<ObstacleSpawner>().DestroyObstacle(direction, index);
+                Destroy(gameObject);
                 break;
+
             case ItemType.Obstacle: // Obstacle
                 ExecuteObstacleAbility();
                 GameObject.Find("SpawnController").GetComponent<ObstacleSpawner>().DestroyObstacle(direction, index);
+                StartCoroutine(DestroyItem(gameObject));
                 break;
             default:
                 Debug.Log("Type not specified");
+                StartCoroutine(DestroyItem(gameObject));
                 break;
         }
         // Play Effect
-        Destroy(gameObject);
-    }
 
+    }
+    IEnumerator DestroyItem(GameObject item)
+    {
+        item.transform.GetChild(0).gameObject.SetActive(true);
+        item.transform.GetChild(0).gameObject.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        yield return new WaitForSeconds(1f);
+        Destroy(item);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
