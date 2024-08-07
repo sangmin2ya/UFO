@@ -48,9 +48,6 @@ public class ElonMissile : MonoBehaviour
         }
 
         if (state != player.GetComponent<UfoManager>()._magnetState && isFollowPlayer) checkDirection();
-            // player 오브젝트를 바라보도록 회전
-
-            // 그 방향으로 이동
         transform.position += (Vector3)(direction * speed * Time.deltaTime);
     }
 

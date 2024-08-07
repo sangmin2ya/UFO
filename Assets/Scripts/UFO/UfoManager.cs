@@ -50,6 +50,7 @@ public class UfoManager : MonoBehaviour
     }
     private void AttachObject(GameObject obj)
     {
+        GameObject.Find("Canvas").GetComponent<GameUIManager>().showDamaged();
         obj.GetComponent<ItemInfo>().Freeze();
         obj.transform.SetParent(transform);
         _AttacedObjects.Add(obj.GetComponent<ItemInfo>());
@@ -71,7 +72,7 @@ public class UfoManager : MonoBehaviour
         {
             var speedAmount = GetComponent<Rigidbody2D>().velocity.magnitude * 2 / _setSpeed;
             _speedBar.fillAmount = speedAmount;
-            Camera.main.GetComponent<CameraShake>().shakeMagnitude = .017f * speedAmount;
+            //Camera.main.GetComponent<CameraShake>().shakeMagnitude = .017f * speedAmount;
             for (int i = 0; i < _handle.childCount; i++) {
                 _handle.GetChild(i).GetComponent<Image>().color = new Color(1, 1 - speedAmount, 1 - speedAmount, 0.3f);
             }

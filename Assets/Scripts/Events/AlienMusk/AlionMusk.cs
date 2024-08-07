@@ -21,12 +21,13 @@ public class AlionMusk : MonoBehaviour
     bool _isTimeBubble = false;
     bool _isStorm = false;
     [SerializeField] Vector2 timescale_min_max;
-
+    [SerializeField] GameUIManager UImanager;
 
     private void Start()
     {
+        UImanager = GameObject.Find("Canvas").GetComponent<GameUIManager>();
         Player = GameObject.FindGameObjectWithTag("Player");
-        InvokeRepeating("occur_Random_Event", 5, 15f);
+        InvokeRepeating("occur_Random_Event", 5, 20f);
     }
 
     private void Update()
@@ -34,8 +35,10 @@ public class AlionMusk : MonoBehaviour
         if (event_Start)
         {
             t_Event += Time.deltaTime;
-            if(t_Event >= EventTime)
+            if (t_Event >= EventTime)
             {
+                UImanager.HideEventText();
+
                 t_Event = 0;
                 event_Start = false;
 
@@ -44,7 +47,7 @@ public class AlionMusk : MonoBehaviour
                 if (_isStorm) { Player.GetComponent<UfoController>()._isStorm = false; _isStorm = false; }
 
             }
-        }   
+        }
     }
 
     void ShootMissile()
@@ -68,30 +71,36 @@ public class AlionMusk : MonoBehaviour
 
     void occur_Random_Event()
     {
+        if (count++ >= 9) GetComponent<Animator>().Play("BossClear");
         t_Event = 0;
         event_Start = true;
         int rand = Random.Range(0, 4);
-        switch (rand) {
-
+        switch (rand)
+        {
             case 0: ShootMissile(); break;
             case 1: EMP(); break;
             case 2: TimeBubble(); break;
-            case 3: CosmicStorm(); break;   
+            case 3: CosmicStorm(); break;
         }
-        if (count++ >= 8) { GetComponent<Animator>().Play("BossClear"); return; }
     }
 
     void CosmicStorm()
     {
+        UImanager.showEvent("우주 폭풍이 몰아쳐 시야가 제한됩니다 !");
+
         _isStorm = true;
         Player.GetComponent<UfoController>()._isStorm = true;
     }
 
     void TimeBubble()
     {
+
         _isTimeBubble = true;
-        GameObject.Find("Canvas").GetComponent<GameUIManager>().showTimeBubbleEffect();
-        Time.timeScale = Random.Range(timescale_min_max.x, timescale_min_max.y);
+        UImanager.showTimeBubbleEffect();
+        float x = Random.Range(timescale_min_max.x, timescale_min_max.y);
+        Time.timeScale = x;
+        UImanager.showEvent(x >= 1 ? "타임 버블로 인해 시간이 빨라집니다 !" : "타임 버블로 인해 시간이 느려집니다..");
+
     }
 
     void EMP()
@@ -101,6 +110,7 @@ public class AlionMusk : MonoBehaviour
 
     public void setEmpState()
     {
+        UImanager.showEvent("EMP 발동 ! 당분간 자성 변경이 불가능합니다.");
         Player.GetComponent<UfoController>()._isEMP = true;
         _isEmp = true;
     }

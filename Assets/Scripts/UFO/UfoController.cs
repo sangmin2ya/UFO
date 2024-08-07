@@ -79,8 +79,6 @@ public class UfoController : MonoBehaviour
         _DecoyEffect.SetActive(_isDecoy);
         StormEffect.SetActive(_isStorm);
         UI_EMP_Effect.SetActive(_isEMP);
-
-
       }
     }
     private void Move()
@@ -195,10 +193,6 @@ public class UfoController : MonoBehaviour
             {
                 _ufoManager._magnetState = MagnetState.N;
             }
-        }
-        if (_isEMP)
-        {
-            _UIManager.showAlert("EMP로 인해 변경이 불가합니다");
         }
     }
 }

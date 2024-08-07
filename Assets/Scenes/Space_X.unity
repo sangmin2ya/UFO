@@ -293,10 +293,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2567765840667852697, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
-      propertyPath: m_FillAmount
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3102642430908436579, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -384,10 +380,6 @@ PrefabInstance:
     - target: {fileID: 6918982941312058994, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7243487076081101411, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 7077783
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -994,7 +986,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe92fc078ecfb9f40ab3b1499ad04b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeMagnitude: 0.1
+  shakeDuration: 0.5
+  shakeAmount: 0.7
+  decreaseFactor: 1
 --- !u!81 &2127958020
 AudioListener:
   m_ObjectHideFlags: 0

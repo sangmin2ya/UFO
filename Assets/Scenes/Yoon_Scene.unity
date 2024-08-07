@@ -373,7 +373,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe92fc078ecfb9f40ab3b1499ad04b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeMagnitude: 0.1
+  shakeDuration: 0.5
+  shakeAmount: 0.7
+  decreaseFactor: 1
 --- !u!1001 &559476041
 PrefabInstance:
   m_ObjectHideFlags: 0

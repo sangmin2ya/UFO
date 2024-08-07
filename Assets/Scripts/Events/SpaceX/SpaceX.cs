@@ -20,10 +20,11 @@ public class SpaceX : MonoBehaviour
     bool _isTimeBubble = false;
     bool _isStorm = false;
     [SerializeField] Vector2 timescale_min_max;
-
+    [SerializeField]GameUIManager UImanager;
 
     private void Start()
     {
+        UImanager = GameObject.Find("Canvas").GetComponent<GameUIManager>();
         Player = GameObject.FindGameObjectWithTag("Player");
         InvokeRepeating("occur_Random_Event", 5, 20f);
     }
@@ -35,6 +36,8 @@ public class SpaceX : MonoBehaviour
             t_Event += Time.deltaTime;
             if (t_Event >= EventTime)
             {
+                UImanager.HideEventText();
+
                 t_Event = 0;
                 event_Start = false;
 
@@ -81,15 +84,21 @@ public class SpaceX : MonoBehaviour
 
     void CosmicStorm()
     {
+        UImanager.showEvent("우주 폭풍이 몰아쳐 시야가 제한됩니다 !");
+
         _isStorm = true;
         Player.GetComponent<UfoController>()._isStorm = true;
     }
 
     void TimeBubble()
     {
+
         _isTimeBubble = true;
-        GameObject.Find("Canvas").GetComponent<GameUIManager>().showTimeBubbleEffect();
-        Time.timeScale = Random.Range(timescale_min_max.x, timescale_min_max.y);
+        UImanager.showTimeBubbleEffect();
+        float x = Random.Range(timescale_min_max.x, timescale_min_max.y);
+        Time.timeScale = x;
+        UImanager.showEvent(x >= 1 ? "타임 버블로 인해 시간이 빨라집니다 !" : "타임 버블로 인해 시간이 느려집니다..");
+
     }
 
     void EMP()
@@ -99,6 +108,7 @@ public class SpaceX : MonoBehaviour
 
     public void setEmpState()
     {
+        UImanager.showEvent("EMP 발동 ! 당분간 자성 변경이 불가능합니다.");
         Player.GetComponent<UfoController>()._isEMP = true;
         _isEmp = true;
     }
