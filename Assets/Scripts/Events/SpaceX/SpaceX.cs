@@ -2,18 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AlionMusk : MonoBehaviour
+public class SpaceX : MonoBehaviour
 {
     [SerializeField] GameObject ilonMissile;
-    GameObject Player;
-    public int maximum_Missile_Num = 5;
-    public int followMissileNum = 2;
-    int count = 0;
+    public GameObject Player;
+    public int maximum_Missile_Num = 7;
+    public int followMissileNum = 3;
 
     bool event_Start = false;
     float t_Event = 0;
 
-    [SerializeField] float EventTime = 10;
+    [SerializeField] float EventTime = 15;
 
     //EMP
     bool _isEmp = false;
@@ -26,7 +25,7 @@ public class AlionMusk : MonoBehaviour
     private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
-        InvokeRepeating("occur_Random_Event", 5, 15f);
+        InvokeRepeating("occur_Random_Event", 5, 20f);
     }
 
     private void Update()
@@ -34,7 +33,7 @@ public class AlionMusk : MonoBehaviour
         if (event_Start)
         {
             t_Event += Time.deltaTime;
-            if(t_Event >= EventTime)
+            if (t_Event >= EventTime)
             {
                 t_Event = 0;
                 event_Start = false;
@@ -44,7 +43,7 @@ public class AlionMusk : MonoBehaviour
                 if (_isStorm) { Player.GetComponent<UfoController>()._isStorm = false; _isStorm = false; }
 
             }
-        }   
+        }
     }
 
     void ShootMissile()
@@ -71,14 +70,13 @@ public class AlionMusk : MonoBehaviour
         t_Event = 0;
         event_Start = true;
         int rand = Random.Range(0, 4);
-        switch (rand) {
-
+        switch (rand)
+        {
             case 0: ShootMissile(); break;
             case 1: EMP(); break;
             case 2: TimeBubble(); break;
-            case 3: CosmicStorm(); break;   
+            case 3: CosmicStorm(); break;
         }
-        if (count++ >= 8) { GetComponent<Animator>().Play("BossClear"); return; }
     }
 
     void CosmicStorm()

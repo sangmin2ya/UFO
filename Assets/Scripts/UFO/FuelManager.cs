@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class FuelManager : MonoBehaviour
 {
-    [SerializeField] private float _fuel;
+    public float _fuel;
     [SerializeField] private float _fuelConsumption;
     public float FuelConsumption => _fuelConsumption;
     private Image _fuelBar;
@@ -29,7 +29,7 @@ public class FuelManager : MonoBehaviour
         {
             var fuel_percentage = _fuel / 100f;
             _fuelBar.fillAmount = fuel_percentage;
-            _fuelBar.color = new Color(1, 1 - fuel_percentage, 1 - fuel_percentage);
+            _fuelBar.color = new Color(1, fuel_percentage, fuel_percentage);
 
         }
     }
