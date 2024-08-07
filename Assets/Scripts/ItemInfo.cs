@@ -18,10 +18,18 @@ public class ItemInfo : MonoBehaviour
     // Sprite Renderer
     private SpriteRenderer spriteRenderer;
 
-    // N, S, Off sprite
+    // N, S sprite
     public Sprite spriteN;
     public Sprite spriteS;
-    //public Sprite spriteOff;
+
+    // Item Type sprite
+    public Sprite spriteAN;
+    public Sprite spriteBN;
+    public Sprite spriteCN;
+    public Sprite spriteAS;
+    public Sprite spriteBS;
+    public Sprite spriteCS;
+
 
     private void Start()
     {
@@ -30,24 +38,58 @@ public class ItemInfo : MonoBehaviour
         // �������� N�� S�� ������
         magnetState = (Random.value > 0.5f) ? MagnetState.N : MagnetState.S;
 
+        // If the type is Item, set the ability randomly
+        if (type == ItemType.Item)
+        {
+            ability = (ItemAbility)Random.Range(0, System.Enum.GetValues(typeof(ItemAbility)).Length);
+        }
+
         // change sprite
         UpdateSprite();
     }
 
     public void UpdateSprite()
     {
-        switch (magnetState)
+        if(type == ItemType.Obstacle || type ==ItemType.Stuck)
         {
-            case MagnetState.N:
-                spriteRenderer.sprite = spriteN;
-                break;
-            case MagnetState.S:
-                spriteRenderer.sprite = spriteS;
-                break;
-            case MagnetState.Off:
-                spriteRenderer.color = new Color(77f / 255f, 77f / 255f, 77f / 255f);
-                break;
+            switch (magnetState)
+            {
+                case MagnetState.N:
+                    spriteRenderer.sprite = spriteN;
+                    break;
+                case MagnetState.S:
+                    spriteRenderer.sprite = spriteS;
+                    break;
+                case MagnetState.Off:
+                    spriteRenderer.color = new Color(77f / 255f, 77f / 255f, 77f / 255f);
+                    break;
+            }
         }
+        else if(type == ItemType.Item)
+        {
+            switch (ability)
+            {
+                case ItemAbility.FuelFilling:
+                    if(magnetState == MagnetState.N)
+                        spriteRenderer.sprite = spriteAN;
+                    else
+                        spriteRenderer.sprite = spriteAS;
+                    break;
+                case ItemAbility.SurfaceCleaning:
+                    if (magnetState == MagnetState.N)
+                        spriteRenderer.sprite = spriteBN;
+                    else
+                        spriteRenderer.sprite = spriteBS;
+                    break;
+                case ItemAbility.PoleChange:
+                    if (magnetState == MagnetState.N)
+                        spriteRenderer.sprite = spriteCN;
+                    else
+                        spriteRenderer.sprite = spriteCS;
+                    break;
+            }
+        }
+        
     }
 
 
