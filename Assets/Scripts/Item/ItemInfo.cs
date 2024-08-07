@@ -29,6 +29,7 @@ public class ItemInfo : MonoBehaviour
     public Sprite spriteB;
     public Sprite spriteC;
 
+    public bool _notSpawned = false;
 
 
     private void Start()
@@ -36,7 +37,8 @@ public class ItemInfo : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         // �������� N�� S�� ������
-        magnetState = (Random.value > 0.5f) ? MagnetState.N : MagnetState.S;
+        if (!_notSpawned)
+            magnetState = (Random.value > 0.5f) ? MagnetState.N : MagnetState.S;
 
         // If the type is Item, set the ability randomly
         if (type == ItemType.Item)
@@ -50,7 +52,7 @@ public class ItemInfo : MonoBehaviour
 
     public void UpdateSprite()
     {
-        if(type == ItemType.Obstacle || type ==ItemType.Stuck)
+        if (type == ItemType.Obstacle || type == ItemType.Stuck)
         {
             switch (magnetState)
             {
@@ -65,7 +67,7 @@ public class ItemInfo : MonoBehaviour
                     break;
             }
         }
-        else if(type == ItemType.Item)
+        else if (type == ItemType.Item)
         {
             switch (ability)
             {
@@ -92,7 +94,7 @@ public class ItemInfo : MonoBehaviour
                     break;
             }
         }
-        
+
     }
 
 
