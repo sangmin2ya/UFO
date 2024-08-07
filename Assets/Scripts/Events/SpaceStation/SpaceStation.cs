@@ -6,6 +6,8 @@ public class SpaceStation : MonoBehaviour
 {
     [SerializeField] bool NiceDocking = false;
     [SerializeField] float speed = .02f;
+
+    [SerializeField] Collider2D good, bad;
     private void FixedUpdate()
     {
         transform.parent.gameObject.transform.Translate(Vector2.up * speed);
@@ -15,11 +17,13 @@ public class SpaceStation : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<FuelManager>(out var result))
         {
-            print("ÇÃ·¹ÀÌ¾î Ãæµ¹");
+            good.enabled = false;
+            bad.enabled = false;
+            print("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½æµ¹");
             if(!NiceDocking) result._fuel *= .8f;
             else
             {
-                //ÁÁÀº º¸»ó
+                //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             }
         }
 
