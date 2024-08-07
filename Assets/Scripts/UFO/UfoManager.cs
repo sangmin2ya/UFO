@@ -31,8 +31,8 @@ public class UfoManager : MonoBehaviour
         _handle = GameObject.Find("Handle").transform;
         _speedBar = GameObject.Find("Speed_Image").GetComponent<Image>();
         _magnetImg = GameObject.Find("Current_Magnet").GetComponent<Image>();
-        _bombImages.Add(GameObject.Find("Mass").GetComponent<Image>()); //needs to change
-        _bombImages.Add(GameObject.Find("MainSkill").GetComponent<Image>()); //needs to change
+        _bombImages.Add(GameObject.Find("Bomb1").GetComponent<Image>()); //needs to change
+        _bombImages.Add(GameObject.Find("Bomb2").GetComponent<Image>()); //needs to change
         _speed = _setSpeed;
         _accelSpeed = _setSpeed * 2f;
     }

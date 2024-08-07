@@ -107,7 +107,7 @@ public class ObstacleSpawner : MonoBehaviour
 
                 // �׷��� ���� �迭�� 1���� �����̾ 1 ����(percents[i+1]��)
                 index --;
-                Debug.Log(index);
+                //Debug.Log(index);
                 // �� ��° �迭�� ������Ʈ �߰��ߴٰ� �迭�� �� �߰�
                 topObstacleList[index]++;
                 GameObject obstacleTop = GameObject.Instantiate(obstacle, new Vector2(-xRange + obstacleRadius * index, yRange), Quaternion.identity);

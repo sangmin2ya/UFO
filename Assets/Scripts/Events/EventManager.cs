@@ -6,9 +6,9 @@ public class EventManager : MonoBehaviour
 {
     [SerializeField] ObstacleSpawner obstacleSpawner;
     [SerializeField] ObstacleSpawner itemManager;
-    // ¿Ü°èÀÎ »ý¼º±â
-    // ¿öÇÁ°ÔÀÌÆ® »ý¼º±â
-    // ÆÄ¿ö ¾÷ ¹°Ç° »ý¼º±â
+    // ï¿½Ü°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    // ï¿½Ä¿ï¿½ ï¿½ï¿½ ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     [SerializeField] float[] stagelength;
 
@@ -36,6 +36,7 @@ public class EventManager : MonoBehaviour
 
     public void OnBlackhole(float time)
     {
+        blackhole.gameObject.SetActive(true);
         blackhole.SpawnBlackhole(time);
     }
 

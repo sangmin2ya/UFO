@@ -110,7 +110,7 @@ public class ItemInfo : MonoBehaviour
                 ExecuteObstacleAbility();
                 break;
             default:
-                Debug.Log("Type not specified");
+                // Debug.Log("Type not specified");
                 break;
         }
     }
@@ -135,7 +135,7 @@ public class ItemInfo : MonoBehaviour
     // ��ֹ��� ������ N �ذ� S �ظ� �������ָ� ��. ������ �ɷ� ����. �÷��̾�� �ٱ⸸ ��.
     private void ExecuteObstacleAbility()
     {
-        Debug.Log(magnetState);
+        //Debug.Log(magnetState);
     }
 
 
