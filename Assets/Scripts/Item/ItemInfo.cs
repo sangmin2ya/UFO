@@ -179,19 +179,31 @@ public class ItemInfo : MonoBehaviour
         {
             case ItemType.Item: // Item
                 GameObject.Find("ItemSpawnController").GetComponent<ObstacleSpawner>().DestroyObstacle(direction, index);
+                Destroy(gameObject);
                 break;
+
             case ItemType.Obstacle: // Obstacle
                 ExecuteObstacleAbility();
                 GameObject.Find("SpawnController").GetComponent<ObstacleSpawner>().DestroyObstacle(direction, index);
+                StartCoroutine(DestroyItem(gameObject));
                 break;
             default:
                 Debug.Log("Type not specified");
+                StartCoroutine(DestroyItem(gameObject));
                 break;
         }
         // Play Effect
-        Destroy(gameObject);
-    }
 
+    }
+    IEnumerator DestroyItem(GameObject item)
+    {
+        item.transform.GetChild(0).gameObject.SetActive(true);
+        item.transform.GetChild(0).gameObject.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        yield return new WaitForSeconds(1f);
+        Destroy(item);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
