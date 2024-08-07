@@ -10,6 +10,6 @@ public class BackgroundRepeating : MonoBehaviour
     {
         transform.Translate(Vector2.right * -speed);
 
-        if (transform.position.x <= -32) transform.position = new Vector2(32, transform.position.y);
+        if (transform.position.x <= -38) transform.position = new Vector2(19, transform.position.y);
     }
 }
