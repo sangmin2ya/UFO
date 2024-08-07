@@ -66,7 +66,7 @@ public class UfoManager : MonoBehaviour
             _speedBar.fillAmount = GetComponent<Rigidbody2D>().velocity.magnitude * 2 / _setSpeed;
         if (_magnetImg != null)
             _magnetImg.sprite = _magnetState == MagnetState.N ? _magnetSprites[0] : _magnetSprites[1];
-        transform.Find("Circle").GetComponent<SpriteRenderer>().color = _magnetState == MagnetState.S ? new Color(0, 1, 1, 0.07f) : new Color(1, 0, 0, 0.07f);
+        transform.Find("Circle").GetComponent<SpriteRenderer>().color = _magnetState == MagnetState.S ? new Color(0, 1, 1, 0.05f) : new Color(1, 0, 0, 0.05f);
     }
     /// <summary>
     /// 충돌시 쓰레기면 부착, 아이템이면 효과적용 후 삭제
