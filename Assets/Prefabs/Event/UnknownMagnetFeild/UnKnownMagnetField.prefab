@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 4489028119751701273}
   - component: {fileID: 1621093909399376236}
   m_Layer: 0
-  m_Name: KnownMagnetField
+  m_Name: UnKnownMagnetField
   m_TagString: MagnetField
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
