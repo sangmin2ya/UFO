@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class UnknownMagnetField : MonoBehaviour
 {
@@ -71,7 +72,8 @@ public class UnknownMagnetField : MonoBehaviour
             elapsedTime += Time.fixedDeltaTime;
             yield return null;
         }
-        Destroy(gameObject);
+        GameObject.Find("PostProcessVolume").GetComponent<PostProcessVolume>().enabled = false;
+         Destroy(gameObject);
     }
     public void StopDestroyMagnetField()
     {
