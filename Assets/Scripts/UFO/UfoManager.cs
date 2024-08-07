@@ -1,11 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UfoManager : MonoBehaviour
 {
+    //Event
+    public event Action<Collider2D> EnterMagnetFieldEvent;
     //Data
     public List<ItemInfo> _AttacedObjects;//수정필요
     [SerializeField] private float _setSpeed;
@@ -94,6 +96,11 @@ public class UfoManager : MonoBehaviour
             {
                 AttachObject(collision.gameObject);
             }
+        }
+        else if(collision.gameObject.CompareTag("MagnetField"))
+        {
+            collision.GetComponent<UnknownMagnetField>().StopDestroyMagnetField();
+            EnterMagnetFieldEvent?.Invoke(collision);
         }
     }
     /// <summary>

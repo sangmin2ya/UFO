@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d6cdaaadfaa9941845d085f8a47783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _magnetFieldMinigame: {fileID: 2015656155243864073, guid: aa7c579fedb85054fb1a4d3adb85467b, type: 3}
 --- !u!114 &6527334810959848785
 MonoBehaviour:
   m_ObjectHideFlags: 0

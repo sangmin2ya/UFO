@@ -31,8 +31,8 @@ public class StageController : MonoBehaviour
     {
         GameManager.Instance.ResetProgress();
         GameManager.Instance.AddStage();
-        GameManager.Instance.SetProgressSpeed(0.01f);
-        SceneManager.LoadScene("PSM_GameClear");
+        GameManager.Instance.SetProgressSpeed(0.002f);
+        SceneManager.LoadScene("Main");
         // SceneManager.LoadScene("Main");
     }
     private void AddProgress()
