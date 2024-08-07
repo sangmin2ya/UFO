@@ -30,7 +30,7 @@ public class UfoController : MonoBehaviour
     [SerializeField] GameObject _DecoyEffect;
     [SerializeField] GameObject StormEffect;
     //UI
-    GameUIManager _UIManager; 
+    GameUIManager _UIManager;
     private Collider2D _collider;
     public GameObject _magnetFieldMinigame;
 
@@ -72,14 +72,15 @@ public class UfoController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-      if(_movable){
-              Move();
-        TiltCharacter();
-        _DecoyEffect.SetActive(_isDecoy);
-        StormEffect.SetActive(_isStorm);
+        if (_movable)
+        {
+            Move();
+            TiltCharacter();
+            _DecoyEffect.SetActive(_isDecoy);
+            StormEffect.SetActive(_isStorm);
 
-      
-      }
+
+        }
     }
     private void Move()
     {
@@ -197,6 +198,13 @@ public class UfoController : MonoBehaviour
         if (_isEMP)
         {
             _UIManager.showAlert("EMP로 인해 변경이 불가합니다");
+        }
+    }
+    void OnBomb(InputValue value)
+    {
+        if (_ufoManager.CanUseBomb())
+        {
+            //폭탄 사용
         }
     }
 }
