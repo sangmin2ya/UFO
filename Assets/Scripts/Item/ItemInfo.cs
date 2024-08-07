@@ -25,12 +25,10 @@ public class ItemInfo : MonoBehaviour
     public Sprite spriteS;
 
     // Item Type sprite
-    public Sprite spriteAN;
-    public Sprite spriteBN;
-    public Sprite spriteCN;
-    public Sprite spriteAS;
-    public Sprite spriteBS;
-    public Sprite spriteCS;
+    public Sprite spriteA;
+    public Sprite spriteB;
+    public Sprite spriteC;
+
 
 
     private void Start()
@@ -72,22 +70,25 @@ public class ItemInfo : MonoBehaviour
             switch (ability)
             {
                 case ItemAbility.FuelFilling:
-                    if(magnetState == MagnetState.N)
-                        spriteRenderer.sprite = spriteAN;
+                    spriteRenderer.sprite = spriteA;
+
+                    if (magnetState == MagnetState.N) spriteRenderer.color = new Color(0, 0, 1);
                     else
-                        spriteRenderer.sprite = spriteAS;
+                        spriteRenderer.color = new Color(1, 0, 0);
                     break;
                 case ItemAbility.SurfaceCleaning:
+                    spriteRenderer.sprite = spriteB;
                     if (magnetState == MagnetState.N)
-                        spriteRenderer.sprite = spriteBN;
+                        spriteRenderer.color = new Color(0, 0, 1);
                     else
-                        spriteRenderer.sprite = spriteBS;
+                        spriteRenderer.color = new Color(1, 0, 0);
                     break;
                 case ItemAbility.PoleChange:
+                    spriteRenderer.sprite = spriteC;
                     if (magnetState == MagnetState.N)
-                        spriteRenderer.sprite = spriteCN;
+                        spriteRenderer.color = new Color(0, 0, 1);
                     else
-                        spriteRenderer.sprite = spriteCS;
+                        spriteRenderer.color = new Color(1, 0, 0);
                     break;
             }
         }
