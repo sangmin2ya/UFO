@@ -13,8 +13,8 @@ public class ObstacleSpawner : MonoBehaviour
     public float yRange = 0;
     public float obstacleRadius;
 
-    public int[] spawnCount = new int[2];
-    public float[] Interval = new float[2];
+    public int spawnCount;
+    public float Interval;
     [Range(0, 3)] public float spawnInterval;
 
     public int[] topObstacleList = new int[Xlength];
@@ -34,14 +34,12 @@ public class ObstacleSpawner : MonoBehaviour
     {
         while(true)
         {
-            int count = Random.Range(spawnCount[0], spawnCount[1]+1);
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < spawnCount; i++)
             {
                 SpawnObstacle(); 
                 yield return new WaitForSeconds(spawnInterval);
             }
-            float tempinterval = Random.Range(Interval[0], Interval[1]);
-            yield return new WaitForSeconds(tempinterval);
+            yield return new WaitForSeconds(Interval);
         }
     }
 

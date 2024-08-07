@@ -1,4 +1,4 @@
-using System.Collections;
+  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -51,9 +51,9 @@ public class GameManager : MonoBehaviour
     {
         _currentProgress = progress;
     }
-    public void SetProgressSpeed(float decrease)
+    public void SetProgressSpeed(float speed)
     {
-        _progressSpeed -= decrease;
+        _progressSpeed = speed;
     }
     public void ResetProgress()
     {
