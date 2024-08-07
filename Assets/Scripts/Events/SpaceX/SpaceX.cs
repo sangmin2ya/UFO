@@ -14,6 +14,8 @@ public class SpaceX : MonoBehaviour
 
     [SerializeField] float EventTime = 15;
 
+    int idx = 0;
+
     //EMP
     bool _isEmp = false;
     //TimeBubble

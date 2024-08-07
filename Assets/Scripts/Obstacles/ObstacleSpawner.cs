@@ -69,9 +69,17 @@ public class ObstacleSpawner : MonoBehaviour
                 bottomObstacleList[index]--;
                 break;
             case 2:
+                if(index == -1)
+                {
+                    index = 0;
+                }
                 leftObstacleList[index]--;
                 break;
             case 3:
+                if (index == -1)
+                {
+                    index = 0;
+                }
                 rightObstacleList[index]--;
                 break;
         }
