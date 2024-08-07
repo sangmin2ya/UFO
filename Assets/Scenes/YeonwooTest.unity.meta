@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Animations/UI/LoadEnd.anim.meta
+guid: c7025b1dd5bcd3f4aa0687cb4a6a6e7c
+NativeFormatImporter:
+========
 guid: 17be5eda78bdf764295e97291801eb0d
 DefaultImporter:
+>>>>>>>> origin/develop:Assets/Scenes/YeonwooTest.unity.meta
   externalObjects: {}
+  mainObjectFileID: 7400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -8,7 +8,7 @@ public class AlionMusk : MonoBehaviour
     GameObject Player;
     public int maximum_Missile_Num = 5;
     public int followMissileNum = 2;
-    int count = 0;
+    [SerializeField]int count = 0;
 
     bool event_Start = false;
     float t_Event = 0;
@@ -27,7 +27,7 @@ public class AlionMusk : MonoBehaviour
     {
         UImanager = GameObject.Find("Canvas").GetComponent<GameUIManager>();
         Player = GameObject.FindGameObjectWithTag("Player");
-        InvokeRepeating("occur_Random_Event", 5, 20f);
+        InvokeRepeating("occur_Random_Event", 5, 15f);
     }
 
     private void Update()
@@ -71,7 +71,14 @@ public class AlionMusk : MonoBehaviour
 
     void occur_Random_Event()
     {
-        if (count++ >= 9) GetComponent<Animator>().Play("BossClear");
+        count += 1;
+        if (count >= 8) {
+
+            GameManager.Instance.AddStage();
+            GetComponent<Animator>().Play("BossClear");
+            LoadingScene.instance.LoadingStart();
+            return;
+        }
         t_Event = 0;
         event_Start = true;
         int rand = Random.Range(0, 4);

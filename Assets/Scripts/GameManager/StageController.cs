@@ -11,6 +11,7 @@ public class StageController : MonoBehaviour
     private bool checkCometShower;
     private bool checkBlackhole;
     private bool checkSpaceStation;
+    bool checkAlert;
 
     public float cometShowerTime;
     public float blackholeTime;
@@ -18,6 +19,8 @@ public class StageController : MonoBehaviour
 
     [Range(0, 60)]
     public float onBlackholeTime;
+
+    public float blackHoleAlertTime;
 
 
     // Start is called before the first frame update
@@ -28,7 +31,7 @@ public class StageController : MonoBehaviour
         checkCometShower = false;
         checkBlackhole = false;
         checkSpaceStation = false;
-        if (currStageLv == 4)
+        if (currStageLv == 3)
         {
             eventManager.OnEpicItems();
         }
@@ -62,7 +65,7 @@ public class StageController : MonoBehaviour
         GameManager.Instance.ResetProgress();
         GameManager.Instance.AddStage();
         GameManager.Instance.SetProgressSpeed(0.002f);
-        SceneManager.LoadScene("Main");
+        LoadingScene.instance.LoadingStart();
     }
 
     private void AddProgress()
@@ -81,6 +84,7 @@ public class StageController : MonoBehaviour
         if (!checkBlackhole && blackholeTime <= GameManager.Instance._currentProgress)
         {
             checkBlackhole = true;
+
             eventManager.OnBlackhole(onBlackholeTime);
         }
 
@@ -89,5 +93,20 @@ public class StageController : MonoBehaviour
             checkSpaceStation = true;
             eventManager.OnSpaceStation();
         }
+
+        if(!checkAlert && blackHoleAlertTime <= GameManager.Instance._currentProgress)
+        {
+            checkAlert = true;
+            StartCoroutine(showBlackHoleAlert("블랙홀 접근 중"));
+        }
+
+
+    }
+
+    IEnumerator showBlackHoleAlert(string message)
+    {
+        GameObject.Find("Canvas").GetComponent<GameUIManager>().showEvent(message);
+        yield return new WaitForSeconds(3);
+        GameObject.Find("Canvas").GetComponent<GameUIManager>().HideEventText();
     }
 }
