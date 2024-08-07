@@ -44,11 +44,9 @@ public class ItemInfo : MonoBehaviour
             case MagnetState.S:
                 spriteRenderer.sprite = spriteS;
                 break;
-            /*
             case MagnetState.Off:
-                spriteRenderer.sprite = spriteOff;
+                spriteRenderer.color = new Color(77f / 255f, 77f / 255f, 77f / 255f);
                 break;
-            */
         }
     }
 
@@ -120,6 +118,7 @@ public class ItemInfo : MonoBehaviour
     {
         this.type = ItemType.Stuck;
         this.magnetState = MagnetState.Off;
+        this.UpdateSprite();
         GetComponent<ItemMovement>().enabled = false;
         GetComponent<Rigidbody2D>().isKinematic = true;
     }
