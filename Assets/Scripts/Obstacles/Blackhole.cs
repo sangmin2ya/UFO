@@ -7,11 +7,13 @@ using UnityEngine;
 public class Blackhole : MonoBehaviour
 {
     public bool onBlackhole;
+    [SerializeField] Bomb bomb;
 
     [Header("오브젝트 빨려들어가는 속도")]
     public float basePullStrength = 100f; // 기본 흡입력
     [Header("플레이어 빨려들어가는 속도")]
     public float playerPullStrength = 5f; // 플레이어를 향한 흡입력
+
 
     void Start()
     {
@@ -22,12 +24,14 @@ public class Blackhole : MonoBehaviour
     {
         if(onBlackhole)
         {
+            GameObject[] Obstacles = bomb.FindAllObstacles();
             // 모든 리지드바디2D를 찾습니다.
             Rigidbody2D[] allRigidbodies = FindObjectsOfType<Rigidbody2D>();
             Debug.Log("길이 : " + allRigidbodies.Length);
 
-            foreach (Rigidbody2D rb in allRigidbodies)
+            foreach (var Obstacle in Obstacles)
             {
+                Rigidbody2D rb = Obstacle.GetComponent<Rigidbody2D>();
                 // 블랙홀과 각 리지드바디 사이의 거리를 계산합니다.
                 float distance = Vector2.Distance(transform.position, rb.position);
                 float pullStrength;
