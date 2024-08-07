@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -22,8 +23,17 @@ public class UfoController : MonoBehaviour
     private bool _isAccel;
     //Event
     private bool _isMagnetOn;
+    public bool _isEMP;
+    public bool _isDecoy; //전파교란
+    public bool _isStorm;
+
+    [SerializeField] GameObject _DecoyEffect;
+    [SerializeField] GameObject StormEffect;
+    //UI
+    GameUIManager _UIManager; 
     private Collider2D _collider;
     public GameObject _magnetFieldMinigame;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -31,6 +41,7 @@ public class UfoController : MonoBehaviour
         _transform = GetComponent<Transform>();
         _ufoManager = GetComponent<UfoManager>();
         _fuelManager = GetComponent<FuelManager>();
+        _UIManager = GameObject.Find("Canvas").GetComponent<GameUIManager>();
         _swapImage = GameObject.Find("Swap_Magnet").GetComponent<Speed_UI>();
         _mainCamera = Camera.main;
     }
@@ -61,11 +72,14 @@ public class UfoController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (_movable)
-        {
-            Move();
-            TiltCharacter();
-        }
+      if(_movable){
+              Move();
+        TiltCharacter();
+        _DecoyEffect.SetActive(_isDecoy);
+        StormEffect.SetActive(_isStorm);
+
+      
+      }
     }
     private void Move()
     {
@@ -150,7 +164,7 @@ public class UfoController : MonoBehaviour
     //Player Input-----------------------------------------------------------
     void OnMove(InputValue value)
     {
-        _moveInput = value.Get<Vector2>();
+        _moveInput = _isDecoy ? -value.Get<Vector2>() : value.Get<Vector2>();
     }
 
     private void AccelOn()
@@ -167,7 +181,8 @@ public class UfoController : MonoBehaviour
 
     void OnSwitch(InputValue value)
     {
-        if (_isMagnetOn && _swapImage.isSwap == false && _movable)
+        if (_isMagnetOn && _swapImage.isSwap == false && !_isEMP && _movable)
+
         {
             _swapImage.isSwap = true;
             if (_ufoManager._magnetState == MagnetState.N)
@@ -178,6 +193,10 @@ public class UfoController : MonoBehaviour
             {
                 _ufoManager._magnetState = MagnetState.N;
             }
+        }
+        if (_isEMP)
+        {
+            _UIManager.showAlert("EMP로 인해 변경이 불가합니다");
         }
     }
 }

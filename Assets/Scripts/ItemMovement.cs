@@ -54,9 +54,6 @@ public class ItemMovement : MonoBehaviour
 
         // Set movement direction
         Vector2 direction = GetMovementDirection(transform.position);
-
-        //Debug.Log(direction);
-
         rb = GetComponent<Rigidbody2D>();
 
         // Normalize direction and set speed
