@@ -11,6 +11,7 @@ public class UfoController : MonoBehaviour
     private UfoManager _ufoManager;
     private FuelManager _fuelManager;
     private InputAction _accelAction;
+    private ObstacleManager _obstacleManager;
     //reference
     private Rigidbody2D _rigidbody2D;
     private Transform _transform;
@@ -30,7 +31,7 @@ public class UfoController : MonoBehaviour
     [SerializeField] GameObject _DecoyEffect;
     [SerializeField] GameObject StormEffect;
     //UI
-    GameUIManager _UIManager; 
+    GameUIManager _UIManager;
     private Collider2D _collider;
     public GameObject _magnetFieldMinigame;
 
@@ -41,6 +42,8 @@ public class UfoController : MonoBehaviour
         _transform = GetComponent<Transform>();
         _ufoManager = GetComponent<UfoManager>();
         _fuelManager = GetComponent<FuelManager>();
+        _obstacleManager = GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>();
+
         _UIManager = GameObject.Find("Canvas").GetComponent<GameUIManager>();
         _swapImage = GameObject.Find("Swap_Magnet").GetComponent<Speed_UI>();
         _mainCamera = Camera.main;
@@ -72,14 +75,15 @@ public class UfoController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-      if(_movable){
-              Move();
-        TiltCharacter();
-        _DecoyEffect.SetActive(_isDecoy);
-        StormEffect.SetActive(_isStorm);
+        if (_movable)
+        {
+            Move();
+            TiltCharacter();
+            _DecoyEffect.SetActive(_isDecoy);
+            StormEffect.SetActive(_isStorm);
 
-      
-      }
+
+        }
     }
     private void Move()
     {
@@ -197,6 +201,15 @@ public class UfoController : MonoBehaviour
         if (_isEMP)
         {
             _UIManager.showAlert("EMP로 인해 변경이 불가합니다");
+        }
+    }
+    void OnBomb(InputValue value)
+    {
+        if (_ufoManager.CanUseBomb())
+        {
+            _obstacleManager.OnBomb();
+            _ufoManager.ClearAll();
+            //폭탄 사용
         }
     }
 }
