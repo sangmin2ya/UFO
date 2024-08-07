@@ -9,8 +9,8 @@ public class UfoManager : MonoBehaviour
     //Event
     public event Action<Collider2D> EnterMagnetFieldEvent;
     //Data
-    private int _bombCount;
-    private List<ItemInfo> _AttacedObjects;
+    [SerializeField] private int _bombCount;
+    [SerializeField] private List<ItemInfo> _AttacedObjects;
     [SerializeField] private float _setSpeed;
     [SerializeField] private int _maxStuckCount;
     public float _speed { get; private set; }
@@ -38,6 +38,7 @@ public class UfoManager : MonoBehaviour
     void Update()
     {
         UpdateSpeed();
+        UpdateUI();
     }
     /// <summary>
     /// 달린 물체의 수에 따라 속도 조절, 속도 0이되면 게임오버
@@ -46,7 +47,6 @@ public class UfoManager : MonoBehaviour
     {
         _speed = Mathf.Max(0, _setSpeed * ((_maxStuckCount - _AttacedObjects.Count) / (float)_maxStuckCount));
         _accelSpeed = _speed * 2f;
-        UpdateUI();
         if (_speed <= 0)
         {
             DestroyUfo();
@@ -88,6 +88,10 @@ public class UfoManager : MonoBehaviour
             _magnetImg.sprite = _magnetState == MagnetState.N ? _magnetSprites[0] : _magnetSprites[1];
         transform.Find("Circle").GetComponent<SpriteRenderer>().color = _magnetState == MagnetState.S ? new Color(0, 1, 1, 0.05f) : new Color(1, 0, 0, 0.05f);
         //폭탄
+        for (int i = 0; i < _bombImages.Count; i++)
+        {
+            _bombImages[i].gameObject.SetActive(false);
+        }
         for (int i = 0; i < _bombCount; i++)
         {
             _bombImages[i].gameObject.SetActive(true);
@@ -102,12 +106,8 @@ public class UfoManager : MonoBehaviour
         }
         return false;
     }
-    public void DestroyTrash()
+    public void ClearAll()
     {
-        foreach (var trash in _AttacedObjects)
-        {
-            trash.DestroyItem();
-        }
         _AttacedObjects.Clear();
     }
     private void CleanSurface()
@@ -135,10 +135,10 @@ public class UfoManager : MonoBehaviour
                         GetComponent<FuelManager>().AddFuelPercent(0.1f); //add 10% of max fuel
                         break;
                     case ItemAbility.PoleChange:
-                        
+                        GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>().OnPoleChange(_magnetState); //Change all obstacles' pole
                         break;
                     case ItemAbility.SurfaceCleaning:
-                        CleanSurface();
+                        CleanSurface(); //Clean 3 trash
                         break;
                 }
                 collision.GetComponent<ItemInfo>().DestroyItem();

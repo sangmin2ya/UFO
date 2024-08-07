@@ -11,6 +11,7 @@ public class UfoController : MonoBehaviour
     private UfoManager _ufoManager;
     private FuelManager _fuelManager;
     private InputAction _accelAction;
+    private ObstacleManager _obstacleManager;
     //reference
     private Rigidbody2D _rigidbody2D;
     private Transform _transform;
@@ -41,6 +42,8 @@ public class UfoController : MonoBehaviour
         _transform = GetComponent<Transform>();
         _ufoManager = GetComponent<UfoManager>();
         _fuelManager = GetComponent<FuelManager>();
+        _obstacleManager = GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>();
+
         _UIManager = GameObject.Find("Canvas").GetComponent<GameUIManager>();
         _swapImage = GameObject.Find("Swap_Magnet").GetComponent<Speed_UI>();
         _mainCamera = Camera.main;
@@ -204,6 +207,8 @@ public class UfoController : MonoBehaviour
     {
         if (_ufoManager.CanUseBomb())
         {
+            _obstacleManager.OnBomb();
+            _ufoManager.ClearAll();
             //폭탄 사용
         }
     }
