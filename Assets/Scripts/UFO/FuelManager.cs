@@ -6,14 +6,16 @@ using UnityEngine.UI;
 
 public class FuelManager : MonoBehaviour
 {
-    [SerializeField] private float _fuel;
+    public float _fuel;
     [SerializeField] private float _fuelConsumption;
     public float FuelConsumption => _fuelConsumption;
     private Image _fuelBar;
+    private float _maxFuel;
 
     void Start()
     {
         _fuelBar = GameObject.Find("Fuel_Image").GetComponent<Image>();
+        _maxFuel = _fuel;
     }
 
     void Update()
@@ -27,9 +29,9 @@ public class FuelManager : MonoBehaviour
     {
         if (_fuelBar != null)
         {
-            var fuel_percentage = _fuel / 100f;
+            var fuel_percentage = _fuel / _maxFuel;
             _fuelBar.fillAmount = fuel_percentage;
-            _fuelBar.color = new Color(1, 1 - fuel_percentage, 1 - fuel_percentage);
+            _fuelBar.color = new Color(1, fuel_percentage, fuel_percentage);
 
         }
     }
@@ -39,7 +41,11 @@ public class FuelManager : MonoBehaviour
     }
     public void AddFuel(float amount)
     {
-        _fuel = Mathf.Min(100, _fuel + amount);
+        _fuel = Mathf.Min(_maxFuel, _fuel + amount);
+    }
+    public void AddFuelPercent(float percent)
+    {
+        _fuel = Mathf.Min(_maxFuel, _fuel + (_maxFuel * percent));
     }
     public bool CanAccel()
     {

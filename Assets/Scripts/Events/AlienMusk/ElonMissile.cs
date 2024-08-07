@@ -48,9 +48,6 @@ public class ElonMissile : MonoBehaviour
         }
 
         if (state != player.GetComponent<UfoManager>()._magnetState && isFollowPlayer) checkDirection();
-            // player 오브젝트를 바라보도록 회전
-
-            // 그 방향으로 이동
         transform.position += (Vector3)(direction * speed * Time.deltaTime);
     }
 
@@ -63,4 +60,15 @@ public class ElonMissile : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
     }
 
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent<FuelManager>(out var result))
+        {
+            result._fuel *= .9f;
+            var effect = Instantiate(BurstEffect, transform.position, Quaternion.identity);
+            Destroy(effect, 1);
+            Destroy(gameObject);
+        }
+    }
 }
