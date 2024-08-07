@@ -26,7 +26,12 @@ public class FuelManager : MonoBehaviour
     private void UpdateFuelUI()
     {
         if (_fuelBar != null)
-            _fuelBar.fillAmount = _fuel / 100f;
+        {
+            var fuel_percentage = _fuel / 100f;
+            _fuelBar.fillAmount = fuel_percentage;
+            _fuelBar.color = new Color(1, 1 - fuel_percentage, 1 - fuel_percentage);
+
+        }
     }
     public void UseFuel(float amount)
     {
