@@ -11,6 +11,8 @@ public class ItemMovement : MonoBehaviour
 
     // item speed
     public float obstacleSpeed = 5f;
+    // item rotation speed
+    private float rotationSpeed;
 
     // destroy time of item
     private float destroyTime = 5f;
@@ -33,6 +35,7 @@ public class ItemMovement : MonoBehaviour
     // item
     private ItemInfo itemInfo;
 
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -48,6 +51,8 @@ public class ItemMovement : MonoBehaviour
         // Normalize direction and set speed
         rb.velocity = direction.normalized * obstacleSpeed;
 
+        // Set random rotation speed
+        rotationSpeed = Random.Range(40f, 70f);
 
         // Check during destroyTime
         StartCoroutine(CheckAndDestroy());
@@ -62,6 +67,9 @@ public class ItemMovement : MonoBehaviour
         {
             AdjustDirectionBasedOnMagnetism(distanceToPlayer);
         }
+
+        // Rotate item
+        transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
     }
 
     // Movement settings according to magnetism
