@@ -180,7 +180,7 @@ MonoBehaviour:
   _isStorm: 0
   _DecoyEffect: {fileID: 7975838883868353872}
   StormEffect: {fileID: 9133539482270296489}
-    _magnetFieldMinigame: {fileID: 2015656155243864073, guid: aa7c579fedb85054fb1a4d3adb85467b, type: 3}
+  _magnetFieldMinigame: {fileID: 2015656155243864073, guid: aa7c579fedb85054fb1a4d3adb85467b, type: 3}
 --- !u!114 &6527334810959848785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aabb7f99779e9754f80f6457aa50e968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bombCount: 0
   _AttacedObjects: []
   _setSpeed: 10
   _maxStuckCount: 20
@@ -320,7 +321,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -2.8}
+  m_AnchoredPosition: {x: 0, y: -3.8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7635882711401163572
@@ -344,7 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.8352941}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.94509804}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -7,11 +7,13 @@ using UnityEngine;
 public class Blackhole : MonoBehaviour
 {
     public bool onBlackhole;
+    [SerializeField] ObstacleManager bomb;
 
-    [Header("¿ÀºêÁ§Æ® »¡·Áµé¾î°¡´Â ¼Óµµ")]
-    public float basePullStrength = 100f; // ±âº» ÈíÀÔ·Â
-    [Header("ÇÃ·¹ÀÌ¾î »¡·Áµé¾î°¡´Â ¼Óµµ")]
-    public float playerPullStrength = 5f; // ÇÃ·¹ÀÌ¾î¸¦ ÇâÇÑ ÈíÀÔ·Â
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î°¡ï¿½ï¿½ ï¿½Óµï¿½")]
+    public float basePullStrength = 100f; // ï¿½âº» ï¿½ï¿½ï¿½Ô·ï¿½
+    [Header("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î°¡ï¿½ï¿½ ï¿½Óµï¿½")]
+    public float playerPullStrength = 5f; // ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô·ï¿½
+
 
     void Start()
     {
@@ -22,17 +24,19 @@ public class Blackhole : MonoBehaviour
     {
         if(onBlackhole)
         {
-            // ¸ðµç ¸®Áöµå¹Ùµð2D¸¦ Ã£½À´Ï´Ù.
+            GameObject[] Obstacles = bomb.FindAllObstacles();
+            // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ùµï¿½2Dï¿½ï¿½ Ã£ï¿½ï¿½ï¿½Ï´ï¿½.
             Rigidbody2D[] allRigidbodies = FindObjectsOfType<Rigidbody2D>();
-            Debug.Log("±æÀÌ : " + allRigidbodies.Length);
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ : " + allRigidbodies.Length);
 
-            foreach (Rigidbody2D rb in allRigidbodies)
+            foreach (var Obstacle in Obstacles)
             {
-                // ºí·¢È¦°ú °¢ ¸®Áöµå¹Ùµð »çÀÌÀÇ °Å¸®¸¦ °è»êÇÕ´Ï´Ù.
+                Rigidbody2D rb = Obstacle.GetComponent<Rigidbody2D>();
+                // ï¿½ï¿½ï¿½ï¿½È¦ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ùµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
                 float distance = Vector2.Distance(transform.position, rb.position);
                 float pullStrength;
 
-                // ÇÃ·¹ÀÌ¾î¿Í ÀÏ¹Ý ¿ÀºêÁ§Æ®ÀÇ ÈíÀÔ·ÂÀ» ´Ù¸£°Ô ¼³Á¤ÇÕ´Ï´Ù.
+                // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½Ï¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
                 if (rb.gameObject.tag == "Player")
                 {
                     pullStrength = playerPullStrength;
@@ -42,10 +46,10 @@ public class Blackhole : MonoBehaviour
                     pullStrength = basePullStrength;
                 }
 
-                // °Å¸® ¹Ýºñ·Ê·Î ÈíÀÔ·ÂÀ» Áõ°¡½ÃÅµ´Ï´Ù.
+                // ï¿½Å¸ï¿½ ï¿½Ýºï¿½Ê·ï¿½ ï¿½ï¿½ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Åµï¿½Ï´ï¿½.
                 pullStrength /= distance;
 
-                // ºí·¢È¦ ¹æÇâÀ¸·Î ÈûÀ» °¡ÇÕ´Ï´Ù.
+                // ï¿½ï¿½ï¿½ï¿½È¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
                 Vector2 direction = (Vector2)transform.position - rb.position;
                 rb.AddForce(direction * pullStrength * Time.fixedDeltaTime);
             }

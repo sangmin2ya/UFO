@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.PostProcessing;
 
 public class ArrowMinigame : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class ArrowMinigame : MonoBehaviour
         }
         StartCoroutine("ResetCode");
         _inputKey = KeyCode.None;
+        GameObject.Find("PostProcessVolume").GetComponent<PostProcessVolume>().enabled = true;
     }
 
     // Update is called once per frame

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EventWarpGate : MonoBehaviour
@@ -9,6 +10,12 @@ public class EventWarpGate : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 2f;
 
+    ObstacleManager obstacleManager;
+
+    void Start()
+    {
+        obstacleManager = GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>();
+    }
     private void FixedUpdate()
     {
         transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
@@ -35,7 +42,7 @@ public class EventWarpGate : MonoBehaviour
             GameManager.Instance.SetProgress(Mathf.Clamp(currentProgress + progressChange, 0.1f, 0.9f));
 
             // Delete all surrounding objects
-
+            obstacleManager.OnBomb();
             // Delete warp gate
             Destroy(gameObject);
 
