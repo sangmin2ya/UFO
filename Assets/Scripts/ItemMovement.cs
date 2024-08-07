@@ -37,7 +37,7 @@ public class ItemMovement : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         _playerUfoManager = player.GetComponent<UfoManager>();
-
+        itemInfo = GetComponent<ItemInfo>();
         // Set movement direction
         Vector2 direction = GetMovementDirection(transform.position);
 
@@ -68,20 +68,18 @@ public class ItemMovement : MonoBehaviour
     void AdjustDirectionBasedOnMagnetism(float distanceToPlayer)
     {
         Vector2 directionToPlayer = (player.position - transform.position).normalized;
-        ItemInfo itemInfo = GetComponent<ItemInfo>();
 
-        
         if (itemInfo.magnetState == _playerUfoManager._magnetState)
         {
             // Magnetism is the same as the player.
-            rb.velocity = -directionToPlayer * obstacleSpeed * pushPower; 
+            rb.velocity = -directionToPlayer * obstacleSpeed * pushPower;
         }
         else
         {
             // Magnetism is different from the player
             rb.velocity = directionToPlayer * obstacleSpeed * pullPower;
         }
-        
+
     }
 
     IEnumerator CheckAndDestroy()

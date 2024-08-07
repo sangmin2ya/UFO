@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class UfoController : MonoBehaviour
 {
@@ -13,10 +14,11 @@ public class UfoController : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private Transform _transform;
     private Camera _mainCamera;
+    private Speed_UI _swapImage;
     //movement
     private Vector2 _moveInput;
     private float _speed;
-    [SerializeField] private bool _isAccel;
+    private bool _isAccel;
     //Event
     private bool _isMagnetOn;
     // Start is called before the first frame update
@@ -26,6 +28,7 @@ public class UfoController : MonoBehaviour
         _transform = GetComponent<Transform>();
         _ufoManager = GetComponent<UfoManager>();
         _fuelManager = GetComponent<FuelManager>();
+        _swapImage = GameObject.Find("Swap_Magnet").GetComponent<Speed_UI>();
         _mainCamera = Camera.main;
     }
     void Start()
@@ -56,6 +59,7 @@ public class UfoController : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+        TiltCharacter();
     }
     private void Move()
     {
@@ -72,6 +76,21 @@ public class UfoController : MonoBehaviour
         else
         {
             _rigidbody2D.AddForce(_moveInput * _ufoManager._speed);
+        }
+    }
+    private void TiltCharacter()
+    {
+        float moveX = Input.GetAxis("Horizontal");
+
+        if (moveX != 0)
+        {
+            float targetAngle = -moveX * 15;
+            Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * 5);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(Vector2.zero), Time.fixedDeltaTime * 5);
         }
     }
     /// <summary>
@@ -126,8 +145,9 @@ public class UfoController : MonoBehaviour
 
     void OnSwitch(InputValue value)
     {
-        if (_isMagnetOn)
+        if (_isMagnetOn && _swapImage.isSwap == false)
         {
+            _swapImage.isSwap = true;
             if (_ufoManager._magnetState == MagnetState.N)
             {
                 _ufoManager._magnetState = MagnetState.S;
