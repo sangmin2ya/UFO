@@ -177,7 +177,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isEMP: 0
   _isDecoy: 0
-  _DecoyEffect: {fileID: 0}
+  _isStorm: 0
+  _DecoyEffect: {fileID: 7975838883868353872}
+  StormEffect: {fileID: 9133539482270296489}
 --- !u!114 &6527334810959848785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,7 +319,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -2.8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7635882711401163572
@@ -348,7 +350,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c600ca72d0a71cb4e94ddc602e9e9b97, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1295c68ff6b6f864a97571ca35dffdbb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -375,7 +377,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6728593055329282371
 Transform:
   m_ObjectHideFlags: 0
@@ -561,12 +563,12 @@ GameObject:
   - component: {fileID: 5874206284936378323}
   - component: {fileID: 2200150877161692946}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: Cosmic_Storm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8078513826767785922
 RectTransform:
   m_ObjectHideFlags: 0
@@ -607,8 +609,8 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1872371013
+  m_SortingOrder: 50
   m_TargetDisplay: 0
 --- !u!114 &5874206284936378323
 MonoBehaviour:

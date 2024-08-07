@@ -122,11 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &8721629 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9133539482270296489, guid: 5467c219f52df914f9a525f5ad452e58, type: 3}
-  m_PrefabInstance: {fileID: 2056501103}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &143602125
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,49 +413,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 89138666259021341, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1485036015747428565, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1593804804376238752, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1593804804376238752, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1593804804376238752, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1593804804376238752, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3102642430908436579, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
       propertyPath: m_Name
       value: Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 3420286305706762145, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3420286305706762145, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3420286305706762145, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3420286305706762145, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5082723860499506255, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
       propertyPath: m_AnchorMax.y
@@ -546,20 +505,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8423366001094588237, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
-      propertyPath: TimeBubbleEffect
-      value: 
-      objectReference: {fileID: 651677038}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
---- !u!1 &651677038 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8115510939845704937, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
-  m_PrefabInstance: {fileID: 651677037}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &689043729
 GameObject:
   m_ObjectHideFlags: 0
@@ -1252,11 +1202,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6863238064449123545, guid: 353f61bf94f9e0f4d8f78feb600191f9, type: 3}
   m_PrefabInstance: {fileID: 837688209}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2010722567 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7975838883868353872, guid: 5467c219f52df914f9a525f5ad452e58, type: 3}
-  m_PrefabInstance: {fileID: 2056501103}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2056501103
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1269,14 +1214,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UFO
       objectReference: {fileID: 0}
-    - target: {fileID: 2165766002615374473, guid: 5467c219f52df914f9a525f5ad452e58, type: 3}
-      propertyPath: StormEffect
-      value: 
-      objectReference: {fileID: 8721629}
-    - target: {fileID: 2165766002615374473, guid: 5467c219f52df914f9a525f5ad452e58, type: 3}
-      propertyPath: _DecoyEffect
-      value: 
-      objectReference: {fileID: 2010722567}
     - target: {fileID: 5044095628406528618, guid: 5467c219f52df914f9a525f5ad452e58, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1315,50 +1252,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5044095628406528618, guid: 5467c219f52df914f9a525f5ad452e58, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6266103942018629106, guid: 5467c219f52df914f9a525f5ad452e58, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6266103942018629106, guid: 5467c219f52df914f9a525f5ad452e58, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6266103942018629106, guid: 5467c219f52df914f9a525f5ad452e58, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -2.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7975838883868353872, guid: 5467c219f52df914f9a525f5ad452e58, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8078513826767785922, guid: 5467c219f52df914f9a525f5ad452e58, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8078513826767785922, guid: 5467c219f52df914f9a525f5ad452e58, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8390330958320262300, guid: 5467c219f52df914f9a525f5ad452e58, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 1295c68ff6b6f864a97571ca35dffdbb, type: 3}
-    - target: {fileID: 8459371216591975145, guid: 5467c219f52df914f9a525f5ad452e58, type: 3}
-      propertyPath: m_SortingOrder
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 8459371216591975145, guid: 5467c219f52df914f9a525f5ad452e58, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1872371013
-      objectReference: {fileID: 0}
-    - target: {fileID: 9133539482270296489, guid: 5467c219f52df914f9a525f5ad452e58, type: 3}
-      propertyPath: m_Name
-      value: Cosmic_Storm
-      objectReference: {fileID: 0}
-    - target: {fileID: 9133539482270296489, guid: 5467c219f52df914f9a525f5ad452e58, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
