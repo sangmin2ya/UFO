@@ -10,10 +10,12 @@ public class ItemMovement : MonoBehaviour
     public Vector2 viewSize;
 
     // item speed
-    public float obstacleSpeed = 5f;
+    private float obstacleSpeed;
+    // item rotation speed
+    private float rotationSpeed;
 
     // destroy time of item
-    private float destroyTime = 5f;
+    private float destroyTime = 10f;
 
     private float angleRange = 0.5f;
 
@@ -33,19 +35,32 @@ public class ItemMovement : MonoBehaviour
     // item
     private ItemInfo itemInfo;
 
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         _playerUfoManager = player.GetComponent<UfoManager>();
         itemInfo = GetComponent<ItemInfo>();
+
+        // Set Speed
+        if(itemInfo.type == ItemType.Item)
+        {
+            obstacleSpeed = 2.5f;
+        }
+        else
+        {
+            obstacleSpeed = 5f;
+        }
+
         // Set movement direction
         Vector2 direction = GetMovementDirection(transform.position);
-
         rb = GetComponent<Rigidbody2D>();
 
         // Normalize direction and set speed
         rb.velocity = direction.normalized * obstacleSpeed;
 
+        // Set random rotation speed
+        rotationSpeed = Random.Range(40f, 70f);
 
         // Check during destroyTime
         StartCoroutine(CheckAndDestroy());
@@ -60,6 +75,9 @@ public class ItemMovement : MonoBehaviour
         {
             AdjustDirectionBasedOnMagnetism(distanceToPlayer);
         }
+
+        // Rotate item
+        transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
     }
 
     // Movement settings according to magnetism

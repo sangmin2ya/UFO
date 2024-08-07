@@ -180,6 +180,7 @@ MonoBehaviour:
   _isStorm: 0
   _DecoyEffect: {fileID: 7975838883868353872}
   StormEffect: {fileID: 9133539482270296489}
+    _magnetFieldMinigame: {fileID: 2015656155243864073, guid: aa7c579fedb85054fb1a4d3adb85467b, type: 3}
 --- !u!114 &6527334810959848785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,7 +541,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.22285557, g: 1, b: 0, a: 0.015686275}
+  m_Color: {r: 1, g: 0, b: 0, a: 0.03529412}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -17,6 +17,7 @@ public class UfoController : MonoBehaviour
     private Camera _mainCamera;
     private Speed_UI _swapImage;
     //movement
+    private bool _movable = true;
     private Vector2 _moveInput;
     private float _speed;
     private bool _isAccel;
@@ -30,7 +31,8 @@ public class UfoController : MonoBehaviour
     [SerializeField] GameObject StormEffect;
     //UI
     GameUIManager _UIManager; 
-
+    private Collider2D _collider;
+    public GameObject _magnetFieldMinigame;
 
     // Start is called before the first frame update
     void Awake()
@@ -49,11 +51,11 @@ public class UfoController : MonoBehaviour
     }
     private void OnEnable()
     {
-        _accelAction = GetComponent<PlayerInput>().actions["Accel"];
+        _ufoManager.EnterMagnetFieldEvent += EnterMagnetField;
 
+        _accelAction = GetComponent<PlayerInput>().actions["Accel"];
         _accelAction.started += ctx => AccelOn();
         _accelAction.canceled += ctx => AccelOff();
-
         _accelAction.Enable();
     }
     private void OnDisable()
@@ -70,10 +72,14 @@ public class UfoController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Move();
+      if(_movable){
+              Move();
         TiltCharacter();
         _DecoyEffect.SetActive(_isDecoy);
         StormEffect.SetActive(_isStorm);
+
+      
+      }
     }
     private void Move()
     {
@@ -139,6 +145,22 @@ public class UfoController : MonoBehaviour
             _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 0);
         }
     }
+    private void EnterMagnetField(Collider2D collider)
+    {
+        _collider = collider;
+        _movable = false;
+        Instantiate(_magnetFieldMinigame, GameObject.Find("Canvas").transform);
+    }
+    /// <summary>
+    /// keep destroying magnet field
+    /// </summary>
+    public void ExitMagnetField()
+    {
+        if (_collider != null)
+            _collider.GetComponent<UnknownMagnetField>().StartDestroyMagnetField();
+        _collider = null;
+        _movable = true;
+    }
     //Player Input-----------------------------------------------------------
     void OnMove(InputValue value)
     {
@@ -159,7 +181,8 @@ public class UfoController : MonoBehaviour
 
     void OnSwitch(InputValue value)
     {
-        if (_isMagnetOn && _swapImage.isSwap == false && !_isEMP)
+        if (_isMagnetOn && _swapImage.isSwap == false && !_isEMP && _movable)
+
         {
             _swapImage.isSwap = true;
             if (_ufoManager._magnetState == MagnetState.N)
