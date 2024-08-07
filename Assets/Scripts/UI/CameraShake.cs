@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-    Transform cameraTransform;  // Ä«¸Þ¶óÀÇ Æ®·£½ºÆû
-    public float shakeDuration = 0.5f; // Èçµé¸®´Â ½Ã°£
-    public float shakeAmount = 0.7f;   // Èçµé¸®´Â °­µµ
-    public float decreaseFactor = 1.0f; // Èçµé¸²ÀÌ ÁÙ¾îµå´Â ¼Óµµ
+    Transform cameraTransform;  // Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public float shakeDuration = 0.5f; // ï¿½ï¿½é¸®ï¿½ï¿½ ï¿½Ã°ï¿½
+    public float shakeAmount = 0.7f;   // ï¿½ï¿½é¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public float decreaseFactor = 1.0f; // ï¿½ï¿½é¸²ï¿½ï¿½ ï¿½Ù¾ï¿½ï¿½ï¿½ ï¿½Óµï¿½
     bool isShakeStart = false;
 
     private void Start()
@@ -19,7 +19,12 @@ public class CameraShake : MonoBehaviour
         if (isShakeStart) return;
         StartCoroutine(ShakeCoroutine(shakeAmount, shakeTime));
     }
-
+    public void StopCameraShake()
+    {
+        StopAllCoroutines();
+        cameraTransform.position = new Vector3(0, 0, -10);
+        isShakeStart = false;
+    }
     IEnumerator ShakeCoroutine(float shakeAmount, float shakeTime)
     {
         isShakeStart = true;
@@ -38,8 +43,5 @@ public class CameraShake : MonoBehaviour
         }
         cameraTransform.position = new Vector3(0,0, -10);
         isShakeStart = false;
-
     }
-
-
 }

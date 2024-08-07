@@ -11,7 +11,7 @@ public class UfoManager : MonoBehaviour
     public event Action<Collider2D> EnterMagnetFieldEvent;
     //Data
     [SerializeField] private int _bombCount;
-    [SerializeField] private List<ItemInfo> _AttacedObjects;
+    public List<ItemInfo> _AttacedObjects{ get; private set; }
     [SerializeField] private float _setSpeed;
     [SerializeField] private int _maxStuckCount;
     public float _speed { get; private set; }
@@ -33,6 +33,7 @@ public class UfoManager : MonoBehaviour
         _magnetImg = GameObject.Find("Current_Magnet").GetComponent<Image>();
         _bombImages.Add(GameObject.Find("Bomb1").GetComponent<Image>()); //needs to change
         _bombImages.Add(GameObject.Find("Bomb2").GetComponent<Image>()); //needs to change
+        _weightBar = GameObject.Find("Mass_Image").GetComponent<Image>();
         _speed = _setSpeed;
         _accelSpeed = _setSpeed * 2f;
     }
@@ -56,9 +57,11 @@ public class UfoManager : MonoBehaviour
     private void AttachObject(GameObject obj)
     {
         GameObject.Find("Canvas").GetComponent<GameUIManager>().showDamaged();
+
         obj.GetComponent<ItemInfo>().Freeze();
         obj.transform.SetParent(transform);
         _AttacedObjects.Add(obj.GetComponent<ItemInfo>());
+        _weightBar.transform.parent.GetComponent<Animator>().Play("Add_Mass");
     }
     private void DetachObject(GameObject obj)
     {
@@ -74,7 +77,17 @@ public class UfoManager : MonoBehaviour
     {
         //무게
         if (_weightBar != null)
-            _weightBar.fillAmount = _speed / _setSpeed;
+        {
+            _weightBar.fillAmount = 1 - (_speed / _setSpeed);
+            if (_weightBar.fillAmount > 0.8f)
+            {
+                _weightBar.color = new Color(1, 0, 0, 1f);
+            }
+            else
+            {
+                _weightBar.color = new Color(1, 1, 1, 1f);
+            }
+        }
         //속도
         if (_speedBar != null)
         {
