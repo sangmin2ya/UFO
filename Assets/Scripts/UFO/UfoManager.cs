@@ -13,6 +13,8 @@ public class UfoManager : MonoBehaviour
     public float _speed { get; private set; }
     public float _accelSpeed { get; private set; }
     public MagnetState _magnetState { get; set; }
+    //UI
+    private Transform _handle;
     //Image
     [SerializeField] private List<Sprite> _magnetSprites;
     private Image _speedBar;
@@ -21,6 +23,7 @@ public class UfoManager : MonoBehaviour
     void Start()
     {
         _AttacedObjects = new List<ItemInfo>();
+        _handle = GameObject.Find("Handle").transform;
         _speedBar = GameObject.Find("Speed_Image").GetComponent<Image>();
         _magnetImg = GameObject.Find("Current_Magnet").GetComponent<Image>();
         _speed = _setSpeed;
@@ -63,7 +66,14 @@ public class UfoManager : MonoBehaviour
         if (_weightBar != null)
             _weightBar.fillAmount = _speed / _setSpeed;
         if (_speedBar != null)
-            _speedBar.fillAmount = GetComponent<Rigidbody2D>().velocity.magnitude * 2 / _setSpeed;
+        {
+            var speedAmount = GetComponent<Rigidbody2D>().velocity.magnitude * 2 / _setSpeed;
+            _speedBar.fillAmount = speedAmount;
+            Camera.main.GetComponent<CameraShake>().shakeMagnitude = .017f * speedAmount;
+            for (int i = 0; i < _handle.childCount; i++) {
+                _handle.GetChild(i).GetComponent<Image>().color = new Color(1, 1 - speedAmount, 1 - speedAmount, 0.3f);
+            }
+        }
         if (_magnetImg != null)
             _magnetImg.sprite = _magnetState == MagnetState.N ? _magnetSprites[0] : _magnetSprites[1];
         transform.Find("Circle").GetComponent<SpriteRenderer>().color = _magnetState == MagnetState.S ? new Color(0, 1, 1, 0.07f) : new Color(1, 0, 0, 0.07f);
