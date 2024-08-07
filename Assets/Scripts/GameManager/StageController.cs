@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class StageController : MonoBehaviour
 {
     [SerializeField] EventManager eventManager;
-    private int currStageLv;
-    
+    [SerializeField] private int currStageLv;
+
     private bool checkCometShower;
     private bool checkBlackhole;
     private bool checkSpaceStation;
@@ -16,7 +16,7 @@ public class StageController : MonoBehaviour
     public float blackholeTime;
     public float SpaceStationTime;
 
-    [Range(0,60)]
+    [Range(0, 60)]
     public float onBlackholeTime;
 
 
@@ -71,18 +71,22 @@ public class StageController : MonoBehaviour
     }
     public void CheckStage2Event()
     {
-        if (!checkCometShower && cometShowerTime>= GameManager.Instance._currentProgress)
+        if (!checkCometShower && cometShowerTime <= GameManager.Instance._currentProgress)
         {
+            Debug.Log("CometShower");
+            checkCometShower = true;
             eventManager.OnCometShower();
         }
 
-        if (!checkBlackhole && blackholeTime >= GameManager.Instance._currentProgress)
+        if (!checkBlackhole && blackholeTime <= GameManager.Instance._currentProgress)
         {
+            checkBlackhole = true;
             eventManager.OnBlackhole(onBlackholeTime);
         }
 
-        if (!checkSpaceStation && SpaceStationTime >= GameManager.Instance._currentProgress)
+        if (!checkSpaceStation && SpaceStationTime <= GameManager.Instance._currentProgress)
         {
+            checkSpaceStation = true;
             eventManager.OnSpaceStation();
         }
     }
