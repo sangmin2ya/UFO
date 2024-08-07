@@ -108,6 +108,10 @@ public class UfoManager : MonoBehaviour
         }
         return false;
     }
+    public void AddBombCount()
+    {
+        _bombCount = Mathf.Min(2, _bombCount + 1);
+    }
     public void ClearAll()
     {
         _AttacedObjects.Clear();

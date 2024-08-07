@@ -11,10 +11,12 @@ public class EventWarpGate : MonoBehaviour
     [SerializeField] private float moveSpeed = 2f;
 
     ObstacleManager obstacleManager;
-
+    private GameObject _cutScene;
+    private float progressChange;
     void Start()
     {
         obstacleManager = GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>();
+        _cutScene = GameObject.Find("CutScene");
     }
     private void FixedUpdate()
     {
@@ -26,7 +28,7 @@ public class EventWarpGate : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             float currentProgress = GameManager.Instance._currentProgress;
-            float progressChange;
+
             if (Random.value > 0.3f)
             {
                 // 70% Increase progress
@@ -38,14 +40,40 @@ public class EventWarpGate : MonoBehaviour
                 progressChange = -Random.Range(minChange, maxChange);
             }
 
-            // Update the progress in the GameManager
-            GameManager.Instance.SetProgress(Mathf.Clamp(currentProgress + progressChange, 0.1f, 0.9f));
-
             // Delete all surrounding objects
-            obstacleManager.OnBomb();
-            // Delete warp gate
-            Destroy(gameObject);
-
+            StartCoroutine(DestroyWarpGate());
+            StartCoroutine(ShowCutscene(progressChange > 0 ? 1 : -1));
         }
+    }
+    IEnumerator DestroyWarpGate()
+    {
+        yield return new WaitForSeconds(0.5f);
+        obstacleManager.OnBomb();
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+        // Update the progress in the GameManager
+        float currentProgress = GameManager.Instance._currentProgress;
+        GameManager.Instance.SetProgress(Mathf.Clamp(currentProgress + progressChange, 0.1f, 0.9f));
+
+        yield return new WaitForSeconds(1.0f);
+        // Delete warp gate
+        Destroy(gameObject);
+    }
+    IEnumerator ShowCutscene(int direction)
+    {
+        float elapsedTime = 0;
+
+        // 초기 위치 설정
+        _cutScene.transform.localPosition = new Vector3(5200 * direction, 0, 0);
+
+        while (elapsedTime < 1.5)
+        {
+            _cutScene.transform.localPosition = Vector3.Lerp(new Vector3(5200 * direction, 0, 0), new Vector3(-5200 * direction, 0, 0), elapsedTime / 1.5f);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // 마지막 위치 설정
+        _cutScene.transform.localPosition = new Vector3(-5200 * direction, 0, 0);
     }
 }

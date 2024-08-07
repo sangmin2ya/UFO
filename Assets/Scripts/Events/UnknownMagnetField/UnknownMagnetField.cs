@@ -10,6 +10,7 @@ public class UnknownMagnetField : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transform.position = new Vector2(Random.Range(-8f, 8f), 0);
         StartMagnetField();
     }
 
@@ -73,7 +74,7 @@ public class UnknownMagnetField : MonoBehaviour
             yield return null;
         }
         GameObject.Find("PostProcessVolume").GetComponent<PostProcessVolume>().enabled = false;
-         Destroy(gameObject);
+        Destroy(gameObject);
     }
     public void StopDestroyMagnetField()
     {
