@@ -74,23 +74,23 @@ public class ItemInfo : MonoBehaviour
                 case ItemAbility.FuelFilling:
                     spriteRenderer.sprite = spriteA;
 
-                    if (magnetState == MagnetState.N) spriteRenderer.color = new Color(0, 0, 1);
+                    if (magnetState == MagnetState.N) spriteRenderer.color = new Color(1, 0, 0);
                     else
-                        spriteRenderer.color = new Color(1, 0, 0);
+                        spriteRenderer.color = new Color(0, 0, 1);
                     break;
                 case ItemAbility.SurfaceCleaning:
                     spriteRenderer.sprite = spriteB;
                     if (magnetState == MagnetState.N)
-                        spriteRenderer.color = new Color(0, 0, 1);
-                    else
                         spriteRenderer.color = new Color(1, 0, 0);
+                    else
+                        spriteRenderer.color = new Color(0, 0, 1);
                     break;
                 case ItemAbility.PoleChange:
                     spriteRenderer.sprite = spriteC;
                     if (magnetState == MagnetState.N)
-                        spriteRenderer.color = new Color(0, 0, 1);
-                    else
                         spriteRenderer.color = new Color(1, 0, 0);
+                    else
+                        spriteRenderer.color = new Color(0, 0, 1);
                     break;
             }
         }

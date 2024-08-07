@@ -167,6 +167,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NiceDocking: 1
   speed: 0.01
+  good: {fileID: 4525665462101650182}
+  bad: {fileID: 660995227298887442}
 --- !u!1 &1670299818279690993
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,6 +557,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NiceDocking: 0
   speed: 0.01
+  good: {fileID: 4525665462101650182}
+  bad: {fileID: 660995227298887442}
 --- !u!60 &660995227298887442
 PolygonCollider2D:
   m_ObjectHideFlags: 0

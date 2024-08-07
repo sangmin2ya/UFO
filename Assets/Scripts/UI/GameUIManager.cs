@@ -9,9 +9,11 @@ public class GameUIManager : MonoBehaviour
 
     [SerializeField] TMP_Text AlertText;
     [SerializeField] TMP_Text EventText;
+    [SerializeField] TMP_Text BombText;
     [SerializeField] GameObject Damaged;
     public GameObject TimeBubbleEffect;
 
+    public void showBombText() => BombText.GetComponent<Animator>().Play("Text_PopUp");
 
     public void showAlert(string message)
     {

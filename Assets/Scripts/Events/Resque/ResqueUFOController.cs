@@ -53,6 +53,8 @@ public class ResqueUFOController : MonoBehaviour
         {
             _helpText.text = "고마워요";
             _isRescued = true;
+
+            GameObject.Find("Canvas").GetComponent<GameUIManager>().showBombText();
         }
     }
 }

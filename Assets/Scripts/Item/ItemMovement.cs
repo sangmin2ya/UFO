@@ -47,7 +47,7 @@ public class ItemMovement : MonoBehaviour
         }
         else
         {
-            obstacleSpeed = 5f;
+            obstacleSpeed = 3.5f;
         }
 
         // Set movement direction
