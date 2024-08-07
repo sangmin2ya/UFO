@@ -22,6 +22,7 @@ public class EventManager : MonoBehaviour
     [SerializeField] GameObject UnknownMagneticField;
     [SerializeField] GameObject SpaceStation;
     [SerializeField] GameObject CometShower;
+    [SerializeField] GameObject EpicItems;
 
     public void MapSetting(int lv)
     {
@@ -51,5 +52,15 @@ public class EventManager : MonoBehaviour
     public void OnCometShower()
     {
         Instantiate(CometShower);
+    }
+
+    public void OnEpicItems()
+    {
+        EpicItems.SetActive(true);
+    }
+
+    public void OffEpicItems()
+    {
+        EpicItems.SetActive(false);
     }
 }

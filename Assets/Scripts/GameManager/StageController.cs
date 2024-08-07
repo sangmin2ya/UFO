@@ -28,13 +28,20 @@ public class StageController : MonoBehaviour
         checkCometShower = false;
         checkBlackhole = false;
         checkSpaceStation = false;
-}
+        if (currStageLv == 4)
+        {
+            eventManager.OnEpicItems();
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
         CheckStageClear();
-        CheckStageStatus();
+        if (currStageLv == 1)
+        {
+            CheckStage2Event();
+        }
     }
 
     void FixedUpdate()
@@ -62,19 +69,6 @@ public class StageController : MonoBehaviour
     {
         GameManager.Instance.AddProgress();
     }
-
-    private void CheckStageStatus()
-    {
-        switch (currStageLv)
-        {
-            case 1:
-                CheckStage2Event();
-                break;
-            case 3:
-                break;
-        }
-    }
-
     public void CheckStage2Event()
     {
         if (!checkCometShower && cometShowerTime>= GameManager.Instance._currentProgress)
@@ -91,10 +85,5 @@ public class StageController : MonoBehaviour
         {
             eventManager.OnSpaceStation();
         }
-    }
-
-    public void CheckStage4Event()
-    {
-
     }
 }
