@@ -63,7 +63,10 @@ public class ItemInfo : MonoBehaviour
                     spriteRenderer.sprite = spriteS;
                     break;
                 case MagnetState.Off:
-                    spriteRenderer.color = new Color(77f / 255f, 77f / 255f, 77f / 255f);
+                    if (gameObject != null)
+                    {
+                        spriteRenderer.color = new Color(77f / 255f, 77f / 255f, 77f / 255f);
+                    }
                     break;
             }
         }

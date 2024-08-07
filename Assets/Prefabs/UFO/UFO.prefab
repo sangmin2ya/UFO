@@ -180,6 +180,7 @@ MonoBehaviour:
   _isStorm: 0
   _DecoyEffect: {fileID: 7975838883868353872}
   StormEffect: {fileID: 9133539482270296489}
+  UI_EMP_Effect: {fileID: 0}
   _magnetFieldMinigame: {fileID: 2015656155243864073, guid: aa7c579fedb85054fb1a4d3adb85467b, type: 3}
 --- !u!114 &6527334810959848785
 MonoBehaviour:
