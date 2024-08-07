@@ -19,8 +19,6 @@ public class ItemMovement : MonoBehaviour
 
     private float angleRange = 0.5f;
 
-    public int start;
-
     // Magnetic influence range
     public float magnetRange = 2.5f;
 
@@ -105,7 +103,7 @@ public class ItemMovement : MonoBehaviour
         // Stuck 상태가 아닌 경우에만 파괴
         if (itemInfo.type != ItemType.Stuck)
         {
-            Destroy(gameObject);
+            itemInfo.DestroyItem();
         }
     }
 

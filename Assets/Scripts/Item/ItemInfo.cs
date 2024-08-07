@@ -15,6 +15,8 @@ public class ItemInfo : MonoBehaviour
     // ability of item (FuelFilling, SurfaceCleaning, PoleChange)
     public ItemAbility ability;
 
+    public int direction;
+    public int index;
     // Sprite Renderer
     private SpriteRenderer spriteRenderer;
 
@@ -167,6 +169,19 @@ public class ItemInfo : MonoBehaviour
 
     public void DestroyItem()
     {
+        switch (type)
+        {
+            case ItemType.Item: // Item
+                GameObject.Find("ItemSpawnController").GetComponent<ObstacleSpawner>().DestroyObstacle(direction, index);
+                break;
+            case ItemType.Obstacle: // Obstacle
+                ExecuteObstacleAbility();
+                GameObject.Find("SpawnController").GetComponent<ObstacleSpawner>().DestroyObstacle(direction, index);
+                break;
+            default:
+                Debug.Log("Type not specified");
+                break;
+        }
         // Play Effect
         Destroy(gameObject);
     }

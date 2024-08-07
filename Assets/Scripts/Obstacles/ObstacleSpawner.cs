@@ -60,6 +60,25 @@ public class ObstacleSpawner : MonoBehaviour
         }
     }
 
+    public void DestroyObstacle(int direction, int index)
+    {
+        switch (direction)
+        {
+            case 0:
+                topObstacleList[index]--;
+                break;
+            case 1:
+                bottomObstacleList[index]--;
+                break;
+            case 2:
+                leftObstacleList[index]--;
+                break;
+            case 3:
+                rightObstacleList[index]--;
+                break;
+        }
+    }
+
     public void SpawnObstacle()
     {
         // ������ �� 25%
@@ -82,19 +101,21 @@ public class ObstacleSpawner : MonoBehaviour
                 // �� ���� ������ �� ���� ������ ������ �� ������ ����
                 for (int i = topObstacleList.Length; i > 0; i--)
                 {
-                    if (tempnum < percents[i])
+                    if (tempnum <= percents[i])
                     {
                         index = i;
                     }
                 }
 
                 // �׷��� ���� �迭�� 1���� �����̾ 1 ����(percents[i+1]��)
-                index--;
+                index --;
+                Debug.Log(index);
                 // �� ��° �迭�� ������Ʈ �߰��ߴٰ� �迭�� �� �߰�
                 topObstacleList[index]++;
                 GameObject obstacleTop = GameObject.Instantiate(obstacle, new Vector2(-xRange + obstacleRadius * index, yRange), Quaternion.identity);
                 // �迭�� ���� ����
-                obstacleTop.GetComponent<ItemMovement>().start = 0;
+                obstacleTop.GetComponent<ItemInfo>().direction = 0;
+                obstacleTop.GetComponent<ItemInfo>().index = index;
                 break;
 
             case 1:
@@ -107,7 +128,7 @@ public class ObstacleSpawner : MonoBehaviour
 
                 for (int i = bottomObstacleList.Length; i > 0; i--)
                 {
-                    if (tempnum < percents[i])
+                    if (tempnum <= percents[i])
                     {
                         index = i;
                     }
@@ -116,7 +137,8 @@ public class ObstacleSpawner : MonoBehaviour
                 index--;
                 bottomObstacleList[index]++;
                 GameObject obstacleBottom = GameObject.Instantiate(obstacle, new Vector2(-xRange + obstacleRadius * index, -yRange), obstacle.transform.rotation);
-                obstacleBottom.GetComponent<ItemMovement>().start = 1;
+                obstacleBottom.GetComponent<ItemInfo>().direction = 1;
+                obstacleBottom.GetComponent<ItemInfo>().index = index;
                 break;
 
             case 2:
@@ -129,16 +151,16 @@ public class ObstacleSpawner : MonoBehaviour
 
                 for (int i = leftObstacleList.Length; i > 0; i--)
                 {
-                    if (tempnum < percents[i])
+                    if (tempnum <= percents[i])
                     {
                         index = i;
                     }
                 }
 
                 index--;
-                leftObstacleList[index]++;
                 GameObject obstacleLeft = GameObject.Instantiate(obstacle, new Vector2(-xRange, -yRange + obstacleRadius * index), obstacle.transform.rotation);
-                obstacleLeft.GetComponent<ItemMovement>().start = 2;
+                obstacleLeft.GetComponent<ItemInfo>().direction = 2;
+                obstacleLeft.GetComponent<ItemInfo>().index = index;
                 break;
 
             case 3:
@@ -151,16 +173,16 @@ public class ObstacleSpawner : MonoBehaviour
 
                 for (int i = rightObstacleList.Length; i > 0; i--)
                 {
-                    if (tempnum < percents[i])
+                    if (tempnum <= percents[i])
                     {
                         index = i;
                     }
                 }
 
                 index--;
-                rightObstacleList[index]++;
                 GameObject obstacleRight = GameObject.Instantiate(obstacle, new Vector2(xRange, -yRange + obstacleRadius * index), obstacle.transform.rotation);
-                obstacleRight.GetComponent<ItemMovement>().start = 3;
+                obstacleRight.GetComponent<ItemInfo>().direction = 3;
+                obstacleRight.GetComponent<ItemInfo>().index = index;
                 break;
         }
     }
