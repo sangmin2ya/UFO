@@ -8,6 +8,7 @@ public class GameUIManager : MonoBehaviour
     GameObject Player;
 
     [SerializeField] TMP_Text AlertText;
+    public GameObject TimeBubbleEffect;
 
 
     public void showAlert(string message)
@@ -16,4 +17,6 @@ public class GameUIManager : MonoBehaviour
         AlertText.gameObject.SetActive(true);
         AlertText.GetComponent<Animator>().Play("Text_PopUp");
     }
+
+    public void showTimeBubbleEffect() => TimeBubbleEffect.GetComponent<Animator>().Play("TimeBubble");
 }

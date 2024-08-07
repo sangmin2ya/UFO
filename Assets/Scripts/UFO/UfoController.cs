@@ -24,8 +24,10 @@ public class UfoController : MonoBehaviour
     private bool _isMagnetOn;
     public bool _isEMP;
     public bool _isDecoy; //전파교란
+    public bool _isStorm;
 
     [SerializeField] GameObject _DecoyEffect;
+    [SerializeField] GameObject StormEffect;
     //UI
     GameUIManager _UIManager; 
 
@@ -71,6 +73,7 @@ public class UfoController : MonoBehaviour
         Move();
         TiltCharacter();
         _DecoyEffect.SetActive(_isDecoy);
+        StormEffect.SetActive(_isStorm);
     }
     private void Move()
     {

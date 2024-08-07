@@ -10,13 +10,41 @@ public class AlionMusk : MonoBehaviour
     public int followMissileNum = 2;
     int count = 0;
 
-    [Header("EMP")]
-    [SerializeField] float EMP_Time = 10;
+    bool event_Start = false;
+    float t_Event = 0;
+
+    [SerializeField] float EventTime = 10;
+
+    //EMP
+    bool _isEmp = false;
+    //TimeBubble
+    bool _isTimeBubble = false;
+    bool _isStorm = false;
+    [SerializeField] Vector2 timescale_min_max;
+
 
     private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
-        InvokeRepeating("occur_Random_Event", 10, 10f);
+        InvokeRepeating("occur_Random_Event", 5, 10f);
+    }
+
+    private void Update()
+    {
+        if (event_Start)
+        {
+            t_Event += Time.deltaTime;
+            if(t_Event >= EventTime)
+            {
+                t_Event = 0;
+                event_Start = false;
+
+                if (_isEmp) { Player.GetComponent<UfoController>()._isEMP = false; _isEmp = false; }
+                if (_isTimeBubble) { Time.timeScale = 1; _isTimeBubble = false; }
+                if (_isStorm) { Player.GetComponent<UfoController>()._isStorm = false; _isStorm = false; }
+
+            }
+        }   
     }
 
     void ShootMissile()
@@ -34,9 +62,28 @@ public class AlionMusk : MonoBehaviour
 
     void occur_Random_Event()
     {
-        int rand = Random.Range(0, 101);
-        if (rand <= 50) EMP();
-        else ShootMissile();
+        event_Start = true;
+        int rand = Random.Range(0, 4);
+        switch (rand) {
+
+            case 0: ShootMissile(); break;
+            case 1: EMP(); break;
+            case 2: TimeBubble(); break;
+            case 3: CosmicStorm(); break;   
+        }
+    }
+
+    void CosmicStorm()
+    {
+        _isStorm = true;
+        Player.GetComponent<UfoController>()._isStorm = true;
+    }
+
+    void TimeBubble()
+    {
+        _isTimeBubble = true;
+        GameObject.Find("Canvas").GetComponent<GameUIManager>().showTimeBubbleEffect();
+        Time.timeScale = Random.Range(timescale_min_max.x, timescale_min_max.y);
     }
 
     void EMP()
@@ -47,14 +94,7 @@ public class AlionMusk : MonoBehaviour
     public void setEmpState()
     {
         Player.GetComponent<UfoController>()._isEMP = true;
-        StopAllCoroutines();
-        StartCoroutine(EMP_State());
-    }
-
-    IEnumerator EMP_State()
-    {
-        yield return new WaitForSeconds(EMP_Time);
-        Player.GetComponent<UfoController>()._isEMP = false;
-        if (count++ >= 7) GetComponent<Animator>().Play("BossClear");
+        _isEmp = true;
+        event_Start = true;
     }
 }
