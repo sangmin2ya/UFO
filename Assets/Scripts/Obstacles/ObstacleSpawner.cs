@@ -4,48 +4,29 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-    [Header("���� �� ������Ʈ")]
     [SerializeField] GameObject obstacle;
 
-    // X��, Y�� �迭 �ʱ�ȭ ��
     public const int Xlength = 25;
     public const int Ylength = 15;
-    [Header("�߽� 0,0���κ��� X��, Y���� ������ ��")]
+
     public float xRange = 0;
     public float yRange = 0;
-    [Header("������Ʈ ����")]
     public float obstacleRadius;
 
-    [Header("������Ʈ ���� ����/����(�ּڰ�~�ִ�)")]
     public int[] spawnCount = new int[2];
     public float[] Interval = new float[2];
-    [Header("������Ʈ ������ ���� �� ���� ����")]
     [Range(0, 3)] public float spawnInterval;
 
-    [Header("������Ʈ �迭(ũ�⸦ �������ָ� �� ũ�⸸ŭ�� ���� ������ ����)")]
     public int[] topObstacleList = new int[Xlength];
     public int[] bottomObstacleList = new int[Xlength];
     public int[] leftObstacleList = new int[Ylength];
     public int[] rightObstacleList = new int[Ylength];
 
-    [Header("�ۼ�Ʈ�� ������Ʈ �迭 �� �� ���� ū �� +1�� ���ּ���")]
     public float[] percents = new float[Xlength+1];
 
     void Start()
     {
-        // �� ���� ���� �迭 ����ġ�� �ֱ� ���� ���� �ʱ�ȭ
-        for (int i = 0; i < topObstacleList.Length; i++)
-        {
-            topObstacleList[i] = 1;
-            bottomObstacleList[i] = 1;
-        }
-
-        for (int i = 0; i < leftObstacleList.Length; i++)
-        {
-            leftObstacleList[i] = 1;
-            rightObstacleList[i] = 1;
-        }
-
+        ResetList();
         StartCoroutine(Spawn());
     }
 
@@ -61,6 +42,21 @@ public class ObstacleSpawner : MonoBehaviour
             }
             float tempinterval = Random.Range(Interval[0], Interval[1]);
             yield return new WaitForSeconds(tempinterval);
+        }
+    }
+
+    public void ResetList()
+    {
+        for (int i = 0; i < topObstacleList.Length; i++)
+        {
+            topObstacleList[i] = 1;
+            bottomObstacleList[i] = 1;
+        }
+
+        for (int i = 0; i < leftObstacleList.Length; i++)
+        {
+            leftObstacleList[i] = 1;
+            rightObstacleList[i] = 1;
         }
     }
 
