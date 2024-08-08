@@ -36,6 +36,11 @@ public class LoadingScene : MonoBehaviour
         SceneManager.sceneLoaded += onsceneload;
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space)) ReadyClick();
+    }
+
     public void loadScene()
     {
         SceneManager.LoadSceneAsync(level_Sequence[idx]);
@@ -55,4 +60,9 @@ public class LoadingScene : MonoBehaviour
 
         anim.SetTrigger("Load");
     }
+
+    public void StopTime() => Time.timeScale = 0;
+
+    public void ReadyClick() => Time.timeScale = 1;
+
 }
