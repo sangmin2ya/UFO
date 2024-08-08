@@ -160,7 +160,7 @@ MonoBehaviour:
   - 0.01
   - 0
   obstacleInterval: 0100000001000000010000000100000001000000
-  obstacleSpawnCount: 0300000003000000030000000300000003000000
+  obstacleSpawnCount: 0300000003000000030000000300000002000000
   itemInterval: 0100000001000000010000000100000001000000
   itemSpawnCount: 0100000001000000010000000100000001000000
   obstacleSpeed: 
@@ -170,6 +170,7 @@ MonoBehaviour:
   SpaceStation: {fileID: 1851631828277994150, guid: da146c904238cba4d8363ac96152fc86, type: 3}
   CometShower: {fileID: 1359538042669003011, guid: 9a03c7fe77c09eb45a8eb6ee06b13f42, type: 3}
   EpicItems: {fileID: 0}
+  commonEpics: {fileID: 0}
 --- !u!4 &85085770
 Transform:
   m_ObjectHideFlags: 0
@@ -607,6 +608,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1485036015747428565, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2664770979225330841, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3102642430908436579, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
@@ -615,7 +620,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5082723860499506255, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6918982941312058994, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
       propertyPath: m_Pivot.x
@@ -945,69 +950,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6863238064449123545, guid: 353f61bf94f9e0f4d8f78feb600191f9, type: 3}
   m_PrefabInstance: {fileID: 655253855}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &674582077
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 674582079}
-  - component: {fileID: 674582078}
-  m_Layer: 0
-  m_Name: EventController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &674582078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 674582077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ce1bd2f13af60a4b84793d1a435a57a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obstacleSpawner: {fileID: 0}
-  itemManager: {fileID: 0}
-  stagelength:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  obstacleInterval: 0100000001000000010000000100000001000000
-  obstacleSpawnCount: 0200000002000000020000000200000002000000
-  itemInterval: 0100000001000000010000000100000001000000
-  itemSpawnCount: 0100000001000000010000000100000001000000
-  obstacleSpeed: 
-  itemSpeed: 
-  blackhole: {fileID: 0}
-  UnknownMagneticField: {fileID: 5385488283870340336, guid: 3a48786752c5ba847a592162132dca29, type: 3}
-  SpaceStation: {fileID: 1851631828277994150, guid: da146c904238cba4d8363ac96152fc86, type: 3}
-  CometShower: {fileID: 1359538042669003011, guid: 9a03c7fe77c09eb45a8eb6ee06b13f42, type: 3}
-  EpicItems: {fileID: 0}
---- !u!4 &674582079
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 674582077}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.540918, y: -4.3111763, z: -0.005631474}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &718310724
 GameObject:
   m_ObjectHideFlags: 0
@@ -2118,7 +2060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e856c0e2962c2ec4ea4acd5e89869dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventManager: {fileID: 674582078}
+  eventManager: {fileID: 0}
   currStageLv: 1
   cometShowerTime: 0.1
   blackholeTime: 0.2
@@ -2377,7 +2319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7762405459850256885, guid: bf7c00ec7d0487442891f81198095fa5, type: 3}
       propertyPath: _patternCount
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7762405459850256885, guid: bf7c00ec7d0487442891f81198095fa5, type: 3}
       propertyPath: Burst_Transform.Array.size
@@ -2436,7 +2378,6 @@ SceneRoots:
   - {fileID: 1815580417}
   - {fileID: 1351265201}
   - {fileID: 629515377}
-  - {fileID: 674582079}
   - {fileID: 718310726}
   - {fileID: 1978670268}
   - {fileID: 1988282888}
