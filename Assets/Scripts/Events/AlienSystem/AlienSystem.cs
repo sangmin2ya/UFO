@@ -10,16 +10,17 @@ public class AlienSystem : MonoBehaviour
     [SerializeField] private GameObject winUI;
     [SerializeField] private GameObject loseUI;
 
-    [SerializeField] private float displayDuration = 2.0f; // °á°ú UI°¡ Ç¥½ÃµÇ´Â ½Ã°£
+    [SerializeField] private float displayDuration = 2.0f; // ï¿½ï¿½ï¿½ UIï¿½ï¿½ Ç¥ï¿½ÃµÇ´ï¿½ ï¿½Ã°ï¿½
 
     FuelManager fuelManager;
     GameObject player;
 
     private void Awake()
     {
-        // Æ¯Á¤ °æ·Î¸¦ »ç¿ëÇÏ¿© ºñÈ°¼ºÈ­µÈ ¿ÀºêÁ§Æ® Ã£±â
+        player = GameObject.FindGameObjectWithTag("Player");
+        // Æ¯ï¿½ï¿½ ï¿½ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® Ã£ï¿½ï¿½
         
-        Transform canvasTransform = GameObject.Find("Canvas").transform;
+        Transform canvasTransform = player.transform.Find("PlayerCanvas").transform;
 
         miniGameUI = canvasTransform.GetChild(0).gameObject;
         loseUI = canvasTransform.GetChild(1).gameObject;
@@ -29,7 +30,7 @@ public class AlienSystem : MonoBehaviour
 
 
 
-        player = GameObject.FindGameObjectWithTag("Player");
+        
         fuelManager = player.GetComponent<FuelManager>();
 
         player = GameObject.FindGameObjectWithTag("Player");
@@ -66,7 +67,7 @@ public class AlienSystem : MonoBehaviour
 
             fuelManager.AddFuel(100);
 
-            // ¿Ü°èÀÎÀÌ ¿¬·á¸¦ °¡µæ Ã¤¿öÁá½À´Ï´Ù.
+            // ï¿½Ü°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½á¸¦ ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
             StartCoroutine(DisplayResultUI(winUI));
         }
         else // lose
@@ -76,17 +77,17 @@ public class AlienSystem : MonoBehaviour
 
             fuelManager.UseFuel(10);
 
-            // ¿Ü°èÀÎÀÌ ¿¬·á¸¦ 10% °­Å»Çß½À´Ï´Ù.
+            // ï¿½Ü°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½á¸¦ 10% ï¿½ï¿½Å»ï¿½ß½ï¿½ï¿½Ï´ï¿½.
             StartCoroutine(DisplayResultUI(loseUI));
         }
     }
 
     private IEnumerator DisplayResultUI(GameObject resultUI)
     {
-        resultUI.SetActive(true); // È°¼ºÈ­
-        yield return new WaitForSecondsRealtime(displayDuration); // µô·¹ÀÌ
+        resultUI.SetActive(true); // È°ï¿½ï¿½È­
+        yield return new WaitForSecondsRealtime(displayDuration); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-        // ¿Ü°èÀÎ ÇÈ ÀÌ¹ÌÁö ºñÈ°¼ºÈ­
+        // ï¿½Ü°ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
         for(int i = 0; i < miniGameUI.GetComponent<RockPaperScissorsGameUI>().alienChoiceImage.Length; i++)
         {
             miniGameUI.GetComponent<RockPaperScissorsGameUI>().alienChoiceImage[i].gameObject.SetActive(false);
@@ -94,7 +95,7 @@ public class AlienSystem : MonoBehaviour
 
         miniGameUI.GetComponent<RockPaperScissorsGameUI>().isSubmitted = false;
 
-        resultUI.SetActive(false); // ºñÈ°¼ºÈ­
+        resultUI.SetActive(false); // ï¿½ï¿½È°ï¿½ï¿½È­
 
         miniGameUI.SetActive(false); // Disables the minigame UI.
         Time.timeScale = 1f; // Resume game time.
