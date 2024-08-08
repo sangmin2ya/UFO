@@ -50,6 +50,11 @@ public class StageController : MonoBehaviour
         {
             eventManager.OnEpicItems();
         }
+
+        if(currStageLv == 2 || currStageLv == 4)
+        {
+            eventManager.OffEpicItems();
+        }
     }
 
     // Update is called once per frame
@@ -115,19 +120,19 @@ public class StageController : MonoBehaviour
         if(!checkBlakcholeAlert && blackHoleAlertTime <= GameManager.Instance._currentProgress)
         {
             checkBlakcholeAlert = true;
-            StartCoroutine(ShowAlert("ºí·¢È¦ Á¢±Ù Áß »¡·Áµé¾î°¡Áö¾Ê°Ô Á¶½ÉÇÏ¼¼¿ä!"));
+            StartCoroutine(ShowAlert("ï¿½ï¿½ï¿½ï¿½È¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î°¡ï¿½ï¿½ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½!"));
         }
 
         if (!checkSpaceStationAlert && spaceStationAlertTime <= GameManager.Instance._currentProgress)
         {
             checkSpaceStationAlert = true;
-            StartCoroutine(ShowAlert("¿ìÁÖ Á¤°ÅÀå Á¢±Ù Áß. °¡¿îµ¥·Î µµÅ·ÇÏ¼¼¿ä."));
+            StartCoroutine(ShowAlert("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½. ï¿½ï¿½ï¿½îµ¥ï¿½ï¿½ ï¿½ï¿½Å·ï¿½Ï¼ï¿½ï¿½ï¿½."));
         }
 
         if (!checkSpaceStationOnAlert && SpaceStationOnAlertTime <= GameManager.Instance._currentProgress)
         {
             checkSpaceStationOnAlert = true;
-            StartCoroutine(ShowAlert("¿ìÁÖÁ¤°ÅÀå µµÅ·À¸·Î ¿¬·á°¡ È¸º¹µÇ¾ú½À´Ï´Ù!"));
+            StartCoroutine(ShowAlert("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å·ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½á°¡ È¸ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½!"));
         }
     }
 
@@ -137,7 +142,7 @@ public class StageController : MonoBehaviour
         if (!checkMiJiJangAlert && miJiJangAlertTime <= GameManager.Instance._currentProgress)
         {
             checkMiJiJangAlert = true;
-            StartCoroutine(ShowAlert("¿¡ÀÏ¸®¿Â ¸Ó½ºÅ©ÀÇ ¹æÇØ·Î ¹ÌÁöÀÇ ¿¡³ÊÁö ÇÊµå°¡ »ý¼ºµË´Ï´Ù. Á¶½ÉÇÏ¼¼¿ä!"));
+            StartCoroutine(ShowAlert("ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ ï¿½Ó½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½Ø·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Êµå°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ë´Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½!"));
         }
     }
 
