@@ -18,6 +18,9 @@ public class EventManager : MonoBehaviour
     [SerializeField] int[] itemInterval;
     [SerializeField] int[] itemSpawnCount;
 
+    [SerializeField] int[] obstacleSpeed;
+    [SerializeField] int[] itemSpeed;
+
     [SerializeField] Blackhole blackhole;
     [SerializeField] GameObject UnknownMagneticField;
     [SerializeField] GameObject SpaceStation;
@@ -30,6 +33,8 @@ public class EventManager : MonoBehaviour
         obstacleSpawner.Interval = obstacleInterval[lv];
         itemManager.spawnCount = itemSpawnCount[lv];
         itemManager.Interval = itemInterval[lv];
+        obstacleSpawner.currObstacleSpeed = obstacleSpeed[lv];
+        itemManager.currItemSpeed = itemSpeed[lv];
 
         GameManager.Instance.SetProgressSpeed(stagelength[lv]);
     }
