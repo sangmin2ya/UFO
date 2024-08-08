@@ -27,16 +27,27 @@ public class SpaceX : MonoBehaviour
     [SerializeField] GameUIManager UImanager;
     [SerializeField] private int _patternCount = 0;
     [SerializeField] private int _hpCount = 0;
+
+    [SerializeField] GameManager Burst_Effect;
+    [SerializeField] Transform[] Burst_Transform;
+
     private void Start()
     {
         UImanager = GameObject.Find("Canvas").GetComponent<GameUIManager>();
         Player = GameObject.FindGameObjectWithTag("Player");
+        Player.GetComponent<Animator>().enabled = false;
+        Player.GetComponent<Animator>().applyRootMotion = false;
         InvokeRepeating("occur_Random_Event", 5, 20f);
 
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.P)) {
+            Player.GetComponent<Animator>().Play("Attack_Wave_UFO");
+            GetComponent<Animator>().Play("Attack_Wave_SpaceX");
+
+        }
         CheckEnd();
         if (event_Start)
         {
@@ -110,6 +121,9 @@ public class SpaceX : MonoBehaviour
     }
     private void CompareMass()
     {
+        StartCoroutine(enableAnimation());
+        Player.GetComponent<Animator>().Play("Attack_Wave_UFO");
+        GetComponent<Animator>().Play("Attack_Wave_SpaceX");
         if (Player.GetComponent<UfoManager>()._AttacedObjects.Count > (_hpCount * 2 + 3))
         {
             _hpCount++;
@@ -124,6 +138,28 @@ public class SpaceX : MonoBehaviour
         }
         InvokeRepeating("occur_Random_Event", 10, 20f);
     }
+
+    IEnumerator enableAnimation()
+    {
+        Player.GetComponent<Animator>().enabled = true;
+        Player.GetComponent<Animator>().applyRootMotion = false;
+        yield return new WaitForSeconds(1f);
+        Player.GetComponent<Animator>().enabled = false;
+
+    }
+
+    public void startCameraShaking() => Camera.main.GetComponent<CameraShake>().startCameraShake(.2f, .35f);
+
+    public void BurstSpaceX()
+    {
+        foreach (var x in Burst_Transform)
+        {
+            var burst_effect = Instantiate(Burst_Effect, x.position, Quaternion.identity);
+            Destroy(burst_effect, 1);
+        }
+
+    }
+
     private void CheckEnd()
     {
         if (_hpCount == 3)
