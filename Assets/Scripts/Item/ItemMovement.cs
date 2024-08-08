@@ -10,7 +10,10 @@ public class ItemMovement : MonoBehaviour
     public Vector2 viewSize;
 
     // item speed
-    private float obstacleSpeed;
+    private float itemSpeed = 2.5f;
+    private float obstacleSpeed = 5f;
+    private float currentSpeed;
+
     // item rotation speed
     private float rotationSpeed;
 
@@ -41,14 +44,15 @@ public class ItemMovement : MonoBehaviour
         itemInfo = GetComponent<ItemInfo>();
 
         // Set Speed
-        if(itemInfo.type == ItemType.Item)
+        if (itemInfo.type == ItemType.Item)
         {
-            obstacleSpeed = 2.5f;
+            currentSpeed = itemSpeed;
         }
         else
         {
-            obstacleSpeed = 3.5f;
+            currentSpeed = obstacleSpeed;
         }
+
 
         // Set movement direction
         Vector2 direction = GetMovementDirection(transform.position);
@@ -147,4 +151,32 @@ public class ItemMovement : MonoBehaviour
 
         return direction;
     }
+
+
+    // New function to set speed from outside
+    public void SetSpeed(float newItemSpeed, float newObstacleSpeed)
+    {
+        itemSpeed = newItemSpeed;
+        obstacleSpeed = newObstacleSpeed;
+
+        // Update current speed based on item type
+        if (itemInfo.type == ItemType.Item)
+        {
+            currentSpeed = itemSpeed;
+        }
+        else
+        {
+            currentSpeed = obstacleSpeed;
+        }
+
+        // Update Rigidbody2D velocity
+        rb.velocity = rb.velocity.normalized * currentSpeed;
+    }
+
+    /* SetSpeed exaple */
+    /*
+    ItemMovement itemMovement = someGameObject.GetComponent<ItemMovement>();   
+    itemMovement.SetSpeed(3.0f, 4.0f);
+    */
+
 }
