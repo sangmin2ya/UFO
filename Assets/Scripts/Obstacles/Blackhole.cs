@@ -9,22 +9,10 @@ public class Blackhole : MonoBehaviour
 {
     public bool onBlackhole;
     [SerializeField] ObstacleManager bomb;
-    [SerializeField] GameObject ufo;
-
-    public float springConstant = 10f;
-
-    // 감쇠 상수
-    public float dampingConstant = 1f;
-
     [Header("������Ʈ �������� �ӵ�")]
     public float basePullStrength = 100f; // �⺻ ���Է�
     [Header("�÷��̾� �������� �ӵ�")]
     public float playerPullStrength = 5f; // �÷��̾ ���� ���Է�
-
-    void Start()
-    {
-        SpawnBlackhole(5.0f);
-    }
 
     void FixedUpdate()
     {
