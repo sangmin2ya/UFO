@@ -24,6 +24,11 @@ public class ObstacleSpawner : MonoBehaviour
 
     public float[] percents = new float[Xlength+1];
 
+    [Range(0,15)]
+    public int currItemSpeed;
+    [Range(0, 15)]
+    public float currObstacleSpeed;
+
     void Start()
     {
         ResetList();

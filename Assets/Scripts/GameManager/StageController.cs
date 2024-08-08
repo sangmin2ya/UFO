@@ -38,6 +38,7 @@ public class StageController : MonoBehaviour
     {
         currStageLv = GameManager.Instance._stage;
         eventManager.MapSetting(currStageLv);
+
         checkCometShower = false;
         checkBlackhole = false;
         checkSpaceStation = false;
