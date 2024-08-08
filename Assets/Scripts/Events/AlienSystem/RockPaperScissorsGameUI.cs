@@ -7,18 +7,18 @@ using UnityEngine.InputSystem;
 
 public class RockPaperScissorsGameUI : MonoBehaviour
 {
-    public TMP_Text[] choiceTexts;  // Rock, Paper, Scissors ÅØ½ºÆ®
-    public Image[] choiceImage;     // Rock, Paper, Scissors ÀÌ¹ÌÁö
+    public TMP_Text[] choiceTexts;  // Rock, Paper, Scissors ï¿½Ø½ï¿½Æ®
+    public Image[] choiceImage;     // Rock, Paper, Scissors ï¿½Ì¹ï¿½ï¿½ï¿½
     private int selectedIndex = 0;
     private string[] choices = { "Rock", "Scissors", "Paper" };
 
-    public Image[] alienChoiceImage;    // ¿Ü°èÀÎ ÇÈ
+    public Image[] alienChoiceImage;    // ï¿½Ü°ï¿½ï¿½ï¿½ ï¿½ï¿½
 
     private PlayerInput playerInput;
     private InputAction navigateAction;
     private InputAction submitAction;
 
-    public bool isSubmitted = false; // ÀÌ¹Ì Á¦ÃâÇß´ÂÁö ¿©ºÎ¸¦ ÃßÀûÇÏ´Â ÇÃ·¡±×
+    public bool isSubmitted = false; // ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½
 
     private void Awake()
     {
@@ -32,15 +32,15 @@ public class RockPaperScissorsGameUI : MonoBehaviour
     private void OnEnable()
     {
         // Subscribe to action events with lambda expressions
-        navigateAction.performed += ctx => OnNavigate();
-        submitAction.performed += ctx => OnSubmit();
+        //navigateAction.performed += ctx => OnNavigate();
+        //submitAction.performed += ctx => OnSubmit();
     }
 
     private void OnDisable()
     {
         // Unsubscribe from action events
-        navigateAction.performed -= ctx => OnNavigate();
-        submitAction.performed -= ctx => OnSubmit();
+        //navigateAction.performed -= ctx => OnNavigate();
+        //submitAction.performed -= ctx => OnSubmit();
     }
 
     private void Start()
@@ -48,37 +48,37 @@ public class RockPaperScissorsGameUI : MonoBehaviour
         UpdateChoiceUI();
     }
 
-    private void OnNavigate()
+    void OnNavigate(InputValue value)
     {
-        Vector2 input = navigateAction.ReadValue<Vector2>();
+        Vector2 input = value.Get<Vector2>();
 
         // Debug.Log(input.x);
 
-        if (input.x > 0) // ¿À¸¥ÂÊ ¹æÇâÅ°
-        {
-            MoveSelection(1);
-        }
-        else if (input.x < 0) // ¿ÞÂÊ ¹æÇâÅ°
+        if (input.x > 0) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å°
         {
             MoveSelection(-1);
         }
+        else if (input.x < 0) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å°
+        {
+            MoveSelection(1);
+        }
     }
 
-    private void OnSubmit()
+    void OnSubmit(InputValue value)
     {
-        // ÀÌ¹Ì Á¦ÃâµÈ »óÅÂ¸é ÇÔ¼ö Á¾·á
+        // ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (isSubmitted)
             return;
 
-        isSubmitted = true; // Á¦Ãâ »óÅÂ·Î ¼³Á¤
+        isSubmitted = true; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-        Debug.Log("¼­ºê¹Ô È£ÃâµÊ");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½");
         string playerChoice = choices[selectedIndex];
         string alienChoice = choices[Random.Range(0, choices.Length)];
         Debug.Log("Player choice: " + playerChoice);
         Debug.Log("Alien choice: " + alienChoice);
 
-        // Alien choice ÀÌ¹ÌÁö ¾÷µ¥ÀÌÆ®
+        // Alien choice ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
         for (int i = 0; i < alienChoiceImage.Length; i++)
         {
             alienChoiceImage[i].gameObject.SetActive(false);

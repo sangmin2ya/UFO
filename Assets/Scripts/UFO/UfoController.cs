@@ -153,7 +153,7 @@ public class UfoController : MonoBehaviour
     {
         _collider = collider;
         _movable = false;
-        Instantiate(_magnetFieldMinigame, GameObject.Find("Canvas").transform);
+        Instantiate(_magnetFieldMinigame, GameObject.Find("PlayerCanvas").transform);
     }
     /// <summary>
     /// keep destroying magnet field
