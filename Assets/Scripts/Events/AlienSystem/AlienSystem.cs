@@ -12,7 +12,7 @@ public class AlienSystem : MonoBehaviour
 
     [SerializeField] private float displayDuration = 2.0f; // ��� UI�� ǥ�õǴ� �ð�
 
-    FuelManager fuelManager;
+    HPManager fuelManager;
     GameObject player;
 
     private void Awake()
@@ -28,10 +28,10 @@ public class AlienSystem : MonoBehaviour
         winUI = canvasTransform.GetChild(3).gameObject;
     
         
-        fuelManager = player.GetComponent<FuelManager>();
+        fuelManager = player.GetComponent<HPManager>();
 
         player = GameObject.FindGameObjectWithTag("Player");
-        fuelManager = player.GetComponent<FuelManager>();
+        fuelManager = player.GetComponent<HPManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -62,7 +62,7 @@ public class AlienSystem : MonoBehaviour
             // Actions when a player wins
             Debug.Log("Player won the mini game!");
 
-            fuelManager.AddFuel(100);
+            fuelManager.RepairedPercent(1);
 
             // �ܰ����� ���Ḧ ���� ä������ϴ�.
             StartCoroutine(DisplayResultUI(winUI));
@@ -72,7 +72,7 @@ public class AlienSystem : MonoBehaviour
             // Actions when a player loses
             Debug.Log("Player lost the mini game!");
 
-            fuelManager.UseFuel(10);
+            fuelManager.Damaged(10);
 
             // �ܰ����� ���Ḧ 10% ��Ż�߽��ϴ�.
             StartCoroutine(DisplayResultUI(loseUI));

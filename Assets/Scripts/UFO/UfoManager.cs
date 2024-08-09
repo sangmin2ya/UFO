@@ -56,7 +56,7 @@ public class UfoManager : MonoBehaviour
     private void AttachObject(GameObject obj)
     {
         GameObject.Find("Canvas").GetComponent<GameUIManager>().showDamaged();
-
+        gameObject.GetComponent<HPManager>().Damaged(3); //add 10% damage
         obj.GetComponent<ItemInfo>().Freeze();
         obj.transform.SetParent(transform);
         _AttacedObjects.Add(obj.GetComponent<ItemInfo>());
@@ -77,7 +77,7 @@ public class UfoManager : MonoBehaviour
     private void DestroyUfo()
     {
         //Destroy(gameObject);
-        
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name != "Main" ? "BadEnding" : "GameOver");
     }
     private void UpdateUI()
@@ -158,8 +158,8 @@ public class UfoManager : MonoBehaviour
             {
                 switch (collision.GetComponent<ItemInfo>().ability)
                 {
-                    case ItemAbility.FuelFilling:
-                        GetComponent<FuelManager>().AddFuelPercent(0.1f); //add 10% of max fuel
+                    case ItemAbility.Repair:
+                        GetComponent<HPManager>().RepairedPercent(0.1f); //add 10% repair
                         break;
                     case ItemAbility.PoleChange:
                         GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>().OnPoleChange(_magnetState); //Change all obstacles' pole
