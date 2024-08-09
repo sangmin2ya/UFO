@@ -407,7 +407,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aabb7f99779e9754f80f6457aa50e968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bombCount: 2
   _setSpeed: 10
   _maxStuckCount: 15
   _magnetSprites:
@@ -1973,7 +1972,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4451706252002282918
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4627,7 +4626,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 0.03529412}
   m_FlipX: 0
