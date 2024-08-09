@@ -295,7 +295,6 @@ MonoBehaviour:
   onBlackholeTime: 10
   blackHoleAlertTime: 0
   spaceStationAlertTime: 0
-  SpaceStationOnAlertTime: 0
   miJiJangAlertTime: 0
 --- !u!4 &272708090
 Transform:
@@ -625,6 +624,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1485036015747428565, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2664770979225330841, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3102642430908436579, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
@@ -637,7 +640,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5082723860499506255, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5603440661639468428, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
       propertyPath: m_fontColor.a
@@ -1613,6 +1616,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 520544465}
     - target: {fileID: 8140652062625441859, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: blackhole
+      value: 
+      objectReference: {fileID: 1742534872}
+    - target: {fileID: 8140652062625441859, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
       propertyPath: commonEpics
       value: 
       objectReference: {fileID: 575495818}
@@ -1624,6 +1631,10 @@ PrefabInstance:
       propertyPath: obstacleSpawner
       value: 
       objectReference: {fileID: 124218277}
+    - target: {fileID: 8140652062625441859, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: stagelength.Array.data[2]
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
