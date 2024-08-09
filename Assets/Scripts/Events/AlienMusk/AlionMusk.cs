@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class AlionMusk : MonoBehaviour
@@ -22,6 +23,7 @@ public class AlionMusk : MonoBehaviour
     bool _isStorm = false;
     [SerializeField] Vector2 timescale_min_max;
     [SerializeField] GameUIManager UImanager;
+    [SerializeField] TMP_Text WaveText;
 
     private void Start()
     {
@@ -32,6 +34,7 @@ public class AlionMusk : MonoBehaviour
 
     private void Update()
     {
+        WaveText.text = $"에일리온 머스크의 공격으로부터 생존하세요!\n({count}/8)";
         if (event_Start)
         {
             t_Event += Time.deltaTime;
@@ -72,8 +75,8 @@ public class AlionMusk : MonoBehaviour
     void occur_Random_Event()
     {
         count += 1;
-        if (count >= 8) {
-
+        if (count >= 9) {
+            Time.timeScale = 1;
             GameManager.Instance.AddStage();
             GetComponent<Animator>().Play("BossClear");
             LoadingScene.instance.LoadingStart();
