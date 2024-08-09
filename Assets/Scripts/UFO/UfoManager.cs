@@ -10,8 +10,7 @@ public class UfoManager : MonoBehaviour
     //Event
     public event Action<Collider2D> EnterMagnetFieldEvent;
     //Data
-    [SerializeField] private int _bombCount;
-    public List<ItemInfo> _AttacedObjects{ get; private set; }
+    public List<ItemInfo> _AttacedObjects { get; private set; }
     [SerializeField] private float _setSpeed;
     [SerializeField] private int _maxStuckCount;
     public float _speed { get; private set; }
@@ -31,8 +30,8 @@ public class UfoManager : MonoBehaviour
         _handle = GameObject.Find("Handle").transform;
         _speedBar = GameObject.Find("Speed_Image").GetComponent<Image>();
         _magnetImg = GameObject.Find("Current_Magnet").GetComponent<Image>();
-        _bombImages.Add(GameObject.Find("Bomb1").GetComponent<Image>()); //needs to change
-        _bombImages.Add(GameObject.Find("Bomb2").GetComponent<Image>()); //needs to change
+        _bombImages.Add(GameObject.Find("Bomb2Img").GetComponent<Image>()); //needs to change
+        _bombImages.Add(GameObject.Find("Bomb1Img").GetComponent<Image>()); //needs to change
         _weightBar = GameObject.Find("Mass_Image").GetComponent<Image>();
         _speed = _setSpeed;
         _accelSpeed = _setSpeed * 2f;
@@ -62,6 +61,13 @@ public class UfoManager : MonoBehaviour
         obj.transform.SetParent(transform);
         _AttacedObjects.Add(obj.GetComponent<ItemInfo>());
         _weightBar.transform.parent.GetComponent<Animator>().Play("Add_Mass");
+    }
+    public void DestroyObstacle()
+    {
+        for (int i = 0; i < _AttacedObjects.Count; i++)
+        {
+            _AttacedObjects[i].DestroyItem();
+        }
     }
     private void DetachObject(GameObject obj)
     {
@@ -109,23 +115,23 @@ public class UfoManager : MonoBehaviour
         {
             _bombImages[i].gameObject.SetActive(false);
         }
-        for (int i = 0; i < _bombCount; i++)
+        for (int i = 0; i < GameManager.Instance._bombCount; i++)
         {
             _bombImages[i].gameObject.SetActive(true);
         }
     }
     public bool CanUseBomb()
     {
-        if (_bombCount > 0)
+        if (GameManager.Instance._bombCount > 0)
         {
-            _bombCount--;
+            GameManager.Instance._bombCount--;
             return true;
         }
         return false;
     }
     public void AddBombCount()
     {
-        _bombCount = Mathf.Min(2, _bombCount + 1);
+        GameManager.Instance._bombCount = Mathf.Min(2, GameManager.Instance._bombCount + 1);
     }
     public void ClearAll()
     {

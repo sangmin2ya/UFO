@@ -76,13 +76,14 @@ public class UfoController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-      if(_movable){
-        Move();
-        TiltCharacter();
-        _DecoyEffect.SetActive(_isDecoy);
-        StormEffect.SetActive(_isStorm);
-        UI_EMP_Effect.SetActive(_isEMP);
-      }
+        if (_movable)
+        {
+            Move();
+            TiltCharacter();
+            _DecoyEffect.SetActive(_isDecoy);
+            StormEffect.SetActive(_isStorm);
+            UI_EMP_Effect.SetActive(_isEMP);
+        }
 
     }
     private void Move()
@@ -185,7 +186,7 @@ public class UfoController : MonoBehaviour
 
     void OnSwitch(InputValue value)
     {
-        if (_isMagnetOn && _swapImage.isSwap == false && !_isEMP && _movable)
+        if (_isMagnetOn && _swapImage.isSwap == false && !_isEMP && _movable && Time.timeScale != 0)
 
         {
             _swapImage.isSwap = true;
@@ -201,8 +202,9 @@ public class UfoController : MonoBehaviour
     }
     void OnBomb(InputValue value)
     {
-        if (_ufoManager.CanUseBomb())
+        if (_ufoManager.CanUseBomb() && Time.timeScale != 0)
         {
+            _ufoManager.DestroyObstacle();
             _obstacleManager.OnBomb();
             _ufoManager.ClearAll();
             //폭탄 사용

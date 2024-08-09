@@ -26,10 +26,7 @@ public class AlienSystem : MonoBehaviour
         loseUI = canvasTransform.GetChild(1).gameObject;
         drawUI = canvasTransform.GetChild(2).gameObject;
         winUI = canvasTransform.GetChild(3).gameObject;
-        
-
-
-
+    
         
         fuelManager = player.GetComponent<FuelManager>();
 
