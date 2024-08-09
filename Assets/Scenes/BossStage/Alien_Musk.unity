@@ -1158,6 +1158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b11e2ede35213434fb3de75127e6e650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bombCount: 0
   _progressSpeed: 0.01
 --- !u!4 &1598170286
 Transform:
@@ -1409,10 +1410,6 @@ PrefabInstance:
     - target: {fileID: 5044095628406528618, guid: 5467c219f52df914f9a525f5ad452e58, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6649166063426399605, guid: 5467c219f52df914f9a525f5ad452e58, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

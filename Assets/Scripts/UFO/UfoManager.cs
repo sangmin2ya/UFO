@@ -34,7 +34,7 @@ public class UfoManager : MonoBehaviour
         _bombImages.Add(GameObject.Find("Bomb1Img").GetComponent<Image>()); //needs to change
         _weightBar = GameObject.Find("Mass_Image").GetComponent<Image>();
         _speed = _setSpeed;
-        _accelSpeed = _setSpeed * 2f;
+        _accelSpeed = _setSpeed * 3f;
     }
     void Update()
     {
@@ -47,7 +47,7 @@ public class UfoManager : MonoBehaviour
     private void UpdateSpeed()
     {
         _speed = Mathf.Max(0, _setSpeed * ((_maxStuckCount - _AttacedObjects.Count) / (float)_maxStuckCount));
-        _accelSpeed = _speed * 2f;
+        _accelSpeed = _speed * 3f;
         if (_speed <= 0)
         {
             DestroyUfo();
