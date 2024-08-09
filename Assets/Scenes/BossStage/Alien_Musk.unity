@@ -621,6 +621,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1485036015747428565, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2664770979225330841, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3102642430908436579, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
@@ -629,7 +633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5082723860499506255, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6918982941312058994, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
       propertyPath: m_Pivot.x
@@ -1573,6 +1577,10 @@ PrefabInstance:
       propertyPath: obstacleSpawner
       value: 
       objectReference: {fileID: 124218277}
+    - target: {fileID: 8140652062625441859, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: stagelength.Array.data[2]
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
