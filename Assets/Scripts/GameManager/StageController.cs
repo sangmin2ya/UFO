@@ -23,11 +23,13 @@ public class StageController : MonoBehaviour
 
     private bool checkBlakcholeAlert;
     private bool checkSpaceStationAlert;
+    private bool checkSpaceStationOnAlert;
     private bool checkMiJiJangAlert;
 
     [Header("AlertTime")]
     public float blackHoleAlertTime;
     public float spaceStationAlertTime;
+    public float SpaceStationOnAlertTime;
     public float miJiJangAlertTime;
 
 
@@ -98,6 +100,7 @@ public class StageController : MonoBehaviour
     {
         if (!checkCometShower && cometShowerTime <= GameManager.Instance._currentProgress)
         {
+            Debug.Log("CometShower");
             checkCometShower = true;
             eventManager.OnCometShower();
         }
@@ -120,6 +123,11 @@ public class StageController : MonoBehaviour
         {
             checkSpaceStationAlert = true;
             StartCoroutine(ShowAlert("우주 정거장 접근 중. 가운데로 도킹하세요."));
+        }
+        if (!checkSpaceStationOnAlert && SpaceStationOnAlertTime <= GameManager.Instance._currentProgress)
+        {
+            checkSpaceStationOnAlert = true;
+            StartCoroutine(ShowAlert("우주정거장 도킹으로 연료가 회복되었습니다!"));
         }
     }
     public void CheckStage4Event()

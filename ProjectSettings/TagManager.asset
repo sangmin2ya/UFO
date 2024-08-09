@@ -7,7 +7,6 @@ TagManager:
   - Item
   - MagnetField
   - Resque
-  - SpaceStation
   layers:
   - Default
   - TransparentFX
