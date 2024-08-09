@@ -23,7 +23,7 @@ public class StageController : MonoBehaviour
 
     private bool checkBlakcholeAlert;
     private bool checkSpaceStationAlert;
-    private bool checkSpaceStationOnAlert;
+    //private bool checkSpaceStationOnAlert;
     private bool checkMiJiJangAlert;
 
     [Header("AlertTime")]
@@ -124,11 +124,11 @@ public class StageController : MonoBehaviour
             checkSpaceStationAlert = true;
             StartCoroutine(ShowAlert("우주 정거장 접근 중. 가운데로 도킹하세요."));
         }
-        if (!checkSpaceStationOnAlert && SpaceStationOnAlertTime <= GameManager.Instance._currentProgress)
-        {
-            checkSpaceStationOnAlert = true;
-            StartCoroutine(ShowAlert("우주정거장 도킹으로 연료가 회복되었습니다!"));
-        }
+        // if (!checkSpaceStationOnAlert && SpaceStationOnAlertTime <= GameManager.Instance._currentProgress)
+        // {
+        //     checkSpaceStationOnAlert = true;
+        //     StartCoroutine(ShowAlert("우주정거장 도킹으로 연료가 회복되었습니다!"));
+        // }
     }
     public void CheckStage4Event()
     {
