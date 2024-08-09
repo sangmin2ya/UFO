@@ -22,6 +22,7 @@ public class ArrowMinigame : MonoBehaviour
             _arrows[i].SetActive(false);
         }
         StartCoroutine("ResetCode");
+        Time.timeScale = 0.5f;
         _inputKey = KeyCode.None;
         GameObject.Find("PostProcessVolume").GetComponent<PostProcessVolume>().enabled = true;
     }
@@ -54,6 +55,7 @@ public class ArrowMinigame : MonoBehaviour
         else if (_count == 5)
         {
             GameObject.Find("UFO").GetComponent<UfoController>().ExitMagnetField();
+            Time.timeScale = 1f;
             Destroy(gameObject);
         }
     }

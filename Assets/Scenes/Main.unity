@@ -672,6 +672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b11e2ede35213434fb3de75127e6e650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bombCount: 1
   _progressSpeed: 0.01
 --- !u!4 &990366190
 Transform:
@@ -1255,6 +1256,10 @@ PrefabInstance:
       propertyPath: UI_EMP_Effect
       value: 
       objectReference: {fileID: 956069293}
+    - target: {fileID: 3215573605551117054, guid: 5467c219f52df914f9a525f5ad452e58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5044095628406528618, guid: 5467c219f52df914f9a525f5ad452e58, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
