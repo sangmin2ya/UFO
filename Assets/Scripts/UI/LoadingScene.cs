@@ -8,7 +8,7 @@ public class LoadingScene : MonoBehaviour
     int[] level_Sequence = new int[5] {1,1,2,1,3};
     public static LoadingScene instance;
     public Animator anim;
-    public int idx = 0;
+    public int idx = -1;
     public TMP_Text[] Ments;
     [TextArea]
     public string[] Level_Ments = {
@@ -17,6 +17,12 @@ public class LoadingScene : MonoBehaviour
     "일론머스크", "머스크 ㅋㅋ", "스크 ㅋㅋ",
     "일론머스크", "머스크 ㅋㅋ", "스크 ㅋㅋ",
     "일론머스크", "머스크 ㅋㅋ", "스크 ㅋㅋ"};
+
+    AudioSource source;
+    [SerializeField] AudioClip[] clips;
+    int soundidx = 1;
+    [SerializeField] TMP_Text StageText;
+
     private void Start()
     {
         if (instance != null)
@@ -27,10 +33,15 @@ public class LoadingScene : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += onsceneload;
+        source = GetComponent<AudioSource>();
     }
     public void loadScene()
     {
-        SceneManager.LoadSceneAsync(level_Sequence[idx]);
+        SceneManager.LoadScene(level_Sequence[idx]);
+        int temp = soundidx;
+        soundidx = (idx == 2 || idx == 4 || idx == -1) ? 1 : 0;
+        source.clip = clips[soundidx];
+        if(temp != soundidx) source.Play();
         idx += 1;
     }
     private void onsceneload(Scene arg0, LoadSceneMode arg1)
@@ -42,6 +53,7 @@ public class LoadingScene : MonoBehaviour
         for (int i = 0; i < Ments.Length; i++) {
             Ments[i].text = Level_Ments[idx*3+i];
         }
+        StageText.text = $"{idx + 1}장";
         anim.SetTrigger("Load");
     }
 }
