@@ -1,12 +1,12 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventManager : MonoBehaviour
+public class BossEventManager : MonoBehaviour
 {
     [SerializeField] ObstacleSpawner obstacleSpawner;
     [SerializeField] ObstacleSpawner itemManager;
-    
+
     // �ܰ��� ������
     // ��������Ʈ ������
     // �Ŀ� �� ��ǰ ������
@@ -38,33 +38,26 @@ public class EventManager : MonoBehaviour
 
     public void OnBlackhole(float time)
     {
-        blackhole.gameObject.SetActive(true);
-        blackhole.SpawnBlackhole(time);
     }
 
     public void OnUnknownMagneticField()
     {
-        Instantiate(UnknownMagneticField);
     }
 
     public void OnSpaceStation()
     {
-        Instantiate(SpaceStation);
     }
 
     public void OnCometShower()
     {
-        Instantiate(CometShower);
     }
 
     public void OnEpicItems()
     {
-        EpicItems.SetActive(true);
     }
 
     public void OffEpicItems()
     {
-        commonEpics.SetActive(false);
     }
 
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EpicItemSpawner : MonoBehaviour
@@ -21,6 +22,7 @@ public class EpicItemSpawner : MonoBehaviour
         {
             float tempTime = Random.Range(minInterval, maxInterval);
             yield return new WaitForSeconds(tempTime);
+            /*
             float direction = Random.Range(0, 1.0f);
             float tempX;
             float tempY;
@@ -52,6 +54,9 @@ public class EpicItemSpawner : MonoBehaviour
             }
 
             Instantiate(epicItem, new Vector2(tempX, tempY), Quaternion.identity);
+            */
+
+            Instantiate(epicItem);
         }
     }
 }

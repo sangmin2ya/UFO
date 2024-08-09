@@ -43,6 +43,12 @@ public class EventWarpGate : MonoBehaviour
             // Delete all surrounding objects
             StartCoroutine(DestroyWarpGate());
             StartCoroutine(ShowCutscene(progressChange > 0 ? 1 : -1));
+
+            GameObject spaceShip = GameObject.FindWithTag("SpaceStation");
+            if (spaceShip != null)
+            {
+                Destroy(spaceShip);
+            }
         }
     }
     IEnumerator DestroyWarpGate()
