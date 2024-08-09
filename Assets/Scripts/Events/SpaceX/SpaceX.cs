@@ -43,11 +43,6 @@ public class SpaceX : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P)) {
-            Player.GetComponent<Animator>().Play("Attack_Wave_UFO");
-            GetComponent<Animator>().Play("Attack_Wave_SpaceX");
-
-        }
         CheckEnd();
         if (event_Start)
         {
@@ -134,6 +129,7 @@ public class SpaceX : MonoBehaviour
         else
         {
             GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>().OnBomb();
+            UImanager.HideEventText();
             Player.GetComponent<UfoManager>().ClearAll();
         }
         InvokeRepeating("occur_Random_Event", 10, 20f);

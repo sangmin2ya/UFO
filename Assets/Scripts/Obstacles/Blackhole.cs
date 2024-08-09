@@ -24,13 +24,13 @@ public class Blackhole : MonoBehaviour
             foreach (var Obstacle in Obstacles)
             {
                 Rigidbody2D rb = Obstacle.GetComponent<Rigidbody2D>();
-                rb.isKinematic = true;
+
                 // ����Ȧ�� �� ������ٵ� ������ �Ÿ��� ����մϴ�.
                 float distance = Vector2.Distance(transform.position, rb.position);
                 float pullStrength;
 
                 // �÷��̾�� �Ϲ� ������Ʈ�� ���Է��� �ٸ��� �����մϴ�.
-                if (rb.gameObject.tag == "Player")
+                if (rb.CompareTag("Player"))
                 {
                     pullStrength = playerPullStrength;
                     // �Ÿ� �ݺ�ʷ� ���Է��� ������ŵ�ϴ�.
@@ -38,10 +38,11 @@ public class Blackhole : MonoBehaviour
 
                     // ����Ȧ �������� ���� ���մϴ�.
                     Vector2 direction = (Vector2)transform.position - rb.position;
-                    rb.AddForce(direction * pullStrength * Time.fixedDeltaTime);
+                    rb.AddForce(direction.normalized * pullStrength * Time.fixedDeltaTime);
                 }
                 else
                 {
+                    rb.isKinematic = true;
                     rb.position = Vector2.MoveTowards(rb.position, transform.position, basePullStrength * Time.deltaTime);
                     Obstacle.GetComponent<CircleCollider2D>().enabled = false;
                 }

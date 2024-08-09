@@ -287,13 +287,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e856c0e2962c2ec4ea4acd5e89869dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventManager: {fileID: 1541050948}
+  eventManager: {fileID: 9081673339625799749}
   currStageLv: 1
   cometShowerTime: 0.1
   blackholeTime: 0.2
   SpaceStationTime: 0.3
   onBlackholeTime: 10
   blackHoleAlertTime: 0
+  spaceStationAlertTime: 0
+  SpaceStationOnAlertTime: 0
+  miJiJangAlertTime: 0
 --- !u!4 &272708090
 Transform:
   m_ObjectHideFlags: 0
@@ -457,8 +460,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 520544469}
-  - component: {fileID: 520544468}
-  - component: {fileID: 520544467}
   - component: {fileID: 520544466}
   m_Layer: 0
   m_Name: EpicItemsSpawner
@@ -480,38 +481,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   epicItem: {fileID: 1416848750989864971, guid: c49579e0c116e3942b568f4167487641, type: 3}
-  minInterval: 1
-  maxInterval: 3
---- !u!114 &520544467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 520544465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6abe2225f2aa7454bbe5d33189072cfc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  epicItem: {fileID: 5385488283870340336, guid: 3a48786752c5ba847a592162132dca29, type: 3}
-  minInterval: 1
-  maxInterval: 3
---- !u!114 &520544468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 520544465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6abe2225f2aa7454bbe5d33189072cfc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  epicItem: {fileID: 3471414453436049202, guid: 2b67ed5175473b8468abb8907867bb54, type: 3}
-  minInterval: 1
-  maxInterval: 3
+  minInterval: 120
+  maxInterval: 120
 --- !u!4 &520544469
 Transform:
   m_ObjectHideFlags: 0
@@ -593,6 +564,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6863238064449123545, guid: 353f61bf94f9e0f4d8f78feb600191f9, type: 3}
   m_PrefabInstance: {fileID: 559476041}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &575495818
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 575495820}
+  - component: {fileID: 575495819}
+  m_Layer: 0
+  m_Name: epic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &575495819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575495818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6abe2225f2aa7454bbe5d33189072cfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  epicItem: {fileID: 3471414453436049202, guid: 2b67ed5175473b8468abb8907867bb54, type: 3}
+  minInterval: 120
+  maxInterval: 120
+--- !u!4 &575495820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575495818}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 21.082968, y: 10.454854, z: -0.26493168}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &651677037
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -934,67 +952,6 @@ Transform:
   - {fileID: 1861304115}
   - {fileID: 1075587601}
   - {fileID: 1718111826}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1541050947
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1541050949}
-  - component: {fileID: 1541050948}
-  m_Layer: 0
-  m_Name: EventController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1541050948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1541050947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ce1bd2f13af60a4b84793d1a435a57a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obstacleSpawner: {fileID: 124218277}
-  itemManager: {fileID: 143757735}
-  stagelength:
-  - 0.01
-  - 0.01
-  - 0
-  - 0.01
-  - 0
-  obstacleInterval: 0100000001000000010000000100000001000000
-  obstacleSpawnCount: 0200000002000000020000000200000002000000
-  itemInterval: 0100000001000000010000000100000001000000
-  itemSpawnCount: 0100000001000000010000000100000001000000
-  blackhole: {fileID: 1742534872}
-  UnknownMagneticField: {fileID: 5385488283870340336, guid: 3a48786752c5ba847a592162132dca29, type: 3}
-  SpaceStation: {fileID: 1851631828277994150, guid: da146c904238cba4d8363ac96152fc86, type: 3}
-  CometShower: {fileID: 1359538042669003011, guid: 9a03c7fe77c09eb45a8eb6ee06b13f42, type: 3}
-  EpicItems: {fileID: 520544465}
---- !u!4 &1541050949
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1541050947}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.540918, y: -4.3111763, z: -0.005631474}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1598170284
@@ -1532,6 +1489,106 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e56d79e32eefbb247b414b9ff6c3a7fe, type: 3}
+--- !u!1001 &9081673339625799748
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2021382909787739248, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: m_Name
+      value: EventController
+      objectReference: {fileID: 0}
+    - target: {fileID: 5687467960755114563, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.540918
+      objectReference: {fileID: 0}
+    - target: {fileID: 5687467960755114563, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.3111763
+      objectReference: {fileID: 0}
+    - target: {fileID: 5687467960755114563, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.005631474
+      objectReference: {fileID: 0}
+    - target: {fileID: 5687467960755114563, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5687467960755114563, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5687467960755114563, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5687467960755114563, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5687467960755114563, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5687467960755114563, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5687467960755114563, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7452129663402443515, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: EpicItems
+      value: 
+      objectReference: {fileID: 520544465}
+    - target: {fileID: 7452129663402443515, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: blackhole
+      value: 
+      objectReference: {fileID: 1742534872}
+    - target: {fileID: 7452129663402443515, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: itemManager
+      value: 
+      objectReference: {fileID: 143757735}
+    - target: {fileID: 7452129663402443515, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: obstacleSpawner
+      value: 
+      objectReference: {fileID: 124218277}
+    - target: {fileID: 8140652062625441859, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: EpicItems
+      value: 
+      objectReference: {fileID: 520544465}
+    - target: {fileID: 8140652062625441859, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: commonEpics
+      value: 
+      objectReference: {fileID: 575495818}
+    - target: {fileID: 8140652062625441859, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: itemManager
+      value: 
+      objectReference: {fileID: 143757735}
+    - target: {fileID: 8140652062625441859, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: obstacleSpawner
+      value: 
+      objectReference: {fileID: 124218277}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+--- !u!114 &9081673339625799749 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8140652062625441859, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+  m_PrefabInstance: {fileID: 9081673339625799748}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce1bd2f13af60a4b84793d1a435a57a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1549,9 +1606,10 @@ SceneRoots:
   - {fileID: 520544469}
   - {fileID: 1362090270}
   - {fileID: 1742534873}
-  - {fileID: 1541050949}
+  - {fileID: 9081673339625799748}
   - {fileID: 1598170286}
   - {fileID: 721664201}
   - {fileID: 124218276}
   - {fileID: 143757734}
   - {fileID: 1598712509}
+  - {fileID: 575495820}

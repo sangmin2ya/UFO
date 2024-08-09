@@ -6,6 +6,7 @@ public class EventManager : MonoBehaviour
 {
     [SerializeField] ObstacleSpawner obstacleSpawner;
     [SerializeField] ObstacleSpawner itemManager;
+    
     // �ܰ��� ������
     // ��������Ʈ ������
     // �Ŀ� �� ��ǰ ������
@@ -26,6 +27,7 @@ public class EventManager : MonoBehaviour
     [SerializeField] GameObject SpaceStation;
     [SerializeField] GameObject CometShower;
     [SerializeField] GameObject EpicItems;
+    [SerializeField] GameObject commonEpics;
 
     public void MapSetting(int lv)
     {
@@ -33,8 +35,6 @@ public class EventManager : MonoBehaviour
         obstacleSpawner.Interval = obstacleInterval[lv];
         itemManager.spawnCount = itemSpawnCount[lv];
         itemManager.Interval = itemInterval[lv];
-        obstacleSpawner.currObstacleSpeed = obstacleSpeed[lv];
-        itemManager.currItemSpeed = itemSpeed[lv];
 
         GameManager.Instance.SetProgressSpeed(stagelength[lv]);
     }
@@ -67,6 +67,7 @@ public class EventManager : MonoBehaviour
 
     public void OffEpicItems()
     {
-        EpicItems.SetActive(false);
+        commonEpics.SetActive(false);
     }
+
 }

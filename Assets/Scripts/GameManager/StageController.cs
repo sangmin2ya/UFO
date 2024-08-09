@@ -50,6 +50,11 @@ public class StageController : MonoBehaviour
         {
             eventManager.OnEpicItems();
         }
+
+        if (currStageLv == 2 || currStageLv == 4)
+        {
+            eventManager.OffEpicItems();
+        }
     }
 
     // Update is called once per frame
@@ -59,7 +64,8 @@ public class StageController : MonoBehaviour
         if (currStageLv == 1)
         {
             CheckStage2Event();
-        }else if (currStageLv == 3)
+        }
+        else if (currStageLv == 3)
         {
             CheckStage4Event();
         }
@@ -98,49 +104,40 @@ public class StageController : MonoBehaviour
             checkCometShower = true;
             eventManager.OnCometShower();
         }
-
         if (!checkBlackhole && blackholeTime <= GameManager.Instance._currentProgress)
         {
             checkBlackhole = true;
-
             eventManager.OnBlackhole(onBlackholeTime);
         }
-
         if (!checkSpaceStation && SpaceStationTime <= GameManager.Instance._currentProgress)
         {
             checkSpaceStation = true;
             eventManager.OnSpaceStation();
         }
-
-        if(!checkBlakcholeAlert && blackHoleAlertTime <= GameManager.Instance._currentProgress)
+        if (!checkBlakcholeAlert && blackHoleAlertTime <= GameManager.Instance._currentProgress)
         {
             checkBlakcholeAlert = true;
-            StartCoroutine(ShowAlert("ºí·¢È¦ Á¢±Ù Áß »¡·Áµé¾î°¡Áö¾Ê°Ô Á¶½ÉÇÏ¼¼¿ä!"));
+            StartCoroutine(ShowAlert("ë¸”ëž™í™€ ì ‘ê·¼ ì¤‘. ëŒë ¤ì˜¨ í˜œì„±ì„ ì¡°ì‹¬í•˜ì„¸ìš”!"));
         }
-
         if (!checkSpaceStationAlert && spaceStationAlertTime <= GameManager.Instance._currentProgress)
         {
             checkSpaceStationAlert = true;
-            StartCoroutine(ShowAlert("¿ìÁÖ Á¤°ÅÀå Á¢±Ù Áß. °¡¿îµ¥·Î µµÅ·ÇÏ¼¼¿ä."));
+            StartCoroutine(ShowAlert("ìš°ì£¼ ì •ê±°ìž¥ ì ‘ê·¼ ì¤‘. ê°€ìš´ë°ë¡œ ë„í‚¹í•˜ì„¸ìš”."));
         }
-
         if (!checkSpaceStationOnAlert && SpaceStationOnAlertTime <= GameManager.Instance._currentProgress)
         {
             checkSpaceStationOnAlert = true;
-            StartCoroutine(ShowAlert("¿ìÁÖÁ¤°ÅÀå µµÅ·À¸·Î ¿¬·á°¡ È¸º¹µÇ¾ú½À´Ï´Ù!"));
+            StartCoroutine(ShowAlert("ìš°ì£¼ì •ê±°ìž¥ ë„í‚¹ìœ¼ë¡œ ì—°ë£Œê°€ íšŒë³µë˜ì—ˆìŠµë‹ˆë‹¤!"));
         }
     }
-
-
     public void CheckStage4Event()
     {
         if (!checkMiJiJangAlert && miJiJangAlertTime <= GameManager.Instance._currentProgress)
         {
             checkMiJiJangAlert = true;
-            StartCoroutine(ShowAlert("¿¡ÀÏ¸®¿Â ¸Ó½ºÅ©ÀÇ ¹æÇØ·Î ¹ÌÁöÀÇ ¿¡³ÊÁö ÇÊµå°¡ »ý¼ºµË´Ï´Ù. Á¶½ÉÇÏ¼¼¿ä!"));
+            StartCoroutine(ShowAlert("ì—ì¼ë¦¬ì˜¨ ë¨¸ìŠ¤í¬ì˜ ë°©í•´ë¡œ ë¯¸ì§€ì˜ ì—ë„ˆì§€ í•„ë“œê°€ ìƒì„±ë©ë‹ˆë‹¤. ì¡°ì‹¬í•˜ì„¸ìš”!"));
         }
     }
-
     public IEnumerator ShowAlert(string message)
     {
         GameObject.Find("Canvas").GetComponent<GameUIManager>().showEvent(message);

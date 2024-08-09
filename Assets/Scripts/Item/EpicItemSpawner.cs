@@ -5,9 +5,9 @@ using UnityEngine;
 public class EpicItemSpawner : MonoBehaviour
 {
     [SerializeField] GameObject epicItem;
-    [Range(0,60)]
+    [Range(0,120)]
     [SerializeField] private float minInterval;
-    [Range(0, 60)]
+    [Range(0, 120)]
     [SerializeField] private float maxInterval;
 
     void Start()
