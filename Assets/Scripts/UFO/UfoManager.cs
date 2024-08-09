@@ -71,7 +71,8 @@ public class UfoManager : MonoBehaviour
     private void DestroyUfo()
     {
         //Destroy(gameObject);
-        SceneManager.LoadScene("GameOver");
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name != "Main" ? "BadEnding" : "GameOver");
     }
     private void UpdateUI()
     {
@@ -185,7 +186,7 @@ public class UfoManager : MonoBehaviour
             AttachObject(collision.gameObject);
             if (Vector2.Distance(collision.transform.position, transform.position) > 2.5f)
             {
-                SceneManager.LoadScene("GameOver");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name != "Main" ? "BadEnding" : "GameOver");
             }
         }
     }

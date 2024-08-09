@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -16,8 +17,6 @@ public class SpaceX : MonoBehaviour
 
     [SerializeField] float EventTime = 15;
 
-    int idx = 0;
-
     //EMP
     bool _isEmp = false;
     //TimeBubble
@@ -30,6 +29,7 @@ public class SpaceX : MonoBehaviour
 
     [SerializeField] GameManager Burst_Effect;
     [SerializeField] Transform[] Burst_Transform;
+    [SerializeField] TMP_Text Notice;
 
     private void Start()
     {
@@ -60,6 +60,7 @@ public class SpaceX : MonoBehaviour
 
             }
         }
+        Notice.text = $"SPACE X에게 반격하기 위해 쓰레기를 {_hpCount * 2 + 3}개 이상 붙이세요";
     }
 
     void ShootMissile()
