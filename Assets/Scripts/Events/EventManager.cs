@@ -19,6 +19,9 @@ public class EventManager : MonoBehaviour
     [SerializeField] int[] itemInterval;
     [SerializeField] int[] itemSpawnCount;
 
+    [SerializeField] int[] obstacleSpeed;
+    [SerializeField] int[] itemSpeed;
+
     [SerializeField] Blackhole blackhole;
     [SerializeField] GameObject UnknownMagneticField;
     [SerializeField] GameObject SpaceStation;

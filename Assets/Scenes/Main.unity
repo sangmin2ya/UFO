@@ -1377,7 +1377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   epicItem: {fileID: 3471414453436049202, guid: 2b67ed5175473b8468abb8907867bb54, type: 3}
-  minInterval: 25
+  minInterval: 40
   maxInterval: 50
 --- !u!4 &2122555478
 Transform:
@@ -1486,12 +1486,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventManager: {fileID: 1033392441}
   currStageLv: 1
-  cometShowerTime: 0.21
-  blackholeTime: 0.2
-  SpaceStationTime: 0.5
-  onBlackholeTime: 5
-  blackHoleAlertTime: 0.2
-  spaceStationAlertTime: 0.5
+  cometShowerTime: 0.2
+  blackholeTime: 0.1
+  SpaceStationTime: 0.3
+  onBlackholeTime: 10
+  blackHoleAlertTime: 0.1
+  spaceStationAlertTime: 0.3
+  SpaceStationOnAlertTime: 0.45
   miJiJangAlertTime: 0.05
 --- !u!4 &2132037915
 Transform:
@@ -1580,30 +1581,6 @@ PrefabInstance:
       propertyPath: obstacleSpawner
       value: 
       objectReference: {fileID: 477704691}
-    - target: {fileID: 8140652062625441859, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
-      propertyPath: stagelength.Array.data[0]
-<<<<<<< Updated upstream
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8140652062625441859, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
-      propertyPath: stagelength.Array.data[1]
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8140652062625441859, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
-      propertyPath: stagelength.Array.data[2]
-      value: 0
-=======
-      value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 8140652062625441859, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
-      propertyPath: stagelength.Array.data[1]
-      value: 0.015
-      objectReference: {fileID: 0}
-    - target: {fileID: 8140652062625441859, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
-      propertyPath: stagelength.Array.data[3]
-      value: 0.02
->>>>>>> Stashed changes
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
