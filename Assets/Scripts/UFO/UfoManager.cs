@@ -71,6 +71,15 @@ public class UfoManager : MonoBehaviour
         GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>().OnBomb();
         _AttacedObjects.Clear();
     }
+    //destroy attached objects only
+    public void DestroyAttachedObject()
+    {
+        for (int i = 0; i < _AttacedObjects.Count; i++)
+        {
+            _AttacedObjects[i].DestroyItem();
+        }
+        _AttacedObjects.Clear();
+    }
     private void DetachObject(GameObject obj)
     {
         obj.GetComponent<ItemInfo>().DestroyItem();
@@ -139,7 +148,7 @@ public class UfoManager : MonoBehaviour
     {
         _AttacedObjects.Clear();
     }
-    private void CleanSurface()
+    private void CleanSurface() //Clean 3 trash
     {
         for (int i = 0; i < 3; i++)
         {
