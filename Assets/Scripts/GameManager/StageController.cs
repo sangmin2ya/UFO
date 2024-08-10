@@ -127,7 +127,7 @@ public class StageController : MonoBehaviour
         if (!checkMiJiJangAlert && miJiJangAlertTime <= GameManager.Instance._currentProgress)
         {
             checkMiJiJangAlert = true;
-            StartCoroutine(ShowAlert("에일리온 머스크의 방해로 미지의 에너지 필드가 생성됩니다. 조심하세요!"));
+            StartCoroutine( ShowAlert("에일리온 머스크의 방해로 미지의 에너지 필드가 생성됩니다. 조심하세요!"));
         }
     }
     public IEnumerator ShowAlert(string message)
