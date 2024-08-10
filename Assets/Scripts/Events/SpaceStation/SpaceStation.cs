@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class SpaceStation : MonoBehaviour
 {
-    [SerializeField] bool NiceDocking = false;
     [SerializeField] float speed = .02f;
 
     private GameObject conversation;

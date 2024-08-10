@@ -98,6 +98,14 @@ public class UfoController : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(Vector2.zero), Time.fixedDeltaTime * 5);
         }
     }
+    public void SetUnmovable()
+    {
+        _movable = false;
+    }
+    public void SetMovable()
+    {
+        _movable = true;
+    }
     /// <summary>
     /// 캐릭터 위치 제한
     /// </summary>
@@ -169,11 +177,9 @@ public class UfoController : MonoBehaviour
     }
     void OnBomb(InputValue value)
     {
-        if (_ufoManager.CanUseBomb() && Time.timeScale != 0)
+        if (_ufoManager.CanUseBomb() && Time.timeScale != 0 && _movable)
         {
-            _ufoManager.DestroyObstacle();
-            _obstacleManager.OnBomb();
-            _ufoManager.ClearAll();
+            _ufoManager.DestroyEveryObstacle();
             //폭탄 사용
         }
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HappyEnding : MonoBehaviour
 {
@@ -19,5 +20,11 @@ public class HappyEnding : MonoBehaviour
     public void Burst3()
     {
         Bursts[2].gameObject.SetActive(true);
+    }
+
+    public void MainMenu()
+    {
+        LoadingScene.instance.idx = -1;
+        SceneManager.LoadScene(0);
     }
 }

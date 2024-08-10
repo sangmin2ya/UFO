@@ -10,8 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6448440306744756279}
   - component: {fileID: 3981972299392035608}
-  - component: {fileID: 5208629760990308517}
-  - component: {fileID: 8019961771063425959}
+  - component: {fileID: 4897973168943628242}
   m_Layer: 0
   m_Name: MiddleBoss
   m_TagString: Untagged
@@ -78,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a567aa642c0b03b45aff4975b49733ab, type: 3}
-  m_Color: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
+  m_Color: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -88,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5208629760990308517
+--- !u!114 &4897973168943628242
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,35 +96,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 3361626053867125020}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa7794fe3e0938f4a9506691ae7d583d, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d9313383dc7a3a489f01eecc9fb5222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ilonMissile: {fileID: 6394186370488612651, guid: 57a1b25cd9888234faa384d21320b98f, type: 3}
-  maximum_Missile_Num: 5
+  Player: {fileID: 0}
+  maximum_Missile_Num: 2
   followMissileNum: 2
-  EventTime: 10
-  timescale_min_max: {x: 0.5, y: 1.5}
---- !u!95 &8019961771063425959
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3361626053867125020}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7fbed7da5d50cae4e853cf2f9c73dea5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  EventTime: 15
+  timescale_min_max: 0
+  UImanager: {fileID: 0}
+  _patternCount: 0
+  _hpCount: 0
+  Burst_Effect: {fileID: 7534486312702475279, guid: 12853316d977b974f9553d64c65d9d18, type: 3}
+  Burst_Transform:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Notice: {fileID: 0}
 --- !u!1 &3611113528588212665
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +275,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d27bb937311796b41a2610165cc4eabb, type: 3}
-  m_Color: {r: 0.43529412, g: 0.43529412, b: 0.43529412, a: 1}
+  m_Color: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

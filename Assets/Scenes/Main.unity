@@ -311,7 +311,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
@@ -379,6 +379,18 @@ PrefabInstance:
     - target: {fileID: 1485036015747428565, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078089099415454487, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0875001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078089099415454487, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.7249401
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078089099415454487, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -123.6
       objectReference: {fileID: 0}
     - target: {fileID: 3102642430908436579, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
       propertyPath: m_Name
@@ -1039,7 +1051,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1504276860}
   m_Layer: 0
-  m_Name: Background
+  m_Name: Backgrounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1487,13 +1499,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventManager: {fileID: 1033392441}
   currStageLv: 1
+  backgroundSprites:
+  - {fileID: 21300000, guid: 0675ce4596ea3e047879ee54f19b94a0, type: 3}
+  - {fileID: 21300000, guid: 3c522dfe25a7896468abb57f4bf0f186, type: 3}
+  - {fileID: 21300000, guid: d8d2137bfa84a85489da57a24ea89d82, type: 3}
+  - {fileID: 21300000, guid: d5195c18a9a87014da4daca597d44a77, type: 3}
+  - {fileID: 21300000, guid: 8fcd2969768e4884d9b7e2791018a51a, type: 3}
   cometShowerTime: 0.21
   blackholeTime: 0.2
   SpaceStationTime: 0.5
   onBlackholeTime: 10
   blackHoleAlertTime: 0.2
   spaceStationAlertTime: 0.5
-  SpaceStationOnAlertTime: 0.55
   miJiJangAlertTime: 0.05
 --- !u!4 &2132037915
 Transform:

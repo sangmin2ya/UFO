@@ -22,21 +22,24 @@ public class SpaceX : MonoBehaviour
     //TimeBubble
     bool _isTimeBubble = false;
     bool _isStorm = false;
-    [SerializeField] Vector2 timescale_min_max;
+    [SerializeField] float timescale_min_max;
     [SerializeField] GameUIManager UImanager;
     [SerializeField] private int _patternCount = 0;
     [SerializeField] private int _hpCount = 0;
 
-    [SerializeField] GameManager Burst_Effect;
+    [SerializeField] GameObject Burst_Effect;
     [SerializeField] Transform[] Burst_Transform;
     [SerializeField] TMP_Text Notice;
 
+    Animator anim;
+
     private void Start()
     {
+        anim = transform.parent.GetComponent<Animator>();
+        anim.Play("Intro");
+
         UImanager = GameObject.Find("Canvas").GetComponent<GameUIManager>();
         Player = GameObject.FindGameObjectWithTag("Player");
-        Player.GetComponent<Animator>().enabled = false;
-        Player.GetComponent<Animator>().applyRootMotion = false;
         InvokeRepeating("occur_Random_Event", 5, 20f);
 
     }
@@ -60,12 +63,11 @@ public class SpaceX : MonoBehaviour
 
             }
         }
-        Notice.text = $"SPACE X에게 반격하기 위해 쓰레기를 {_hpCount * 2 + 3}개 이상 붙이세요";
+        Notice.text = $"SPACE X에게 반격하기 위해 쓰레기를 <color=red>{_hpCount * 2 + 3}</color>개 이상 붙이세요";
     }
 
     void ShootMissile()
     {
-        int num_follow = 0;
         int rand2 = Random.Range(0, 101);
         for (int i = 0; i < maximum_Missile_Num; ++i)
         {
@@ -78,7 +80,7 @@ public class SpaceX : MonoBehaviour
 
             var missile = Instantiate(ilonMissile, rand3 >= 75 ? leftright1 : rand3 >= 50 ? leftright2 : rand3 >= 25 ? upVec : downVec, Quaternion.identity);
             missile.GetComponent<ElonMissile>().state = rand2 <= 50 ? MagnetState.N : MagnetState.S;
-            if (num_follow < followMissileNum) { num_follow += 1; missile.GetComponent<ElonMissile>().isFollowPlayer = true; }
+            missile.GetComponent<ElonMissile>().isFollowPlayer = true;
         }
     }
 
@@ -98,7 +100,7 @@ public class SpaceX : MonoBehaviour
             case 0: ShootMissile(); break;
             case 1: EMP(); break;
             case 2: TimeBubble(); break;
-            case 3: CosmicStorm(); break;
+            case 3: anim.Play("Cosmic_Storm"); break;
         }
     }
     private void OccurMagnetPattern()
@@ -106,29 +108,27 @@ public class SpaceX : MonoBehaviour
         _patternCount = 0;
         CancelInvoke("occur_Random_Event");
         UImanager.showEvent("스페이스 X가 크기 " + (_hpCount * 2 + 3) + "의 강력한 자기장을 발생시킵니다!");
+        anim.Play("Space_Attack_Charging");
         MagnetPattern();
     }
     private void MagnetPattern()
     {
-        Camera.main.GetComponent<CameraShake>().StopCameraShake();
-        Camera.main.GetComponent<CameraShake>().startCameraShake(0.01f, 5);
-
         Invoke("CompareMass", 8);
     }
     private void CompareMass()
     {
-        StartCoroutine(enableAnimation());
-        Player.GetComponent<Animator>().Play("Attack_Wave_UFO");
-        GetComponent<Animator>().Play("Attack_Wave_SpaceX");
-        if (Player.GetComponent<UfoManager>()._AttacedObjects.Count > (_hpCount * 2 + 3))
+        if (Player.GetComponent<UfoManager>()._AttacedObjects.Count >= (_hpCount * 2 + 3))
         {
             _hpCount++;
+            anim.SetTrigger("Success");
             UImanager.showEvent("더욱 강력한 자기장으로 스페이스 X에게 반격했습니다!");
             GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>().OnBomb();
             Player.GetComponent<UfoManager>().ClearAll();
         }
         else
         {
+            Player.GetComponent<Animator>().enabled = true;
+            anim.SetTrigger("Failed");
             GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>().OnBomb();
             UImanager.HideEventText();
             Player.GetComponent<UfoManager>().ClearAll();
@@ -196,7 +196,7 @@ public class SpaceX : MonoBehaviour
         img.color = targetColor;
         SceneManager.LoadScene("HappyEnding");
     }
-    void CosmicStorm()
+    public void CosmicStorm()
     {
         UImanager.showEvent("우주 폭풍이 몰아쳐 시야가 제한됩니다 !");
 
@@ -209,14 +209,14 @@ public class SpaceX : MonoBehaviour
 
         _isTimeBubble = true;
         UImanager.showTimeBubbleEffect();
-        float x = Random.Range(timescale_min_max.x, timescale_min_max.y);
+        float x = Random.Range(1.2f, timescale_min_max);
         Time.timeScale = x;
-        UImanager.showEvent(x >= 1 ? "타임 버블로 인해 시간이 빨라집니다 !" : "타임 버블로 인해 시간이 느려집니다..");
+        UImanager.showEvent("타임 버블로 인해 시간이 빨라집니다 !");
     }
 
     void EMP()
     {
-        GetComponent<Animator>().Play("EMP");
+        anim.Play("EMP");
     }
 
     public void setEmpState()

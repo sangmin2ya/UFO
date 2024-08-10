@@ -12,4 +12,8 @@ public class BackgroundRepeating : MonoBehaviour
 
         if (transform.position.x <= -42) transform.position = new Vector2(42, transform.position.y);
     }
+    public void Stop()
+    {
+        speed = 0;
+    }
 }
