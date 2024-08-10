@@ -8,7 +8,10 @@ using TMPro;
 
 public class EndingMenu : MonoBehaviour
 {
-    public InputActionAsset inputActions;  // UFO Input Action Asset ÂüÁ¶
+
+    int[] level_Sequence = new int[5] { 1, 1, 1, 1, 3 };
+
+    public InputActionAsset inputActions;  // UFO Input Action Asset ì°¸ì¡°
     public Button startButton;
     public Button exitButton;
 
@@ -19,14 +22,14 @@ public class EndingMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        // Æ¯Á¤ ¾À¿¡¼­¸¸ È°¼ºÈ­
+        // íŠ¹ì • ì”¬ì—ì„œë§Œ í™œì„±í™”
         if (SceneManager.GetActiveScene().name != "MainMenu")
         {
             gameObject.SetActive(false);
             return;
         }
 
-        // InputAction ¼³Á¤
+        // InputAction ì„¤ì •
         moveAction = inputActions.FindActionMap("Player").FindAction("Move");
         submitAction = inputActions.FindActionMap("Player").FindAction("Submit");
 
@@ -39,7 +42,7 @@ public class EndingMenu : MonoBehaviour
 
     private void OnDisable()
     {
-        // ¾À ÀüÈ¯ ½Ã InputAction ºñÈ°¼ºÈ­ ¹× ÀÌº¥Æ® ÇØÁ¦
+        // ì”¬ ì „í™˜ ì‹œ InputAction ë¹„í™œì„±í™” ë° ì´ë²¤íŠ¸ í•´ì œ
         if (moveAction != null)
         {
             moveAction.started -= OnMovePerformed;
@@ -62,7 +65,7 @@ public class EndingMenu : MonoBehaviour
     private void OnMovePerformed(InputAction.CallbackContext context)
     {
         if (buttons == null || buttons.Length == 0)
-            return;  // ¹öÆ°ÀÌ ¾øÀ¸¸é ÀÔ·ÂÀ» ¹«½Ã
+            return;  // ë²„íŠ¼ì´ ì—†ìœ¼ë©´ ì…ë ¥ì„ ë¬´ì‹œ
 
         Vector2 input = context.ReadValue<Vector2>();
 
@@ -79,7 +82,7 @@ public class EndingMenu : MonoBehaviour
     private void OnSubmitPerformed(InputAction.CallbackContext context)
     {
         if (buttons == null || buttons.Length == 0)
-            return;  // ¹öÆ°ÀÌ ¾øÀ¸¸é ÀÔ·ÂÀ» ¹«½Ã
+            return;  // ë²„íŠ¼ì´ ì—†ìœ¼ë©´ ì…ë ¥ì„ ë¬´ì‹œ
 
         SendMessage("OnSubmit");
     }
@@ -107,30 +110,29 @@ public class EndingMenu : MonoBehaviour
 
     private void UpdateButtonSelection()
     {
-        // ¸ğµç ¹öÆ°ÀÇ ÅØ½ºÆ® »ö»óÀ» ºñÈ°¼ºÈ­ »ö»óÀ¸·Î º¯°æ
+        // ëª¨ë“  ë²„íŠ¼ì˜ í…ìŠ¤íŠ¸ ìƒ‰ìƒì„ ë¹„í™œì„±í™” ìƒ‰ìƒìœ¼ë¡œ ë³€ê²½
         foreach (Button button in buttons)
         {
             TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
             if (buttonText != null)
             {
-                buttonText.color = Color.white;  // ºñÈ°¼ºÈ­ »ö»ó (¿øÇÏ´Â »öÀ¸·Î º¯°æ °¡´É)
+                buttonText.color = Color.white;  // ë¹„í™œì„±í™” ìƒ‰ìƒ (ì›í•˜ëŠ” ìƒ‰ìœ¼ë¡œ ë³€ê²½ ê°€ëŠ¥)
             }
         }
 
-        // ¼±ÅÃµÈ ¹öÆ°ÀÇ ÅØ½ºÆ® »ö»óÀ» È°¼ºÈ­ »ö»óÀ¸·Î º¯°æ
+        // ì„ íƒëœ ë²„íŠ¼ì˜ í…ìŠ¤íŠ¸ ìƒ‰ìƒì„ í™œì„±í™” ìƒ‰ìƒìœ¼ë¡œ ë³€ê²½
         TextMeshProUGUI selectedText = buttons[selectedIndex].GetComponentInChildren<TextMeshProUGUI>();
         if (selectedText != null)
         {
-            selectedText.color = Color.yellow;  // È°¼ºÈ­ »ö»ó (¿øÇÏ´Â »öÀ¸·Î º¯°æ °¡´É)
+            selectedText.color = Color.yellow;  // í™œì„±í™” ìƒ‰ìƒ (ì›í•˜ëŠ” ìƒ‰ìœ¼ë¡œ ë³€ê²½ ê°€ëŠ¥)
         }
     }
 
-
-    int[] level_Sequence = new int[5] { 1, 1, 2, 1, 3 };
     public void GameStartClick()
     {
         LoadingScene.instance.LoadingStart();
     }
+
     public void ExitMenu() {
         LoadingScene.instance.idx = -1;
         SceneManager.LoadScene(0);
