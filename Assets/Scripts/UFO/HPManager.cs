@@ -12,7 +12,7 @@ public class HPManager : MonoBehaviour
 
     void Start()
     {
-        _hpBar = GameObject.Find("Fuel_Image").GetComponent<Image>();
+        _hpBar = GameObject.Find("HP_Image").GetComponent<Image>();
         _maxHp = _hp;
     }
 

@@ -7,6 +7,8 @@ public class StageController : MonoBehaviour
 {
     [SerializeField] EventManager eventManager;
     [SerializeField] private int currStageLv;
+    [SerializeField] private List<Sprite> backgroundSprites;
+    private GameObject _UFO;
 
     private bool checkCometShower;
     private bool checkBlackhole;
@@ -34,6 +36,7 @@ public class StageController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _UFO = GameObject.Find("UFO");
         currStageLv = GameManager.Instance._stage;
         eventManager.MapSetting(currStageLv);
 
@@ -52,6 +55,10 @@ public class StageController : MonoBehaviour
         if (currStageLv == 2 || currStageLv == 4)
         {
             eventManager.OffEpicItems();
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            GameObject.Find("Backgrounds").transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = backgroundSprites[currStageLv];
         }
     }
 
@@ -87,9 +94,38 @@ public class StageController : MonoBehaviour
         GameManager.Instance.ResetProgress();
         GameManager.Instance.AddStage();
         GameManager.Instance.SetProgressSpeed(0.002f);
+        StartCoroutine(MoveToNextStage());
+    }
+    IEnumerator MoveToNextStage()
+    {
+        BackgroundRepeating[] backgrounds = GameObject.Find("Backgrounds").transform.GetComponentsInChildren<BackgroundRepeating>();
+        foreach (var obj in backgrounds)
+        {
+            obj.Stop();
+        }
+        _UFO.GetComponent<UfoController>().SetUnmovable();
+        _UFO.GetComponent<UfoManager>().DestroyEveryObstacle();
+        Vector3 startPosition = _UFO.transform.position;
+        yield return new WaitForSeconds(1);
+        // 화면 오른쪽 끝의 월드 좌표를 계산합니다.
+        Vector3 screenRightEdge = Camera.main.ViewportToWorldPoint(new Vector3(2, 0.5f, Camera.main.nearClipPlane));
+        screenRightEdge.z = startPosition.z;
+
+        float elapsedTime = 0;
+
+        while (elapsedTime < 2.5f)
+        {
+            _UFO.transform.position = Vector3.Lerp(startPosition, screenRightEdge, elapsedTime / 2.5f);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        // 정확한 위치를 보장하기 위해 루프가 끝난 후 위치를 설정합니다.
+        _UFO.transform.position = screenRightEdge;
+
+        yield return new WaitForSeconds(1);
+
         LoadingScene.instance.LoadingStart();
     }
-
     private void AddProgress()
     {
         GameManager.Instance.AddProgress();
@@ -127,7 +163,7 @@ public class StageController : MonoBehaviour
         if (!checkMiJiJangAlert && miJiJangAlertTime <= GameManager.Instance._currentProgress)
         {
             checkMiJiJangAlert = true;
-            StartCoroutine(ShowAlert("에일리온 머스크의 방해로 미지의 에너지 필드가 생성됩니다. 조심하세요!"));
+            StartCoroutine( ShowAlert("에일리온 머스크의 방해로 미지의 에너지 필드가 생성됩니다. 조심하세요!"));
         }
     }
     public IEnumerator ShowAlert(string message)

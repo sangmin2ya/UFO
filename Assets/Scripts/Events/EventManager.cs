@@ -6,6 +6,9 @@ public class EventManager : MonoBehaviour
 {
     [SerializeField] ObstacleSpawner obstacleSpawner;
     [SerializeField] ObstacleSpawner itemManager;
+
+    [SerializeField] private GameObject obstacleSpawnerObj;
+    [SerializeField] private GameObject itemManagerObj;
     
     // �ܰ��� ������
     // ��������Ʈ ������
@@ -67,4 +70,15 @@ public class EventManager : MonoBehaviour
         commonEpics.SetActive(false);
     }
 
+    public void OnObstacles()
+    {
+        obstacleSpawnerObj.SetActive(true);
+        itemManagerObj.SetActive(true);
+    }
+
+    public void OffObstacles()
+    {
+        obstacleSpawnerObj.SetActive(false);
+        itemManagerObj.SetActive(false);
+    }
 }
