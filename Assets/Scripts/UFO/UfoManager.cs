@@ -137,7 +137,7 @@ public class UfoManager : MonoBehaviour
     {
         _AttacedObjects.Clear();
     }
-    private void CleanSurface()
+    public void CleanSurface()
     {
         for (int i = 0; i < 3; i++)
         {

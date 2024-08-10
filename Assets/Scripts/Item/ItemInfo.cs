@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemInfo : MonoBehaviour
 {
     public float size;
+    public bool onSpaceStation;
 
     // type of item. (Item, Obstacle, Stuck)
     public ItemType type;
@@ -35,7 +36,7 @@ public class ItemInfo : MonoBehaviour
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-
+        onSpaceStation = false;
         // �������� N�� S�� ������
         if (!_notSpawned)
             magnetState = (Random.value > 0.5f) ? MagnetState.N : MagnetState.S;
