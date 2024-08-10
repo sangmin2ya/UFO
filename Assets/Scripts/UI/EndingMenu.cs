@@ -23,7 +23,7 @@ public class EndingMenu : MonoBehaviour
     private void OnEnable()
     {
         // 특정 씬에서만 활성화
-        if (SceneManager.GetActiveScene().name != "MainMenu")
+        if (SceneManager.GetActiveScene().name != "MainMenu" || SceneManager.GetActiveScene().name != "HappyEnding" || SceneManager.GetActiveScene().name != "BadEnding")
         {
             gameObject.SetActive(false);
             return;

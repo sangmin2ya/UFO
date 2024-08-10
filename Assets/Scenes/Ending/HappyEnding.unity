@@ -574,9 +574,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1196409361}
-        m_TargetAssemblyTypeName: EndingMenu, Assembly-CSharp
-        m_MethodName: ExitMenu
+      - m_Target: {fileID: 1196409360}
+        m_TargetAssemblyTypeName: HappyEnding, Assembly-CSharp
+        m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -947,11 +947,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1196409357}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46b4e3c12f9d7f840a284793d581bae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputActions: {fileID: 0}
+  startButton: {fileID: 0}
+  exitButton: {fileID: 0}
 --- !u!1 &1325249577
 GameObject:
   m_ObjectHideFlags: 0

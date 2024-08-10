@@ -380,16 +380,24 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3078089099415454487, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0875001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078089099415454487, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.7249401
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078089099415454487, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -123.6
+      objectReference: {fileID: 0}
     - target: {fileID: 3102642430908436579, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 5082723860499506255, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5650881408244459269, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6918982941312058994, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
