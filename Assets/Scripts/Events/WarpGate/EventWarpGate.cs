@@ -72,6 +72,11 @@ public class EventWarpGate : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+        GameObject spaceShip = GameObject.FindWithTag("SpaceStation");
+        if (spaceShip != null)
+        {
+            Destroy(spaceShip);
+        }
 
         // 마지막 위치 설정
         _cutScene.transform.localPosition = new Vector3(-5200 * direction, 0, 0);
