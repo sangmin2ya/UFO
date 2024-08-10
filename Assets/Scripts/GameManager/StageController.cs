@@ -70,6 +70,12 @@ public class StageController : MonoBehaviour
         {
             CheckStage2Event();
         }
+
+        if (currStageLv == 2)
+        {
+            CheckStage3Event();
+        }
+
         else if (currStageLv == 3)
         {
             CheckStage4Event();
@@ -142,22 +148,26 @@ public class StageController : MonoBehaviour
             checkBlackhole = true;
             eventManager.OnBlackhole(onBlackholeTime);
         }
-        if (!checkSpaceStation && SpaceStationTime <= GameManager.Instance._currentProgress)
-        {
-            checkSpaceStation = true;
-            eventManager.OnSpaceStation();
-        }
         if (!checkBlakcholeAlert && blackHoleAlertTime <= GameManager.Instance._currentProgress)
         {
             checkBlakcholeAlert = true;
             StartCoroutine(ShowAlert("블랙홀 접근 중. 끌려온 혜성을 조심하세요!"));
         }
+    }
+
+    public void CheckStage3Event(){
         if (!checkSpaceStationAlert && spaceStationAlertTime <= GameManager.Instance._currentProgress)
         {
             checkSpaceStationAlert = true;
-            StartCoroutine(ShowAlert("우주 정거장 접근 중. 가운데로 도킹하세요."));
+            StartCoroutine(ShowAlert("우주 정거장을 운석으로부터 지켜내세요!"));
+        }
+        if (!checkSpaceStation && SpaceStationTime <= GameManager.Instance._currentProgress)
+        {
+            checkSpaceStation = true;
+            eventManager.OnSpaceStation();
         }
     }
+
     public void CheckStage4Event()
     {
         if (!checkMiJiJangAlert && miJiJangAlertTime <= GameManager.Instance._currentProgress)
@@ -166,6 +176,7 @@ public class StageController : MonoBehaviour
             StartCoroutine( ShowAlert("에일리온 머스크의 방해로 미지의 에너지 필드가 생성됩니다. 조심하세요!"));
         }
     }
+    
     public IEnumerator ShowAlert(string message)
     {
         GameObject.Find("Canvas").GetComponent<GameUIManager>().showEvent(message);

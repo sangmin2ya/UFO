@@ -14,18 +14,17 @@ public class SpaceStation : MonoBehaviour
     public Image hpImage;
     public float moveDuration = 2.0f;
     public Vector3 startPosition;
+    private bool onSpaceShip;
 
     private SpriteRenderer spriteRenderer;
-    private bool isInvulnerable = false;
 
     void Start()
     {
         conversation = GameObject.Find("PlayerCanvas").transform.Find("Conversation").gameObject;
-        
+        onSpaceShip = false;
         currentHP = maxHP;
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // 현재 위치에서 (0,0)으로 이동
         startPosition = transform.position;
         StartCoroutine(MoveToPosition(Vector3.zero, moveDuration));
     }
@@ -43,19 +42,11 @@ public class SpaceStation : MonoBehaviour
         }
         transform.position = target;
 
-        EnableFunctionality();
-    }
-
-    void EnableFunctionality()
-    {
-        // on rigidbody, collider
-        this.enabled = true;
+        onSpaceShip = true;
     }
 
     void UpdateHP(int amount)
     {
-        if (isInvulnerable) return;
-
         currentHP += amount;
         currentHP = Mathf.Clamp(currentHP, 0, maxHP);
         hpImage.fillAmount = (float)currentHP/maxHP;
@@ -68,7 +59,7 @@ public class SpaceStation : MonoBehaviour
         if (currentHP <= 0)
         {
             Destroy(gameObject);
-            //gameoverscene
+            Debug.Log("게임 오버");
         }
     }
 
@@ -79,19 +70,13 @@ public class SpaceStation : MonoBehaviour
         spriteRenderer.color = Color.white;
     }
 
-    IEnumerator InvulnerabilityCooldown(float duration)
-    {
-        isInvulnerable = true;
-        yield return new WaitForSeconds(duration);
-        isInvulnerable = false;
-    }
-
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<ItemInfo>().type == ItemType.Obstacle && collision.gameObject.GetComponent<ItemInfo>().onSpaceStation == false)
-        {
-            collision.gameObject.GetComponent<ItemInfo>().onSpaceStation = true;
-            UpdateHP(-5);
+        if(collision.gameObject.GetComponent<ItemInfo>() != null && onSpaceShip){
+            if (collision.gameObject.GetComponent<ItemInfo>().type == ItemType.Obstacle && collision.gameObject.GetComponent<ItemInfo>().onSpaceStation == false){
+                collision.gameObject.GetComponent<ItemInfo>().onSpaceStation = true;
+                UpdateHP(-5);
+            }
         }
     }
 
@@ -121,7 +106,6 @@ public class SpaceStation : MonoBehaviour
                 conversation.transform.Find("Script").Find("Text").GetComponent<TMPro.TextMeshProUGUI>().text = "우주 정거장에 어서오세요!\n좋은 운전 실력을 보여주신 대가로 수리를 해드릴게요!\n<color=yellow>100% 수리</color>";
             }
         }
-
     }
     */
 }

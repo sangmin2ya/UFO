@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemInfo : MonoBehaviour
 {
     public float size;
-    public bool onSpaceStation;
+    public bool onSpaceStation = false;
 
     // type of item. (Item, Obstacle, Stuck)
     public ItemType type;
