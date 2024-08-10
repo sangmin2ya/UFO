@@ -21,7 +21,7 @@ public class AlionMusk : MonoBehaviour
     //TimeBubble
     bool _isTimeBubble = false;
     bool _isStorm = false;
-    [SerializeField] Vector2 timescale_min_max;
+    [SerializeField] float timescale_min_max;
     [SerializeField] GameUIManager UImanager;
     [SerializeField] TMP_Text WaveText;
 
@@ -107,7 +107,7 @@ public class AlionMusk : MonoBehaviour
 
         _isTimeBubble = true;
         UImanager.showTimeBubbleEffect();
-        float x = Random.Range(timescale_min_max.x, timescale_min_max.y);
+        float x = Random.Range(1.2f, timescale_min_max);
         Time.timeScale = x;
         UImanager.showEvent(x >= 1 ? "타임 버블로 인해 시간이 빨라집니다 !" : "타임 버블로 인해 시간이 느려집니다..");
 

@@ -18,7 +18,8 @@ public class ItemInfo : MonoBehaviour
     public int direction;
     public int index;
     // Sprite Renderer
-    private SpriteRenderer spriteRenderer;
+    SpriteRenderer spriteRenderer;
+    private SpriteRenderer ChildSpriteRenderer;
 
     // N, S sprite
     public Sprite spriteN;
@@ -31,10 +32,12 @@ public class ItemInfo : MonoBehaviour
 
     public bool _notSpawned = false;
 
+    [SerializeField] Color ColorN, ColorS;
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        ChildSpriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
 
         // �������� N�� S�� ������
         if (!_notSpawned)
@@ -58,14 +61,16 @@ public class ItemInfo : MonoBehaviour
             {
                 case MagnetState.N:
                     spriteRenderer.sprite = spriteN;
+                    ChildSpriteRenderer.sprite = spriteN;
                     break;
                 case MagnetState.S:
                     spriteRenderer.sprite = spriteS;
+                    ChildSpriteRenderer.sprite = spriteS;
                     break;
                 case MagnetState.Off:
                     if (gameObject != null)
                     {
-                        spriteRenderer.color = new Color(77f / 255f, 77f / 255f, 77f / 255f);
+                        ChildSpriteRenderer.color = new Color(77f / 255f, 77f / 255f, 77f / 255f);
                     }
                     break;
             }
@@ -76,24 +81,27 @@ public class ItemInfo : MonoBehaviour
             {
                 case ItemAbility.Repair:
                     spriteRenderer.sprite = spriteA;
+                    ChildSpriteRenderer.sprite = spriteA;
 
-                    if (magnetState == MagnetState.N) spriteRenderer.color = new Color(1, 0, 0);
+                    if (magnetState == MagnetState.N) ChildSpriteRenderer.color = ColorN;
                     else
-                        spriteRenderer.color = new Color(0, 0, 1);
+                        ChildSpriteRenderer.color = ColorS;
                     break;
                 case ItemAbility.SurfaceCleaning:
                     spriteRenderer.sprite = spriteB;
+                    ChildSpriteRenderer.sprite = spriteB;
                     if (magnetState == MagnetState.N)
-                        spriteRenderer.color = new Color(1, 0, 0);
+                        ChildSpriteRenderer.color = ColorN;
                     else
-                        spriteRenderer.color = new Color(0, 0, 1);
+                        ChildSpriteRenderer.color = ColorS;
                     break;
                 case ItemAbility.PoleChange:
                     spriteRenderer.sprite = spriteC;
+                    ChildSpriteRenderer.sprite = spriteC;
                     if (magnetState == MagnetState.N)
-                        spriteRenderer.color = new Color(1, 0, 0);
+                        ChildSpriteRenderer.color = ColorN;
                     else
-                        spriteRenderer.color = new Color(0, 0, 1);
+                        ChildSpriteRenderer.color = ColorS;
                     break;
             }
         }

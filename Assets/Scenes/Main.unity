@@ -388,6 +388,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5650881408244459269, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6918982941312058994, guid: 9345d2a58508bdb4bacd3e86153ac49f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1493,7 +1497,6 @@ MonoBehaviour:
   onBlackholeTime: 10
   blackHoleAlertTime: 0.2
   spaceStationAlertTime: 0.5
-  SpaceStationOnAlertTime: 0.55
   miJiJangAlertTime: 0.05
 --- !u!4 &2132037915
 Transform:

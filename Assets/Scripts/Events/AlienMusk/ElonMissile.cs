@@ -7,8 +7,6 @@ public class ElonMissile : MonoBehaviour
     [SerializeField] float speed = 1f;
     [SerializeField] float burst_Time = 5f;
     GameObject player;
-    Animator anim;
-    bool shooted = false;
     Vector2 direction;
     public MagnetState state;
     public bool isFollowPlayer = false;
@@ -32,14 +30,11 @@ public class ElonMissile : MonoBehaviour
         }
 
         player = GameObject.FindGameObjectWithTag("Player");
-        anim = GetComponent<Animator>();
-        anim.Play("Elon_Missile");
         checkDirection();
     }
 
     private void Update()
     {
-        if (!shooted) return;
         t_burst += Time.deltaTime;
         if (t_burst > burst_Time)
         {
@@ -52,7 +47,6 @@ public class ElonMissile : MonoBehaviour
         transform.position += (Vector3)(direction * speed * Time.deltaTime);
     }
 
-    public void shootMissile() => shooted = true;
 
     void checkDirection()
     {
