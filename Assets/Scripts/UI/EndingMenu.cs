@@ -19,6 +19,13 @@ public class EndingMenu : MonoBehaviour
 
     private void OnEnable()
     {
+        // 특정 씬에서만 활성화
+        if (SceneManager.GetActiveScene().name != "MainMenu")
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         // InputAction 설정
         moveAction = inputActions.FindActionMap("Player").FindAction("Move");
         submitAction = inputActions.FindActionMap("Player").FindAction("Submit");
@@ -32,11 +39,18 @@ public class EndingMenu : MonoBehaviour
 
     private void OnDisable()
     {
-        moveAction.canceled -= OnMovePerformed;
-        submitAction.canceled -= OnSubmitPerformed;
+        // 씬 전환 시 InputAction 비활성화 및 이벤트 해제
+        if (moveAction != null)
+        {
+            moveAction.started -= OnMovePerformed;
+            moveAction.Disable();
+        }
 
-        moveAction.Disable();
-        submitAction.Disable();
+        if (submitAction != null)
+        {
+            submitAction.started -= OnSubmitPerformed;
+            submitAction.Disable();
+        }
     }
 
     private void Start()
@@ -47,6 +61,9 @@ public class EndingMenu : MonoBehaviour
 
     private void OnMovePerformed(InputAction.CallbackContext context)
     {
+        if (buttons == null || buttons.Length == 0)
+            return;  // 버튼이 없으면 입력을 무시
+
         Vector2 input = context.ReadValue<Vector2>();
 
         if (input.y > 0)
@@ -61,6 +78,9 @@ public class EndingMenu : MonoBehaviour
 
     private void OnSubmitPerformed(InputAction.CallbackContext context)
     {
+        if (buttons == null || buttons.Length == 0)
+            return;  // 버튼이 없으면 입력을 무시
+
         SendMessage("OnSubmit");
     }
 
