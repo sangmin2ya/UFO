@@ -62,12 +62,14 @@ public class UfoManager : MonoBehaviour
         _AttacedObjects.Add(obj.GetComponent<ItemInfo>());
         _weightBar.transform.parent.GetComponent<Animator>().Play("Add_Mass");
     }
-    public void DestroyObstacle()
+    public void DestroyEveryObstacle()
     {
         for (int i = 0; i < _AttacedObjects.Count; i++)
         {
             _AttacedObjects[i].DestroyItem();
         }
+        GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>().OnBomb();
+        _AttacedObjects.Clear();
     }
     private void DetachObject(GameObject obj)
     {

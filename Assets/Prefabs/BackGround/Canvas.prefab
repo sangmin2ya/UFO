@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 6913004069835158690}
   - component: {fileID: 3647941433250692859}
   m_Layer: 5
-  m_Name: Fuel_Image
+  m_Name: HP_Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2823,7 +2823,7 @@ GameObject:
   - component: {fileID: 8228898934227016140}
   - component: {fileID: 7024115212100696155}
   m_Layer: 5
-  m_Name: Fuel_BG
+  m_Name: HP_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2900,7 +2900,7 @@ GameObject:
   - component: {fileID: 8905327029496997083}
   - component: {fileID: 58612854707047042}
   m_Layer: 5
-  m_Name: Fuel
+  m_Name: HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2953,7 +2953,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC5F0\uB8CC"
+  m_text: "\uB0B4\uAD6C\uB3C4"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e27769ffaf1b774a9ee6a7fe5980ac1, type: 2}
   m_sharedMaterial: {fileID: 6800740275077587134, guid: 2e27769ffaf1b774a9ee6a7fe5980ac1, type: 2}
