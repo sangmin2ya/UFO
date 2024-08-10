@@ -63,9 +63,9 @@ public class ElonMissile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<FuelManager>(out var result))
+        if (collision.gameObject.TryGetComponent<HPManager>(out var result))
         {
-            result._fuel *= .9f;
+            result._hp *= .9f;
             var effect = Instantiate(BurstEffect, transform.position, Quaternion.identity);
             Destroy(effect, 1);
             Destroy(gameObject);

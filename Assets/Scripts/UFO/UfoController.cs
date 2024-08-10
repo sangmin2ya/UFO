@@ -9,8 +9,7 @@ public class UfoController : MonoBehaviour
 {
     //Manager
     private UfoManager _ufoManager;
-    private FuelManager _fuelManager;
-    private InputAction _accelAction;
+    private HPManager _hpManager;
     private ObstacleManager _obstacleManager;
     //reference
     private Rigidbody2D _rigidbody2D;
@@ -21,7 +20,6 @@ public class UfoController : MonoBehaviour
     private bool _movable = true;
     private Vector2 _moveInput;
     private float _speed;
-    private bool _isAccel;
     //Event
     private bool _isMagnetOn;
     public bool _isEMP;
@@ -42,7 +40,7 @@ public class UfoController : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _transform = GetComponent<Transform>();
         _ufoManager = GetComponent<UfoManager>();
-        _fuelManager = GetComponent<FuelManager>();
+        _hpManager = GetComponent<HPManager>();
         _obstacleManager = GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>();
 
         _UIManager = GameObject.Find("Canvas").GetComponent<GameUIManager>();
@@ -56,18 +54,6 @@ public class UfoController : MonoBehaviour
     private void OnEnable()
     {
         _ufoManager.EnterMagnetFieldEvent += EnterMagnetField;
-
-        _accelAction = GetComponent<PlayerInput>().actions["Accel"];
-        _accelAction.started += ctx => AccelOn();
-        _accelAction.canceled += ctx => AccelOff();
-        _accelAction.Enable();
-    }
-    private void OnDisable()
-    {
-        _accelAction.started -= ctx => AccelOn();
-        _accelAction.canceled -= ctx => AccelOff();
-
-        _accelAction.Disable();
     }
     // Update is called once per frame
     void Update()
@@ -91,12 +77,6 @@ public class UfoController : MonoBehaviour
         if (_moveInput.magnitude <= 0.01f)
         {
             return;
-        }
-
-        if (_isAccel)
-        {
-            _rigidbody2D.AddForce(_moveInput * _ufoManager._accelSpeed);
-            _fuelManager.UseFuel(_fuelManager.FuelConsumption);
         }
         else
         {
@@ -171,19 +151,6 @@ public class UfoController : MonoBehaviour
     {
         _moveInput = _isDecoy ? -value.Get<Vector2>() : value.Get<Vector2>();
     }
-
-    private void AccelOn()
-    {
-        if (_fuelManager.CanAccel())
-        {
-            _isAccel = true;
-        }
-    }
-    private void AccelOff()
-    {
-        _isAccel = false;
-    }
-
     void OnSwitch(InputValue value)
     {
         if (_isMagnetOn && _swapImage.isSwap == false && !_isEMP && _movable && Time.timeScale != 0)

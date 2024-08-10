@@ -74,7 +74,7 @@ public class ItemInfo : MonoBehaviour
         {
             switch (ability)
             {
-                case ItemAbility.FuelFilling:
+                case ItemAbility.Repair:
                     spriteRenderer.sprite = spriteA;
 
                     if (magnetState == MagnetState.N) spriteRenderer.color = new Color(1, 0, 0);
@@ -123,7 +123,7 @@ public class ItemInfo : MonoBehaviour
         // index_ability�� ���� Item �ɷ� ����
         switch (ability)
         {
-            case ItemAbility.FuelFilling: // ���� ����
+            case ItemAbility.Repair: // ���� ����
                 FuelFilling();
                 break;
             case ItemAbility.SurfaceCleaning: // ���� ��ֹ� ����

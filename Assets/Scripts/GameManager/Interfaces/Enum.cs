@@ -9,5 +9,5 @@ public enum MagnetState
 
 public enum ItemAbility
 {
-    FuelFilling, SurfaceCleaning, PoleChange
+    Repair, SurfaceCleaning, PoleChange
 }

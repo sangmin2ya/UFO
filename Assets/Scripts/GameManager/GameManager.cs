@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public int _score { get; private set; } //Obsatcle Count?
     public float _currentProgress { get; private set; } //Current Position of stage
     public int _bombCount;//Bomb Count
+    
     [Tooltip("Set Speed of progress Depending on the stage")]
     [SerializeField] private float _progressSpeed = 0.01f; //Speed of progress
     protected void Awake()
