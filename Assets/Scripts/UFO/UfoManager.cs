@@ -50,7 +50,8 @@ public class UfoManager : MonoBehaviour
         _accelSpeed = _speed * 3f;
         if (_speed <= 0)
         {
-            DestroyUfo();
+            //DestroyUfo();
+            Invoke("DestroyUfo", 2f); // 2초 후 DestroyUfo() 호출
         }
     }
     private void AttachObject(GameObject obj)
