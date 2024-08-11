@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpaceStation : MonoBehaviour
 {
@@ -60,6 +61,7 @@ public class SpaceStation : MonoBehaviour
         {
             Destroy(gameObject);
             Debug.Log("게임 오버");
+            SceneManager.LoadScene("GameOver");
         }
     }
 
