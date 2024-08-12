@@ -24,6 +24,9 @@ public class UfoManager : MonoBehaviour
     private Image _weightBar;
     private Image _magnetImg;
     private List<Image> _bombImages = new List<Image>();
+    private bool onComet;
+    [SerializeField] HPManager hpManager;
+
     void Start()
     {
         _AttacedObjects = new List<ItemInfo>();
@@ -192,7 +195,17 @@ public class UfoManager : MonoBehaviour
             collision.GetComponent<UnknownMagnetField>().StopDestroyMagnetField();
             EnterMagnetFieldEvent?.Invoke(collision);
         }
+        
     }
+
+    private IEnumerator CometCrashed()
+    {
+        onComet = true;
+        hpManager.Damaged(5.0f);
+        yield return new WaitForSeconds(0.3f);
+        onComet = false;
+    }
+
     /// <summary>
     /// 자식 객체에 충돌시 부착 처리
     /// </summary>
@@ -206,6 +219,14 @@ public class UfoManager : MonoBehaviour
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name != "Main" ? "BadEnding" : "GameOver");
             }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Comet") && !onComet)
+        {
+            StartCoroutine(CometCrashed());
         }
     }
 }
