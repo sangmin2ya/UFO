@@ -391,6 +391,7 @@ MonoBehaviour:
   _isEMP: 0
   _isDecoy: 0
   _isStorm: 0
+  _isOnComet: 0
   _DecoyEffect: {fileID: 7975838883868353872}
   StormEffect: {fileID: 9133539482270296489}
   UI_EMP_Effect: {fileID: 0}
@@ -412,6 +413,7 @@ MonoBehaviour:
   _magnetSprites:
   - {fileID: -834393638, guid: 06170d1ceb62db54d95b9cbc16d1800d, type: 3}
   - {fileID: 1258329884, guid: 06170d1ceb62db54d95b9cbc16d1800d, type: 3}
+  hpManager: {fileID: 966754622030283914}
 --- !u!114 &966754622030283914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2159,7 +2161,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1892124272172435888
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2378,7 +2380,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAC00\uC2A4\n\uC6B0\uC8FC\uC120 \uC5F0\uB8CC \uCDA9\uC804"
+  m_text: "\uC218\uB9AC\uD0A4\uD2B8\nUFO \uB0B4\uAD6C\uB3C4 \uC218\uB9AC"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e27769ffaf1b774a9ee6a7fe5980ac1, type: 2}
   m_sharedMaterial: {fileID: 6800740275077587134, guid: 2e27769ffaf1b774a9ee6a7fe5980ac1, type: 2}
@@ -3177,7 +3179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8679907117667444290}
   m_Layer: 5
-  m_Name: Fuel
+  m_Name: Hp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4613,7 +4615,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c57e667ba4abdde48ba905cbe71aac37, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4283223e753d53940ad8d1f6ec7e1fbc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

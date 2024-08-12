@@ -46,21 +46,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacleSpawner: {fileID: 0}
   itemManager: {fileID: 0}
+  obstacleSpawnerObj: {fileID: 0}
+  itemManagerObj: {fileID: 0}
   stagelength:
   - 0.02
+  - 0.015
   - 0.01
-  - 0
-  - 0.01
+  - 0.015
   - 0
   obstacleInterval: 0100000001000000010000000100000001000000
   obstacleSpawnCount: 0200000002000000020000000300000002000000
   itemInterval: 0100000001000000010000000100000001000000
   itemSpawnCount: 0100000001000000010000000100000001000000
-  obstacleSpeed: 
-  itemSpeed: 
   blackhole: {fileID: 0}
   UnknownMagneticField: {fileID: 5385488283870340336, guid: 3a48786752c5ba847a592162132dca29, type: 3}
-  SpaceStation: {fileID: 1851631828277994150, guid: da146c904238cba4d8363ac96152fc86, type: 3}
+  SpaceStation: {fileID: 7258156417436662490, guid: ffb79b93879245e4ebed0dd6803ee62e, type: 3}
   CometShower: {fileID: 1359538042669003011, guid: 9a03c7fe77c09eb45a8eb6ee06b13f42, type: 3}
   EpicItems: {fileID: 0}
   commonEpics: {fileID: 0}

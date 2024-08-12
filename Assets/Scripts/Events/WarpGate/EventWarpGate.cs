@@ -16,6 +16,7 @@ public class EventWarpGate : MonoBehaviour
 
     void Start()
     {
+        transform.position = new Vector2(10, Random.Range(-5, 5));
         obstacleManager = GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>();
         _cutScene = GameObject.Find("CutScene");
     }
