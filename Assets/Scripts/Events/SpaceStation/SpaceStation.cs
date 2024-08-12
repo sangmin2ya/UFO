@@ -16,6 +16,9 @@ public class SpaceStation : MonoBehaviour
     public float moveDuration = 2.0f;
     public Vector3 startPosition;
     private bool onSpaceShip;
+    public float shakeDuration = 0.15f; // 흔들리는 시간
+    public float shakeAmount = 0.1f;    // 흔들림의 강도
+    public Vector3 originalPosition = Vector2.zero;
 
     private SpriteRenderer spriteRenderer;
 
@@ -54,6 +57,7 @@ public class SpaceStation : MonoBehaviour
 
         if (amount < 0)
         {
+            StartCoroutine(ShakeCoroutine());
             StartCoroutine(FlashRed());
         }
 
@@ -67,8 +71,27 @@ public class SpaceStation : MonoBehaviour
     IEnumerator FlashRed()
     {
         spriteRenderer.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.15f);
         spriteRenderer.color = Color.white;
+    }
+
+    private IEnumerator ShakeCoroutine()
+    {
+        float elapsed = 0.0f;
+
+        while (elapsed < shakeDuration)
+        {
+            // 오브젝트의 위치를 살짝 랜덤하게 이동시킴
+            transform.localPosition = originalPosition + Random.insideUnitSphere * shakeAmount;
+
+            elapsed += Time.deltaTime;
+
+            // 한 프레임 대기
+            yield return null;
+        }
+
+        // 흔들림이 끝난 후 원래 위치로 복귀
+        transform.localPosition = originalPosition;
     }
 
     void OnTriggerEnter2D(Collider2D collision)

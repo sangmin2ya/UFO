@@ -47,7 +47,26 @@ public class ItemInfo : MonoBehaviour
         // If the type is Item, set the ability randomly
         if (type == ItemType.Item)
         {
-            ability = (ItemAbility)Random.Range(0, System.Enum.GetValues(typeof(ItemAbility)).Length);
+            int currStageLv = GameManager.Instance._stage;
+            if (currStageLv >= 4)
+            {
+                float tempnum = Random.Range(0.0f, 1.0f);
+                if (tempnum <= 0.5f)
+                {
+                    ability = ItemAbility.Repair;
+                }else if (tempnum <= 0.75f)
+                {
+                    ability = ItemAbility.PoleChange;
+                }
+                else
+                {
+                    ability = ItemAbility.SurfaceCleaning;
+                }
+            }
+            else
+            {
+                ability = (ItemAbility)Random.Range(0, System.Enum.GetValues(typeof(ItemAbility)).Length);
+            }
         }
 
         // change sprite

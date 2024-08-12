@@ -29,12 +29,27 @@ public class SpaceX : MonoBehaviour
 
     [SerializeField] GameObject Burst_Effect;
     [SerializeField] Transform[] Burst_Transform;
-    [SerializeField] TMP_Text Notice;
 
     Animator anim;
+    [SerializeField] float PlayerDamage = 5f;
+    [SerializeField] float MaxHP = 100;
+    float currentHP;
+    [SerializeField] Image HP_Effect_Image;
+    [SerializeField] Image HP_Image;
+
+    [SerializeField] float HP_Speed;
+    [SerializeField] float HP_Effect_Speed;
+
+    public float BombDamage = 20f;
+
+    [SerializeField] TMP_Text Boss_HP_Text;
+    [SerializeField] TMP_Text PatternLeftText;
 
     private void Start()
     {
+        GameObject.Find("Canvas").GetComponent<GameUIManager>().showDescription(1);
+
+        currentHP = MaxHP;
         anim = transform.parent.GetComponent<Animator>();
         anim.Play("Intro");
 
@@ -47,6 +62,7 @@ public class SpaceX : MonoBehaviour
     private void Update()
     {
         CheckEnd();
+        ManageHP();
         if (event_Start)
         {
             t_Event += Time.deltaTime;
@@ -63,7 +79,7 @@ public class SpaceX : MonoBehaviour
 
             }
         }
-        Notice.text = $"SPACE X에게 반격하기 위해 쓰레기를 <color=red>{_hpCount * 2 + 3}</color>개 이상 붙이세요";
+        PatternLeftText.text = 2 - _patternCount <= 0 ? "<color=red>반격을 준비하십시오 !" : $"다음 반격까지 남은 패턴 : <color=red>{2 - _patternCount}</color>회";
     }
 
     void ShootMissile()
@@ -83,6 +99,26 @@ public class SpaceX : MonoBehaviour
             missile.GetComponent<ElonMissile>().isFollowPlayer = true;
         }
     }
+
+    void ManageHP()
+    {
+        float target = Mathf.Lerp(HP_Image.fillAmount, currentHP / MaxHP, HP_Speed * Time.deltaTime);
+        float targetEffect = Mathf.Lerp(HP_Effect_Image.fillAmount, currentHP / MaxHP, HP_Effect_Speed * Time.deltaTime);
+
+        HP_Image.fillAmount = target;
+        HP_Effect_Image.fillAmount = targetEffect;
+
+        Boss_HP_Text.text = $"에일리언 머스크 대마왕 (<color=green>{(target*100).ToString("N1")}</color> %)";
+    }
+
+    public void SpawnBombEffect()
+    {
+        var effect = Instantiate(Burst_Effect, new Vector2(4.63f, 0.11f), Quaternion.identity);
+        effect.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 96.3f));
+        effect.transform.localScale = new Vector2(30, 30);
+    }
+
+    public void Take_Damage(float amount) => currentHP -= amount;
 
     void occur_Random_Event()
     {
@@ -105,9 +141,8 @@ public class SpaceX : MonoBehaviour
     }
     private void OccurMagnetPattern()
     {
-        _patternCount = 0;
         CancelInvoke("occur_Random_Event");
-        UImanager.showEvent("스페이스 X가 크기 " + (_hpCount * 2 + 3) + "의 강력한 자기장을 발생시킵니다!");
+        UImanager.showEvent("스페이스 X에 대항하십시오 !");
         anim.Play("Space_Attack_Charging");
         MagnetPattern();
     }
@@ -117,32 +152,21 @@ public class SpaceX : MonoBehaviour
     }
     private void CompareMass()
     {
-        if (Player.GetComponent<UfoManager>()._AttacedObjects.Count >= (_hpCount * 2 + 3))
-        {
-            anim.SetTrigger(_hpCount * 2 + 3 < 7 ? "Success" : "Die");
-            _hpCount++;
-            UImanager.showEvent("더욱 강력한 자기장으로 스페이스 X에게 반격했습니다!");
-            GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>().OnBomb();
-            Player.GetComponent<UfoManager>().ClearAll();
-        }
-        else
-        {
-            Player.GetComponent<Animator>().enabled = true;
-            anim.SetTrigger("Failed");
-            GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>().OnBomb();
-            UImanager.HideEventText();
-            Player.GetComponent<UfoManager>().ClearAll();
-        }
+        _patternCount = 0;
+
+        Take_Damage(Player.GetComponent<UfoManager>()._AttacedObjects.Count * PlayerDamage);
+
+        if (currentHP <= 0) return;
+
+        anim.SetTrigger("Failed");
+
+        UImanager.showEvent($"스페이스 X에게 <color=red>{Player.GetComponent<UfoManager>()._AttacedObjects.Count * PlayerDamage}</color> 만큼의 대미지로 반격했습니다!");
+        GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>().OnBomb();
+        Player.GetComponent<UfoManager>().ClearAll();
+
+        Camera.main.GetComponent<CameraShake>().startCameraShake(.05f, .2f);
+
         InvokeRepeating("occur_Random_Event", 10, 20f);
-    }
-
-    IEnumerator enableAnimation()
-    {
-        Player.GetComponent<Animator>().enabled = true;
-        Player.GetComponent<Animator>().applyRootMotion = false;
-        yield return new WaitForSeconds(1f);
-        Player.GetComponent<Animator>().enabled = false;
-
     }
 
     public void startCameraShaking() => Camera.main.GetComponent<CameraShake>().startCameraShake(.2f, .35f);
@@ -159,11 +183,12 @@ public class SpaceX : MonoBehaviour
 
     private void CheckEnd()
     {
-        if (_hpCount == 3)
+        if (currentHP <= 0)
         {
+            anim.Play("Die");
             GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>().OnBomb();
             Player.GetComponent<UfoManager>().ClearAll();
-            UImanager.showEvent("스페이스 X를 물리쳤습니다!");
+            UImanager.showEvent("에일리언 머스크를 혼냈습니다 !");
             CancelInvoke("occur_Random_Event");
             StartCoroutine(EndEvent());
             StartCoroutine(FadeOutImage());

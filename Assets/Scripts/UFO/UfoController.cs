@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UfoController : MonoBehaviour
@@ -184,6 +185,12 @@ public class UfoController : MonoBehaviour
             Debug.Log("bomb!!");
             _ufoManager.DestroyEveryObstacle();
             //폭탄 사용
+            if(SceneManager.GetActiveScene().name == "Space_X")
+            {
+                GameObject.Find("MiddleBoss").GetComponent<SpaceX>().Take_Damage(GameObject.Find("MiddleBoss").GetComponent<SpaceX>().BombDamage);
+                GameObject.Find("MiddleBoss").GetComponent<SpaceX>().SpawnBombEffect();
+                Camera.main.GetComponent<CameraShake>().startCameraShake(.02f, .2f);
+            }
         }
     }
 
