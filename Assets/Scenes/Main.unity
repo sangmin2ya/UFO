@@ -195,6 +195,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43429999d47552b499aaac2e016bc7cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &505575057
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1359538042669003011, guid: 9a03c7fe77c09eb45a8eb6ee06b13f42, type: 3}
+      propertyPath: m_Name
+      value: MeteorShower
+      objectReference: {fileID: 0}
+    - target: {fileID: 6018810499182398445, guid: 9a03c7fe77c09eb45a8eb6ee06b13f42, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.4558783
+      objectReference: {fileID: 0}
+    - target: {fileID: 6018810499182398445, guid: 9a03c7fe77c09eb45a8eb6ee06b13f42, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.3342586
+      objectReference: {fileID: 0}
+    - target: {fileID: 6018810499182398445, guid: 9a03c7fe77c09eb45a8eb6ee06b13f42, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6018810499182398445, guid: 9a03c7fe77c09eb45a8eb6ee06b13f42, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6018810499182398445, guid: 9a03c7fe77c09eb45a8eb6ee06b13f42, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6018810499182398445, guid: 9a03c7fe77c09eb45a8eb6ee06b13f42, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6018810499182398445, guid: 9a03c7fe77c09eb45a8eb6ee06b13f42, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6018810499182398445, guid: 9a03c7fe77c09eb45a8eb6ee06b13f42, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6018810499182398445, guid: 9a03c7fe77c09eb45a8eb6ee06b13f42, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6018810499182398445, guid: 9a03c7fe77c09eb45a8eb6ee06b13f42, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9a03c7fe77c09eb45a8eb6ee06b13f42, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,7 +920,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1234749198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -879,7 +936,7 @@ MonoBehaviour:
   onBlackhole: 0
   bomb: {fileID: 1625959761}
   basePullStrength: 100
-  playerPullStrength: 10000
+  playerPullStrength: 25
 --- !u!4 &1234749199
 Transform:
   m_ObjectHideFlags: 0
@@ -1375,8 +1432,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   epicItem: {fileID: 1416848750989864971, guid: c49579e0c116e3942b568f4167487641, type: 3}
-  minInterval: 30
-  maxInterval: 50
+  minInterval: 25
+  maxInterval: 45
 --- !u!114 &2122555477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1390,8 +1447,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   epicItem: {fileID: 3471414453436049202, guid: 2b67ed5175473b8468abb8907867bb54, type: 3}
-  minInterval: 40
-  maxInterval: 50
+  minInterval: 25
+  maxInterval: 35
 --- !u!4 &2122555478
 Transform:
   m_ObjectHideFlags: 0
@@ -1507,10 +1564,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8fcd2969768e4884d9b7e2791018a51a, type: 3}
   cometShowerTime: 0.21
   blackholeTime: 0.2
-  SpaceStationTime: 0.5
-  onBlackholeTime: 10
+  SpaceStationTime: 0.2
+  onBlackholeTime: 5
   blackHoleAlertTime: 0.2
-  spaceStationAlertTime: 0.5
+  spaceStationAlertTime: 0.2
   miJiJangAlertTime: 0.05
 --- !u!4 &2132037915
 Transform:
@@ -1600,6 +1657,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 477704691}
     - target: {fileID: 8140652062625441859, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: stagelength.Array.data[0]
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8140652062625441859, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
       propertyPath: stagelength.Array.data[1]
       value: 0.015
       objectReference: {fileID: 0}
@@ -1636,3 +1697,4 @@ SceneRoots:
   - {fileID: 1625959760}
   - {fileID: 957397364}
   - {fileID: 1206466113}
+  - {fileID: 505575057}

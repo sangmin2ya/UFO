@@ -198,7 +198,10 @@ public class ItemInfo : MonoBehaviour
                 break;
             default:
                 Debug.Log("Type not specified");
-                StartCoroutine(DestroyItem(gameObject));
+                if (gameObject != null)
+                {
+                    StartCoroutine(DestroyItem(gameObject));
+                }
                 break;
         }
         // Play Effect

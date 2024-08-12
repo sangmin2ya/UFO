@@ -10,8 +10,14 @@ public class SpaceShipEntered : MonoBehaviour
     private bool isInside = false;
     public Image spaceShipCoolDown;
     
-    [SerializeField] private UfoManager ufoManager;
-    [SerializeField] HPManager hpManager;
+    private UfoManager ufoManager;
+    private HPManager hpManager;
+
+    void Start()
+    {
+        ufoManager = GameObject.Find("UFO").GetComponent<UfoManager>();
+        hpManager = GameObject.Find("UFO").GetComponent<HPManager>();
+    }
 
     void Update()
     {
