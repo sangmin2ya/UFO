@@ -8,6 +8,7 @@ public class BossMapEventManager : MonoBehaviour
     [SerializeField] GameObject SpaceX;
     [SerializeField] SpaceX AlionMusk;
     [SerializeField] GameObject Player;
+    [SerializeField] Transform Die_Burst;
 
     public void DisablePlayerAnimator() => Player.GetComponent<Animator>().enabled = false;
 
@@ -27,4 +28,12 @@ public class BossMapEventManager : MonoBehaviour
     }
 
     public void Cosmic_Storm() => AlionMusk.CosmicStorm();
+
+    public void Die()
+    {
+        for (int i = 0; i < Die_Burst.childCount; i++) {
+            Die_Burst.GetChild(i).gameObject.SetActive(true);
+        }
+        SpaceX.gameObject.SetActive(false);
+    }
 }

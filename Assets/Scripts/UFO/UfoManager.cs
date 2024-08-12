@@ -61,7 +61,7 @@ public class UfoManager : MonoBehaviour
     private void AttachObject(GameObject obj)
     {
         GameObject.Find("Canvas").GetComponent<GameUIManager>().showDamaged();
-        gameObject.GetComponent<HPManager>().Damaged(3); //add 10% damage
+        gameObject.GetComponent<HPManager>().Damaged(10); //add 10% damage
         obj.GetComponent<ItemInfo>().Freeze();
         obj.transform.SetParent(transform);
         _AttacedObjects.Add(obj.GetComponent<ItemInfo>());
@@ -219,6 +219,7 @@ public class UfoManager : MonoBehaviour
             AttachObject(collision.gameObject);
             if (Vector2.Distance(collision.transform.position, transform.position) > 2.5f)
             {
+
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name != "Main" ? "BadEnding" : "GameOver");
             }
         }

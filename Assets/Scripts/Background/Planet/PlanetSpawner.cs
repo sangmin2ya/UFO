@@ -13,6 +13,7 @@ public class PlanetSpawner : MonoBehaviour
 
     private void Start()
     {
+        if (LoadingScene.instance.idx < 1) return;
         SpawnPlanet();
     }
 
