@@ -54,6 +54,7 @@ public class LoadingScene : MonoBehaviour
         SceneManager.LoadScene(level_Sequence[idx]);
         int temp = soundidx;
         soundidx = (idx == 4 || idx == -1) ? 1 : 0;
+        source.pitch = (idx == 4 || idx == -1) ? 1.5f : 1f;
         source.clip = clips[soundidx];
         if(temp != soundidx) source.Play();
     }
@@ -63,6 +64,7 @@ public class LoadingScene : MonoBehaviour
         SceneManager.LoadScene(level_Sequence[idx]);
         int temp = soundidx;
         soundidx = (idx == 4 || idx == -1) ? 1 : 0;
+        source.pitch = (idx == 4 || idx == -1) ? 1.5f : 1f;
         source.clip = clips[soundidx];
         if (temp != soundidx) source.Play();
     }
