@@ -1,39 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
-public class EndingMenu : MonoBehaviour
+public class GameOverCountdown : MonoBehaviour
 {
-
-    int[] level_Sequence = new int[5] { 1, 1, 1, 1, 3 };
-
     public InputActionAsset inputActions;  // UFO Input Action Asset 참조
+    private int[] level_Sequence = new int[5] { 1, 1, 1, 1, 3 };
+    private TextMeshProUGUI countdownText;
     public Button startButton;
     public Button exitButton;
-
     private InputAction moveAction;
     private InputAction submitAction;
-    private Button[] buttons;
     private int selectedIndex = 0;
-
-
-    private void OnEnable()
+    private Button[] buttons;
+    // Start is called before the first frame update
+    void OnEnable()
     {
-        // 특정 씬에서만 활성화
-        if (SceneManager.GetActiveScene().name != "MainMenu" 
-            && SceneManager.GetActiveScene().name != "HappyEnding" 
-            && SceneManager.GetActiveScene().name != "BadEnding" 
-            && SceneManager.GetActiveScene().name != "GameOver")
-        {
-            gameObject.SetActive(false);
-            return;
-        }
+        countdownText = transform.Find("CountDown").GetComponent<TextMeshProUGUI>();
 
-        // InputAction 설정
+        StartCoroutine(StartCountdown(10));
+
         moveAction = inputActions.FindActionMap("Player").FindAction("Move");
         submitAction = inputActions.FindActionMap("Player").FindAction("Submit");
 
@@ -83,6 +73,25 @@ public class EndingMenu : MonoBehaviour
         }
     }
 
+    private void UpdateButtonSelection()
+    {
+        // 모든 버튼의 텍스트 색상을 비활성화 색상으로 변경
+        foreach (Button button in buttons)
+        {
+            TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
+            if (buttonText != null)
+            {
+                buttonText.color = Color.white;  // 비활성화 색상 (원하는 색으로 변경 가능)
+            }
+        }
+
+        // 선택된 버튼의 텍스트 색상을 활성화 색상으로 변경
+        TextMeshProUGUI selectedText = buttons[selectedIndex].GetComponentInChildren<TextMeshProUGUI>();
+        if (selectedText != null)
+        {
+            selectedText.color = Color.yellow;  // 활성화 색상 (원하는 색으로 변경 가능)
+        }
+    }
     private void OnSubmitPerformed(InputAction.CallbackContext context)
     {
         if (buttons == null || buttons.Length == 0)
@@ -112,40 +121,43 @@ public class EndingMenu : MonoBehaviour
         buttons[selectedIndex].onClick.Invoke();
     }
 
-    private void UpdateButtonSelection()
+    // Update is called once per frame
+    void Update()
     {
-        // 모든 버튼의 텍스트 색상을 비활성화 색상으로 변경
-        foreach (Button button in buttons)
-        {
-            TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
-            if (buttonText != null)
-            {
-                buttonText.color = Color.white;  // 비활성화 색상 (원하는 색으로 변경 가능)
-            }
-        }
 
-        // 선택된 버튼의 텍스트 색상을 활성화 색상으로 변경
-        TextMeshProUGUI selectedText = buttons[selectedIndex].GetComponentInChildren<TextMeshProUGUI>();
-        if (selectedText != null)
+    }
+    private void StopBG()
+    {
+        BackgroundRepeating[] backgrounds = GameObject.Find("Backgrounds").transform.GetComponentsInChildren<BackgroundRepeating>();
+        foreach (var obj in backgrounds)
         {
-            selectedText.color = Color.yellow;  // 활성화 색상 (원하는 색으로 변경 가능)
+            obj.Stop();
         }
     }
-
-    public void GameStartClick()
+    private IEnumerator StartCountdown(int seconds)
     {
-        if(LoadingScene.instance.idx < 0) LoadingScene.instance.LoadingStart();
-    }
+        int timeLeft = seconds;
 
-    public void ExitMenu() {
+        while (timeLeft > 0)
+        {
+            countdownText.text = timeLeft.ToString();  // 남은 시간을 텍스트로 표시
+            yield return new WaitForSeconds(1);  // 1초 대기
+            timeLeft--;  // 시간 감소
+        }
+
+        countdownText.text = "0";  // 카운트다운이 끝나면 0으로 설정
+        LeaveGame();  // 추가 동작 호출
+    }
+    public void LeaveGame()
+    {
         GameManager.Instance.ResetGame();
         LoadingScene.instance.idx = -1;
         SceneManager.LoadScene(0);
     }
-    public void RestartClick() {
+    public void RestartGame()
+    {
         GameManager.Instance.ResetProgress();
+        GameManager.Instance._isDead = false;
         SceneManager.LoadScene(level_Sequence[LoadingScene.instance.idx]);
     }
-    public void GameExit() => Application.Quit();
-
 }

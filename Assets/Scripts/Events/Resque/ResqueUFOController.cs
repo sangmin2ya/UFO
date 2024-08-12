@@ -23,7 +23,7 @@ public class ResqueUFOController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        RemoveNullChildren();
     }
     private void FixedUpdate()
     {
@@ -46,6 +46,16 @@ public class ResqueUFOController : MonoBehaviour
                 transform.GetChild(i).GetComponent<Rigidbody2D>().isKinematic = true;
                 _AttacedObjects.Add(transform.GetChild(i).GetComponent<ItemInfo>());
             }
+        }
+    }
+
+    private void RemoveNullChildren()
+    {
+        _AttacedObjects.RemoveAll(child => child == null);
+        if (_AttacedObjects.Count == 0)
+        {
+            _helpText.text = "고마워요";
+            StartCoroutine(ThankYou());
         }
     }
     public void TakeObstacle(ItemInfo itemInfo)

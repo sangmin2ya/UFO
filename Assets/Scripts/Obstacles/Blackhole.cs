@@ -79,7 +79,7 @@ public class Blackhole : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            SceneManager.LoadScene("GameOver");
+            GameObject.Find("GameOverCanvas").gameObject.SetActive(true);
         }
         else
         {

@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public int _score { get; private set; } //Obsatcle Count?
     public float _currentProgress { get; private set; } //Current Position of stage
     public int _bombCount;//Bomb Count
+    public bool _isDead;//Is Dead?
     
     [Tooltip("Set Speed of progress Depending on the stage")]
     [SerializeField] private float _progressSpeed = 0.01f; //Speed of progress
@@ -64,7 +65,8 @@ public class GameManager : MonoBehaviour
     }
     public void AddProgress()
     {
-        _currentProgress += _progressSpeed * Time.fixedDeltaTime;
+        if(!_isDead)
+            _currentProgress += _progressSpeed * Time.fixedDeltaTime;
     }
     public void ResetStage()
     {
@@ -84,6 +86,8 @@ public class GameManager : MonoBehaviour
     }
     public void ResetGame()
     {
+        _isDead = false;
+        _bombCount = 1;
         ResetStage();
         ResetScore();
         ResetProgress();
