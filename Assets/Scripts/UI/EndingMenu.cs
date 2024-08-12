@@ -133,7 +133,7 @@ public class EndingMenu : MonoBehaviour
 
     public void GameStartClick()
     {
-        LoadingScene.instance.LoadingStart();
+        if(LoadingScene.instance.idx < 0) LoadingScene.instance.LoadingStart();
     }
 
     public void ExitMenu() {

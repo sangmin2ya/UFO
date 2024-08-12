@@ -119,8 +119,8 @@ public class SpaceX : MonoBehaviour
     {
         if (Player.GetComponent<UfoManager>()._AttacedObjects.Count >= (_hpCount * 2 + 3))
         {
+            anim.SetTrigger(_hpCount * 2 + 3 < 7 ? "Success" : "Die");
             _hpCount++;
-            anim.SetTrigger("Success");
             UImanager.showEvent("더욱 강력한 자기장으로 스페이스 X에게 반격했습니다!");
             GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>().OnBomb();
             Player.GetComponent<UfoManager>().ClearAll();

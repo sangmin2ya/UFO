@@ -25,6 +25,7 @@ public class UfoController : MonoBehaviour
     public bool _isEMP;
     public bool _isDecoy; //전파교란
     public bool _isStorm;
+    public bool _isOnComet;
 
     [SerializeField] GameObject _DecoyEffect;
     [SerializeField] GameObject StormEffect;
@@ -184,4 +185,6 @@ public class UfoController : MonoBehaviour
             //폭탄 사용
         }
     }
+
+
 }

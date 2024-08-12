@@ -8,6 +8,7 @@ TagManager:
   - MagnetField
   - Resque
   - SpaceStation
+  - Comet
   layers:
   - Default
   - TransparentFX

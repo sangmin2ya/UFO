@@ -13,6 +13,7 @@ public class EventWarpGate : MonoBehaviour
     ObstacleManager obstacleManager;
     private GameObject _cutScene;
     private float progressChange;
+
     void Start()
     {
         obstacleManager = GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>();
