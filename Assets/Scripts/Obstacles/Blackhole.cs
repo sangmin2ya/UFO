@@ -11,9 +11,7 @@ public class Blackhole : MonoBehaviour
     public bool onBlackhole;
     [SerializeField] ObstacleManager bomb;
     [Header("������Ʈ �������� �ӵ�")]
-    public float basePullStrength = 100f; // �⺻ ���Է�
-    [Header("�÷��̾� �������� �ӵ�")]
-    public float playerPullStrength = 5f; // �÷��̾ ���� ���Է�
+    public float basePullStrength = 100f;
 
     void FixedUpdate()
     {
@@ -31,23 +29,12 @@ public class Blackhole : MonoBehaviour
                 float pullStrength;
 
                 // �÷��̾�� �Ϲ� ������Ʈ�� ���Է��� �ٸ��� �����մϴ�.
-                if (Obstacle.CompareTag("Player"))
-                {
-                    pullStrength = playerPullStrength;
-                    // �Ÿ� �ݺ�ʷ� ���Է��� ������ŵ�ϴ�.
-                    pullStrength /= distance;
-
-                    // ����Ȧ �������� ���� ���մϴ�.
-                    Vector2 direction = (Vector2)transform.position - rb.position;
-                    rb.AddForce(direction.normalized * pullStrength * Time.fixedDeltaTime);
-                }
-                else
+                if (!Obstacle.CompareTag("Player"))
                 {
                     rb.position = Vector2.MoveTowards(rb.position, transform.position, basePullStrength * Time.deltaTime);
+                    Obstacle.gameObject.GetComponent<ItemMovement>().enabled = false;
+                    Obstacle.gameObject.GetComponent<ItemInfo>().enabled = false;
                 }
-
-                Obstacle.gameObject.GetComponent<ItemMovement>().enabled = false;
-                Obstacle.gameObject.GetComponent<ItemInfo>().enabled = false;
             }
         }
     }
@@ -62,17 +49,6 @@ public class Blackhole : MonoBehaviour
         onBlackhole = true;
         yield return new WaitForSeconds(time);
         onBlackhole = false;
-        yield return new WaitForSeconds(2.0f);
-        GameObject[] Obstacles = bomb.FindAllObstacles();
-        foreach (var obstacle in Obstacles)
-        {
-            if (obstacle != null)
-            {
-                obstacle.gameObject.GetComponent<ItemMovement>().enabled = true;
-                obstacle.gameObject.GetComponent<ItemInfo>().enabled = true;
-                obstacle.GetComponent<CircleCollider2D>().enabled = true;
-            }
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -83,7 +59,7 @@ public class Blackhole : MonoBehaviour
         }
         else
         {
-            Destroy(collision);
+            Destroy(collision.gameObject);
         }
     }
 }
