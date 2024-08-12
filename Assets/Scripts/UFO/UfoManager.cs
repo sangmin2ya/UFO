@@ -171,7 +171,7 @@ public class UfoManager : MonoBehaviour
     }
     public bool CanUseBomb()
     {
-        if (GameManager.Instance._bombCount > 0 && Time.timeScale != 0)
+        if (GameManager.Instance._bombCount > 0 && Time.timeScale != 0 && LoadingScene.instance.canBomb == true)
         {
             GameManager.Instance._bombCount--;
             return true;

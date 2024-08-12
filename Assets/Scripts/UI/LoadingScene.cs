@@ -26,7 +26,8 @@ public class LoadingScene : MonoBehaviour
     [SerializeField] TMP_Text StageText;
     [SerializeField] Button SkipButton;
 
-    public bool canSkip = true;
+    public bool canSkip = false;
+    public bool canBomb;
 
     // Input 관련 필드
     public InputActionAsset inputActions;
@@ -71,8 +72,9 @@ public class LoadingScene : MonoBehaviour
         if (!canSkip) return;
         
         canSkip = false;
-        
-        anim.Play("Default");
+        Debug.Log(canSkip);
+
+        anim.Play("LoadEnd");
         loadScene();
         StartCoroutine(SkipBtn());
     }
@@ -114,6 +116,12 @@ public class LoadingScene : MonoBehaviour
     }
 
     public void skipTrue() => canSkip = true;
+
+    public void skipFalse() => canSkip = false;
+
+    public void BombTrue() => canBomb = true;
+
+    public void BombFalse() => canBomb = false;
 
     IEnumerator SkipBtn()
     {

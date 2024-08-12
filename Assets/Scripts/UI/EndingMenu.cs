@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System.IO.IsolatedStorage;
 
 public class EndingMenu : MonoBehaviour
 {
