@@ -36,7 +36,6 @@ public class UfoManager : MonoBehaviour
         _magnetImg = GameObject.Find("Current_Magnet").GetComponent<Image>();
         _bombImages.Add(GameObject.Find("Bomb2Img").GetComponent<Image>()); //needs to change
         _bombImages.Add(GameObject.Find("Bomb1Img").GetComponent<Image>()); //needs to change
-        _weightBar = GameObject.Find("Mass_Image").GetComponent<Image>();
         gameUIManager = GameObject.Find("Canvas").GetComponent<GameUIManager>();
         _speed = _setSpeed;
         _accelSpeed = _setSpeed * 3f;
@@ -68,7 +67,6 @@ public class UfoManager : MonoBehaviour
         obj.GetComponent<ItemInfo>().Freeze();
         obj.transform.SetParent(transform);
         _AttacedObjects.Add(obj.GetComponent<ItemInfo>());
-        _weightBar.transform.parent.GetComponent<Animator>().Play("Add_Mass");
     }
     public void DestroyEveryObstacle()
     {
@@ -78,6 +76,41 @@ public class UfoManager : MonoBehaviour
         }
         GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>().OnBomb();
         _AttacedObjects.Clear();
+        GameObject[] migiJang = GameObject.FindGameObjectsWithTag("MagnetField");
+        foreach (var miji in migiJang)
+        {
+            if (miji != null)
+            {
+                Destroy(miji);
+            }
+        }
+
+        GameObject[] warpGate = GameObject.FindGameObjectsWithTag("WarpGate");
+        foreach (var warp in warpGate)
+        {
+            if (warp != null)
+            {
+                Destroy(warp);
+            }
+        }
+
+        GameObject[] reaque = GameObject.FindGameObjectsWithTag("Resque");
+        foreach (var rq in reaque)
+        {
+            if (rq != null)
+            {
+                Destroy(rq);
+            }
+        }
+
+        GameObject[] aliens = GameObject.FindGameObjectsWithTag("Alien");
+        foreach (var ali in aliens)
+        {
+            if (ali != null)
+            {
+                Destroy(ali);
+            }
+        }
     }
     //destroy attached objects only
     public void DestroyAttachedObject()
@@ -156,7 +189,7 @@ public class UfoManager : MonoBehaviour
     }
     public bool CanUseBomb()
     {
-        if (GameManager.Instance._bombCount > 0 && Time.timeScale != 0)
+        if (GameManager.Instance._bombCount > 0 && Time.timeScale != 0 && LoadingScene.instance.canBomb == true)
         {
             GameManager.Instance._bombCount--;
             return true;

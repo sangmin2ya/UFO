@@ -9,6 +9,8 @@ TagManager:
   - Resque
   - SpaceStation
   - Comet
+  - WarpGate
+  - Alien
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Obstacle
+  - 
   - 
   - 
   - 
