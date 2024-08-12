@@ -68,6 +68,15 @@ public class UfoManager : MonoBehaviour
         obj.transform.SetParent(transform);
         _AttacedObjects.Add(obj.GetComponent<ItemInfo>());
     }
+    public void DestroyEveryTrash()
+    {
+        for (int i = 0; i < _AttacedObjects.Count; i++)
+        {
+            _AttacedObjects[i].DestroyItem();
+        }
+        GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>().OnBomb();
+        _AttacedObjects.Clear();
+    }
     public void DestroyEveryObstacle()
     {
         for (int i = 0; i < _AttacedObjects.Count; i++)
@@ -130,14 +139,7 @@ public class UfoManager : MonoBehaviour
     {
         GameManager.Instance._isDead = true;
         //Destroy(gameObject);  
-        if (SceneManager.GetActiveScene().name == "Main")
-        {
-            StartCoroutine(DestroyUfoWithDelay());
-        }
-        else
-        {
-            SceneManager.LoadScene("BadEnding");
-        }
+        StartCoroutine(DestroyUfoWithDelay());
     }
     IEnumerator DestroyUfoWithDelay()
     {

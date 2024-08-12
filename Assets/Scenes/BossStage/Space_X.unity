@@ -270,7 +270,7 @@ PrefabInstance:
       objectReference: {fileID: 1013158301}
     - target: {fileID: 4897973168943628242, guid: e56d79e32eefbb247b414b9ff6c3a7fe, type: 3}
       propertyPath: PlayerDamage
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4897973168943628242, guid: e56d79e32eefbb247b414b9ff6c3a7fe, type: 3}
       propertyPath: HP_Effect_Image
@@ -2133,6 +2133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bombCount: 0
+  _isDead: 0
   _progressSpeed: 0.01
 --- !u!4 &1815580417
 Transform:

@@ -12,6 +12,7 @@ public class SpaceShipEntered : MonoBehaviour
     
     private UfoManager ufoManager;
     private HPManager hpManager;
+    private SpaceStation spaceStation;
 
     void Start()
     {
@@ -56,6 +57,7 @@ public class SpaceShipEntered : MonoBehaviour
 
     private void OnSpaceStation()
     {
+        spaceStation.UpdateHP(10);
         ufoManager.DestroyAttachedObject();
         hpManager.Repaired(100.0f);
     }
