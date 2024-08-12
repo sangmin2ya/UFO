@@ -37,6 +37,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     IEnumerator Spawn()
     {
+        yield return new WaitForSeconds(1);
         while(true)
         {
             for (int i = 0; i < spawnCount; i++)

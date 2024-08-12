@@ -135,7 +135,6 @@ public class StageController : MonoBehaviour
         // 정확한 위치를 보장하기 위해 루프가 끝난 후 위치를 설정합니다.
         _UFO.transform.position = screenRightEdge;
 
-        _UFO.GetComponent<UfoManager>().AddBombCount();
         GameManager.Instance.AddStage();
         LoadingScene.instance.LoadingStart();
     }

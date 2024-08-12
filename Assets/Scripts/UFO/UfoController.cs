@@ -65,7 +65,7 @@ public class UfoController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (_movable)
+        if (_movable&&!GameManager.Instance._isDead)
         {
             Move();
             TiltCharacter();

@@ -18,6 +18,7 @@ public class UfoManager : MonoBehaviour
     public MagnetState _magnetState { get; set; }
     //UI
     private Transform _handle;
+    [SerializeField] private GameObject _gameOverCanvas;
     //Image
     [SerializeField] private List<Sprite> _magnetSprites;
     private Image _speedBar;
@@ -38,6 +39,8 @@ public class UfoManager : MonoBehaviour
         gameUIManager = GameObject.Find("Canvas").GetComponent<GameUIManager>();
         _speed = _setSpeed;
         _accelSpeed = _setSpeed * 3f;
+        if (GameManager.Instance._bombCount == 0)
+            GetComponent<UfoManager>().AddBombCount();
     }
     void Update()
     {
@@ -123,11 +126,26 @@ public class UfoManager : MonoBehaviour
         obj.GetComponent<ItemInfo>().DestroyItem();
         _AttacedObjects.Remove(obj.GetComponent<ItemInfo>());
     }
-    private void DestroyUfo()
+    public void DestroyUfo()
     {
-        //Destroy(gameObject);
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name != "Main" ? "BadEnding" : "GameOver");
+        GameManager.Instance._isDead = true;
+        //Destroy(gameObject);  
+        if (SceneManager.GetActiveScene().name == "Main")
+        {
+            StartCoroutine(DestroyUfoWithDelay());
+        }
+        else
+        {
+            SceneManager.LoadScene("BadEnding");
+        }
+    }
+    IEnumerator DestroyUfoWithDelay()
+    {
+        GetComponent<SpriteRenderer>().enabled = false;
+        transform.Find("Burst_effect").gameObject.SetActive(true);
+        yield return new WaitForSeconds(1.0f);
+        Destroy(gameObject);
+        _gameOverCanvas.SetActive(true);
     }
     private void UpdateUI()
     {
@@ -208,7 +226,7 @@ public class UfoManager : MonoBehaviour
                 switch (collision.GetComponent<ItemInfo>().ability)
                 {
                     case ItemAbility.Repair:
-                        GetComponent<HPManager>().RepairedPercent(0.1f); //add 10% repair
+                        GetComponent<HPManager>().RepairedPercent(0.15f); //add 10% repair
                         break;
                     case ItemAbility.PoleChange:
                         GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>().OnPoleChange(_magnetState); //Change all obstacles' pole
@@ -229,7 +247,7 @@ public class UfoManager : MonoBehaviour
             collision.GetComponent<UnknownMagnetField>().StopDestroyMagnetField();
             EnterMagnetFieldEvent?.Invoke(collision);
         }
-        
+
     }
 
     private IEnumerator CometCrashed()
@@ -253,7 +271,7 @@ public class UfoManager : MonoBehaviour
             if (Vector2.Distance(collision.transform.position, transform.position) > 2.5f)
             {
 
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name != "Main" ? "BadEnding" : "GameOver");
+                DestroyUfo();
             }
         }
     }

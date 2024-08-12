@@ -38,7 +38,7 @@ public class HPManager : MonoBehaviour
         }
         if (_hp <= 0)
         {
-            SceneManager.LoadScene("GameOver");
+            GameObject.Find("UFO").GetComponent<UfoManager>().DestroyUfo();
         }
 
     }

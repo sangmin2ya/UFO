@@ -10,7 +10,14 @@ public class UnknownMagnetField : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector2(Random.Range(-8f, 8f), 0);
+        if (Random.Range(0, 2) == 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 90);
+            transform.position = new Vector2(0, Random.Range(-5f, 5f));
+        }
+        else
+            transform.position = new Vector2(Random.Range(-8f, 8f), 0);
+
         StartMagnetField();
     }
 

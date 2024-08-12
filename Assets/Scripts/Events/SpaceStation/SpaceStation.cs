@@ -53,7 +53,7 @@ public class SpaceStation : MonoBehaviour
     {
         currentHP += amount;
         currentHP = Mathf.Clamp(currentHP, 0, maxHP);
-        hpImage.fillAmount = (float)currentHP/maxHP;
+        hpImage.fillAmount = (float)currentHP / maxHP;
 
         if (amount < 0)
         {
@@ -63,11 +63,21 @@ public class SpaceStation : MonoBehaviour
 
         if (currentHP <= 0)
         {
-            Destroy(gameObject);
-            SceneManager.LoadScene("GameOver");
+            StartCoroutine(Boom());
+            GameObject.Find("UFO").GetComponent<UfoManager>().DestroyUfo();
         }
     }
-
+    IEnumerator Boom()
+    {
+        int i = 0;
+        while (true)
+        {
+            gameObject.transform.Find("Bomb").GetChild(i % 6).gameObject.SetActive(true);
+            yield return new WaitForSeconds(1.0f);
+            gameObject.transform.Find("Bomb").GetChild(i % 6).gameObject.SetActive(false);
+            i++;
+        }
+    }
     IEnumerator FlashRed()
     {
         spriteRenderer.color = Color.red;
@@ -96,8 +106,10 @@ public class SpaceStation : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.GetComponent<ItemInfo>() != null && onSpaceShip){
-            if (collision.gameObject.GetComponent<ItemInfo>().type == ItemType.Obstacle && collision.gameObject.GetComponent<ItemInfo>().onSpaceStation == false){
+        if (collision.gameObject.GetComponent<ItemInfo>() != null && onSpaceShip)
+        {
+            if (collision.gameObject.GetComponent<ItemInfo>().type == ItemType.Obstacle && collision.gameObject.GetComponent<ItemInfo>().onSpaceStation == false)
+            {
                 collision.gameObject.GetComponent<ItemInfo>().onSpaceStation = true;
                 UpdateHP(-5);
             }
