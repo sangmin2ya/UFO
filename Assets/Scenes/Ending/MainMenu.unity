@@ -788,7 +788,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: add759da78500e844938925f2e643b51, type: 3}
   StageText: {fileID: 1124900845}
   SkipButton: {fileID: 1031768889}
-  canSkip: 1
+  canSkip: 0
+  canBomb: 0
   inputActions: {fileID: -944628639613478452, guid: 0a712237a976d7141b9e678a0ea39dbf, type: 3}
 --- !u!95 &726185483
 Animator:

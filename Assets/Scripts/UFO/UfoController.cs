@@ -179,8 +179,9 @@ public class UfoController : MonoBehaviour
     }
     void OnBomb(InputValue value)
     {
-        if (_ufoManager.CanUseBomb() && Time.timeScale != 0 && _movable)
+        if (_ufoManager.CanUseBomb() && Time.timeScale != 0 && _movable && LoadingScene.instance.canBomb == true)
         {
+            Debug.Log("bomb!!");
             _ufoManager.DestroyEveryObstacle();
             //폭탄 사용
         }

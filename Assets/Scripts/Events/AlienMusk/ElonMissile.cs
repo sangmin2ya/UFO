@@ -15,6 +15,12 @@ public class ElonMissile : MonoBehaviour
     [SerializeField] Gradient[] gradients;
     [SerializeField] GameObject BurstEffect;
     float t_burst = 0;
+
+    bool isTurn = false;
+
+    // Magnetic influence range
+    public float magnetRange = 2.5f;
+
     private void Start()
     {
         if (isFollowPlayer)
@@ -43,16 +49,25 @@ public class ElonMissile : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (state != player.GetComponent<UfoManager>()._magnetState && isFollowPlayer) checkDirection();
+        if (state != player.GetComponent<UfoManager>()._magnetState) checkDirection();
+        else if (state == player.GetComponent<UfoManager>()._magnetState && Vector2.Distance(transform.position, player.transform.position) <= magnetRange && !isTurn)
+        {
+            isTurn = true;
+            direction *= -1;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+        }
         transform.position += (Vector3)(direction * speed * Time.deltaTime);
     }
 
 
     void checkDirection()
     {
+        isTurn = false;
         direction = (player.transform.position - transform.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
