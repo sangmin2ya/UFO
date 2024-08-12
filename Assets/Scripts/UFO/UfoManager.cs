@@ -75,6 +75,41 @@ public class UfoManager : MonoBehaviour
         }
         GameObject.Find("ObstacleManager").GetComponent<ObstacleManager>().OnBomb();
         _AttacedObjects.Clear();
+        GameObject[] migiJang = GameObject.FindGameObjectsWithTag("MagnetField");
+        foreach (var miji in migiJang)
+        {
+            if (miji != null)
+            {
+                Destroy(miji);
+            }
+        }
+
+        GameObject[] warpGate = GameObject.FindGameObjectsWithTag("WarpGate");
+        foreach (var warp in warpGate)
+        {
+            if (warp != null)
+            {
+                Destroy(warp);
+            }
+        }
+
+        GameObject[] reaque = GameObject.FindGameObjectsWithTag("Resque");
+        foreach (var rq in reaque)
+        {
+            if (rq != null)
+            {
+                Destroy(rq);
+            }
+        }
+
+        GameObject[] aliens = GameObject.FindGameObjectsWithTag("Alien");
+        foreach (var ali in aliens)
+        {
+            if (ali != null)
+            {
+                Destroy(ali);
+            }
+        }
     }
     //destroy attached objects only
     public void DestroyAttachedObject()
