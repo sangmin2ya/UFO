@@ -791,6 +791,7 @@ MonoBehaviour:
   StageText: {fileID: 1124900845}
   SkipButton: {fileID: 1031768889}
   canSkip: 1
+  inputActions: {fileID: -944628639613478452, guid: 0a712237a976d7141b9e678a0ea39dbf, type: 3}
 --- !u!95 &726185483
 Animator:
   serializedVersion: 5
@@ -1551,7 +1552,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -3106,6 +3107,7 @@ MonoBehaviour:
   inputActions: {fileID: -944628639613478452, guid: 0a712237a976d7141b9e678a0ea39dbf, type: 3}
   startButton: {fileID: 1943557040}
   exitButton: {fileID: 1622085708}
+  loadScene: {fileID: 726185477}
 --- !u!1001 &2033710744
 PrefabInstance:
   m_ObjectHideFlags: 0

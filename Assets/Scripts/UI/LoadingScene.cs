@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class LoadingScene : MonoBehaviour
@@ -27,6 +28,10 @@ public class LoadingScene : MonoBehaviour
 
     public bool canSkip = true;
 
+    // Input 관련 필드
+    public InputActionAsset inputActions;
+    private InputAction submitAction;
+
     private void Start()
     {
         if (instance != null)
@@ -38,12 +43,35 @@ public class LoadingScene : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += onsceneload;
         source = GetComponent<AudioSource>();
+
+        // InputAction 설정 및 이벤트 등록
+        submitAction = inputActions.FindActionMap("Player").FindAction("Submit");
+        submitAction.Enable();
+        submitAction.started += OnSubmitPerformed;
+    }
+
+    private void OnDestroy()
+    {
+        // 이벤트 해제
+        submitAction.canceled -= OnSubmitPerformed;
+    }
+
+    private void OnSubmitPerformed(InputAction.CallbackContext context)
+    {
+        // 스킵 버튼이 활성화되어 있고, 스킵이 가능한 상태일 때만 스킵 처리
+        if (SkipButton.interactable && canSkip)
+        {
+            Debug.Log("스킵 버튼 눌림");
+            SendMessage("SkipStory");
+        }
     }
 
     public void SkipStory()
     {
         if (!canSkip) return;
+        
         canSkip = false;
+        
         anim.Play("Default");
         loadScene();
         StartCoroutine(SkipBtn());
@@ -80,6 +108,8 @@ public class LoadingScene : MonoBehaviour
         StageText.text = $"{idx+1}장";
         anim.SetTrigger("Load");
     }
+
+    public void skipTrue() => canSkip = true;
 
     IEnumerator SkipBtn()
     {
