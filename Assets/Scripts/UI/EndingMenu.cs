@@ -141,6 +141,7 @@ public class EndingMenu : MonoBehaviour
         SceneManager.LoadScene(0);
     }
     public void RestartClick() {
+        GameManager.Instance.ResetProgress();
         SceneManager.LoadScene(level_Sequence[LoadingScene.instance.idx]);
     }
     public void GameExit() => Application.Quit();
