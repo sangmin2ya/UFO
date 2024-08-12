@@ -43,9 +43,7 @@ public class Blackhole : MonoBehaviour
                 }
                 else
                 {
-                    rb.isKinematic = true;
                     rb.position = Vector2.MoveTowards(rb.position, transform.position, basePullStrength * Time.deltaTime);
-                    Obstacle.GetComponent<CircleCollider2D>().enabled = false;
                 }
 
                 Obstacle.gameObject.GetComponent<ItemMovement>().enabled = false;

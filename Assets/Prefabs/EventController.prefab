@@ -51,7 +51,7 @@ MonoBehaviour:
   stagelength:
   - 0.02
   - 0.015
-  - 0.015
+  - 0.01
   - 0.015
   - 0
   obstacleInterval: 0100000001000000010000000100000001000000

@@ -237,11 +237,11 @@ MonoBehaviour:
   index: 0
   spriteN: {fileID: 21300000, guid: d673d99500dab194788ef33af59d60f4, type: 3}
   spriteS: {fileID: 21300000, guid: c082024c8ff909347aeb093cbf7807a7, type: 3}
-  spriteA: {fileID: 21300000, guid: c57e667ba4abdde48ba905cbe71aac37, type: 3}
+  spriteA: {fileID: 21300000, guid: 4283223e753d53940ad8d1f6ec7e1fbc, type: 3}
   spriteB: {fileID: 21300000, guid: 74c19498aa1970d4ba88890fe73d8218, type: 3}
   spriteC: {fileID: 21300000, guid: 250eb0658699bed4ba6f31d2c0f6cc07, type: 3}
   _notSpawned: 0
-  ColorN: {r: 1, g: 0, b: 0.4914298, a: 1}
+  ColorN: {r: 1, g: 0.3066038, b: 0.3909513, a: 1}
   ColorS: {r: 0, g: 0.98021173, b: 1, a: 1}
 --- !u!58 &556243590872808448
 CircleCollider2D:

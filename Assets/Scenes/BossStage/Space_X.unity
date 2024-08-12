@@ -1091,6 +1091,10 @@ PrefabInstance:
       propertyPath: UI_EMP_Effect
       value: 
       objectReference: {fileID: 116126986}
+    - target: {fileID: 3073691067667272887, guid: 5467c219f52df914f9a525f5ad452e58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5044095628406528618, guid: 5467c219f52df914f9a525f5ad452e58, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
