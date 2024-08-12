@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class LoadingScene : MonoBehaviour
 {
-    int[] level_Sequence = new int[5] {1,1,1,1,3};
+    int[] level_Sequence = new int[5] { 1, 1, 1, 1, 3 };
     public static LoadingScene instance;
     public Animator anim;
     public int idx = -1;
@@ -52,11 +52,12 @@ public class LoadingScene : MonoBehaviour
     public void loadScene()
     {
         SceneManager.LoadScene(level_Sequence[idx]);
+        GameManager.Instance.ResetProgress();
         int temp = soundidx;
         soundidx = (idx == 4 || idx == -1) ? 1 : 0;
         source.pitch = (idx == 4 || idx == -1) ? 1.5f : 1f;
         source.clip = clips[soundidx];
-        if(temp != soundidx) source.Play();
+        if (temp != soundidx) source.Play();
     }
 
     public void Restart()
@@ -76,10 +77,11 @@ public class LoadingScene : MonoBehaviour
     public void LoadingStart()
     {
         idx += 1;
-        for (int i = 0; i < Ments.Length; i++) {
-            Ments[i].text = Level_Ments[(idx==-1?0:idx)*3+i];
+        for (int i = 0; i < Ments.Length; i++)
+        {
+            Ments[i].text = Level_Ments[(idx == -1 ? 0 : idx) * 3 + i];
         }
-        StageText.text = $"{idx+1}장";
+        StageText.text = $"{idx + 1}장";
         anim.SetTrigger("Load");
     }
 

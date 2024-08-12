@@ -10,9 +10,13 @@ public class EpicItemSpawner : MonoBehaviour
     [SerializeField] private float minInterval;
     [Range(0, 120)]
     [SerializeField] private float maxInterval;
-
+    [SerializeField] private bool _spawnOnce;
     void Start()
     {
+        if (_spawnOnce && Random.Range(0, 2) == 0)
+        {
+            return;
+        }
         StartCoroutine(SpawnItem());
     }
 
@@ -57,6 +61,10 @@ public class EpicItemSpawner : MonoBehaviour
             */
 
             Instantiate(epicItem);
+            if (_spawnOnce)
+            {
+                break;
+            }
         }
     }
 }

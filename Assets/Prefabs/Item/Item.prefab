@@ -215,7 +215,7 @@ MonoBehaviour:
   viewSize: {x: 18, y: 10}
   magnetRange: 2.5
   pullPower: 1
-  pushPower: 0.5
+  pushPower: 1
 --- !u!114 &8085729660635997123
 MonoBehaviour:
   m_ObjectHideFlags: 0

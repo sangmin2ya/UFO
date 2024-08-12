@@ -27,7 +27,7 @@ public class ItemMovement : MonoBehaviour
 
     public float pullPower = 1f;
 
-    public float pushPower = 0.5f;
+    public float pushPower = 1f;
 
     // player
     private Transform player;

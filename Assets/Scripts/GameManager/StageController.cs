@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class StageController : MonoBehaviour
 {
     [SerializeField] EventManager eventManager;
-    [SerializeField] private int currStageLv;
+    private int currStageLv;
     [SerializeField] private List<Sprite> backgroundSprites;
     private GameObject _UFO;
     private bool clearOnce;
@@ -48,7 +48,10 @@ public class StageController : MonoBehaviour
         checkSpaceStationAlert = false;
         checkMiJiJangAlert = false;
         clearOnce = true;
-
+        if (currStageLv == 1)
+        {
+            eventManager.OffEpicItems();
+        }
         if (currStageLv == 3)
         {
             eventManager.OnEpicItems();
@@ -133,10 +136,8 @@ public class StageController : MonoBehaviour
         // 정확한 위치를 보장하기 위해 루프가 끝난 후 위치를 설정합니다.
         _UFO.transform.position = screenRightEdge;
 
-        yield return new WaitForSeconds(1);
-        GameManager.Instance.ResetProgress();
-        GameManager.Instance.AddStage();
         _UFO.GetComponent<UfoManager>().AddBombCount();
+        GameManager.Instance.AddStage();
         LoadingScene.instance.LoadingStart();
     }
     private void AddProgress()
