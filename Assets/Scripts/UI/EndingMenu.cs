@@ -138,6 +138,10 @@ public class EndingMenu : MonoBehaviour
     }
 
     public void ExitMenu() {
+        GameManager.Instance.ResetStage();
+        GameManager.Instance.ResetProgress();
+        GameManager.Instance.ResetGame();
+        GameManager.Instance.ResetScore();
         LoadingScene.instance.idx = -1;
         SceneManager.LoadScene(0);
     }

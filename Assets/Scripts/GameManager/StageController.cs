@@ -166,6 +166,7 @@ public class StageController : MonoBehaviour
     {
         if (!checkSpaceStationAlert && spaceStationAlertTime <= GameManager.Instance._currentProgress)
         {
+            GameObject.Find("Canvas").GetComponent<GameUIManager>().showDescription(0);
             checkSpaceStationAlert = true;
             StartCoroutine(ShowAlert("우주 정거장을 운석으로부터 지켜내세요!"));
         }
