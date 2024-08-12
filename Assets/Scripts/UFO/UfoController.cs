@@ -58,7 +58,8 @@ public class UfoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ClampCharacterPosition();
+        if (_movable)
+            ClampCharacterPosition();
     }
     private void FixedUpdate()
     {

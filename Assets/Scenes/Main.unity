@@ -189,7 +189,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1545111081971114141, guid: 88fac40e3ccb52248b118488f3b42b8b, type: 3}
   m_PrefabInstance: {fileID: 2128223698}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2128223699}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43429999d47552b499aaac2e016bc7cc, type: 3}
@@ -717,7 +717,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5017545217481447275, guid: 0fa7fde4c4a3428459b9c9f326bd81c6, type: 3}
   m_PrefabInstance: {fileID: 1164294024}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1164294025}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43429999d47552b499aaac2e016bc7cc, type: 3}
@@ -784,6 +784,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fa7fde4c4a3428459b9c9f326bd81c6, type: 3}
+--- !u!1 &1164294025 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4494298355259700146, guid: 0fa7fde4c4a3428459b9c9f326bd81c6, type: 3}
+  m_PrefabInstance: {fileID: 1164294024}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1206466110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1468,6 +1473,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88fac40e3ccb52248b118488f3b42b8b, type: 3}
+--- !u!1 &2128223699 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3305371949637051177, guid: 88fac40e3ccb52248b118488f3b42b8b, type: 3}
+  m_PrefabInstance: {fileID: 2128223698}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2132037913
 GameObject:
   m_ObjectHideFlags: 0
@@ -1596,9 +1606,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1138054469}
     - target: {fileID: 8140652062625441859, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: itemManagerObj
+      value: 
+      objectReference: {fileID: 1164294025}
+    - target: {fileID: 8140652062625441859, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
       propertyPath: obstacleSpawner
       value: 
       objectReference: {fileID: 477704691}
+    - target: {fileID: 8140652062625441859, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: obstacleSpawnerObj
+      value: 
+      objectReference: {fileID: 2128223699}
     - target: {fileID: 8140652062625441859, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
       propertyPath: stagelength.Array.data[1]
       value: 0.015

@@ -48,7 +48,7 @@ public class EventWarpGate : MonoBehaviour
     IEnumerator DestroyWarpGate()
     {
         yield return new WaitForSeconds(0.5f);
-        obstacleManager.OnBomb();
+        GameObject.Find("UFO").GetComponent<UfoManager>().DestroyEveryObstacle();
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
         // Update the progress in the GameManager

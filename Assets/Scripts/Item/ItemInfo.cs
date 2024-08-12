@@ -71,7 +71,8 @@ public class ItemInfo : MonoBehaviour
                 case MagnetState.Off:
                     if (gameObject != null)
                     {
-                        ChildSpriteRenderer.color = new Color(77f / 255f, 77f / 255f, 77f / 255f);
+                        spriteRenderer.color = new Color(77f / 255f, 77f / 255f, 77f / 255f);
+                        //ChildSpriteRenderer.color = new Color(77f / 255f, 77f / 255f, 77f / 255f);
                     }
                     break;
             }
@@ -81,7 +82,8 @@ public class ItemInfo : MonoBehaviour
             switch (ability)
             {
                 case ItemAbility.Repair:
-                    spriteRenderer.sprite = spriteA;
+                    //spriteRenderer.sprite = spriteA;
+                    spriteRenderer.enabled = false;
                     ChildSpriteRenderer.sprite = spriteA;
 
                     if (magnetState == MagnetState.N) ChildSpriteRenderer.color = ColorN;
@@ -89,7 +91,8 @@ public class ItemInfo : MonoBehaviour
                         ChildSpriteRenderer.color = ColorS;
                     break;
                 case ItemAbility.SurfaceCleaning:
-                    spriteRenderer.sprite = spriteB;
+                    //spriteRenderer.sprite = spriteB;
+                    spriteRenderer.enabled = false;
                     ChildSpriteRenderer.sprite = spriteB;
                     if (magnetState == MagnetState.N)
                         ChildSpriteRenderer.color = ColorN;
@@ -97,7 +100,8 @@ public class ItemInfo : MonoBehaviour
                         ChildSpriteRenderer.color = ColorS;
                     break;
                 case ItemAbility.PoleChange:
-                    spriteRenderer.sprite = spriteC;
+                    //spriteRenderer.sprite = spriteC;
+                    spriteRenderer.enabled = false;
                     ChildSpriteRenderer.sprite = spriteC;
                     if (magnetState == MagnetState.N)
                         ChildSpriteRenderer.color = ColorN;

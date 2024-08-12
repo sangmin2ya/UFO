@@ -229,6 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 0
+  onSpaceStation: 0
   type: 0
   magnetState: 0
   ability: 0

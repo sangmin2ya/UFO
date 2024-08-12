@@ -9,6 +9,7 @@ public class StageController : MonoBehaviour
     [SerializeField] private int currStageLv;
     [SerializeField] private List<Sprite> backgroundSprites;
     private GameObject _UFO;
+    private bool clearOnce;
 
     private bool checkCometShower;
     private bool checkBlackhole;
@@ -46,6 +47,7 @@ public class StageController : MonoBehaviour
         checkBlakcholeAlert = false;
         checkSpaceStationAlert = false;
         checkMiJiJangAlert = false;
+        clearOnce = true;
 
         if (currStageLv == 3)
         {
@@ -89,17 +91,20 @@ public class StageController : MonoBehaviour
 
     private void CheckStageClear()
     {
-        if (GameManager.Instance._currentProgress >= 1)
+        if (GameManager.Instance._currentProgress >= 1 && clearOnce)
         {
+            clearOnce = false;
             StageClear();
         }
     }
 
     private void StageClear()
     {
-        GameManager.Instance.ResetProgress();
-        GameManager.Instance.AddStage();
-        GameManager.Instance.SetProgressSpeed(0.002f);
+        _UFO.GetComponent<UfoManager>().DestroyEveryObstacle();
+        _UFO.GetComponent<UfoController>().SetUnmovable();
+        GameObject.Find("EventController").GetComponent<EventManager>().OffEpicItems();
+        GameObject.Find("EventController").GetComponent<EventManager>().OffObstacles();
+
         StartCoroutine(MoveToNextStage());
     }
     IEnumerator MoveToNextStage()
@@ -109,8 +114,7 @@ public class StageController : MonoBehaviour
         {
             obj.Stop();
         }
-        _UFO.GetComponent<UfoController>().SetUnmovable();
-        _UFO.GetComponent<UfoManager>().DestroyEveryObstacle();
+
         Vector3 startPosition = _UFO.transform.position;
         yield return new WaitForSeconds(1);
         // 화면 오른쪽 끝의 월드 좌표를 계산합니다.
@@ -129,7 +133,9 @@ public class StageController : MonoBehaviour
         _UFO.transform.position = screenRightEdge;
 
         yield return new WaitForSeconds(1);
-
+        GameManager.Instance.ResetProgress();
+        GameManager.Instance.AddStage();
+        _UFO.GetComponent<UfoManager>().AddBombCount();
         LoadingScene.instance.LoadingStart();
     }
     private void AddProgress()
@@ -155,7 +161,8 @@ public class StageController : MonoBehaviour
         }
     }
 
-    public void CheckStage3Event(){
+    public void CheckStage3Event()
+    {
         if (!checkSpaceStationAlert && spaceStationAlertTime <= GameManager.Instance._currentProgress)
         {
             checkSpaceStationAlert = true;
@@ -173,10 +180,10 @@ public class StageController : MonoBehaviour
         if (!checkMiJiJangAlert && miJiJangAlertTime <= GameManager.Instance._currentProgress)
         {
             checkMiJiJangAlert = true;
-            StartCoroutine( ShowAlert("에일리온 머스크의 방해로 미지의 에너지 필드가 생성됩니다. 조심하세요!"));
+            StartCoroutine(ShowAlert("에일리온 머스크의 방해로 미지의 에너지 필드가 생성됩니다. 조심하세요!"));
         }
     }
-    
+
     public IEnumerator ShowAlert(string message)
     {
         GameObject.Find("Canvas").GetComponent<GameUIManager>().showEvent(message);
