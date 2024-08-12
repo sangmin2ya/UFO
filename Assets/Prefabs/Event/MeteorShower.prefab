@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8368050959801267900}
   - component: {fileID: 6444147208698212840}
   - component: {fileID: 1749400378193492994}
+  - component: {fileID: 1145402674032026603}
   m_Layer: 0
   m_Name: Rock (18)
   m_TagString: Comet
@@ -147,6 +148,33 @@ PolygonCollider2D:
       - {x: 0.22261028, y: 0.11339273}
       - {x: 0.21570095, y: 0.18793957}
   m_UseDelaunayMesh: 0
+--- !u!50 &1145402674032026603
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304457111579324029}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1359538042669003011
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,7 +184,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6018810499182398445}
-  - component: {fileID: 7850061849768432477}
+  - component: {fileID: 6879811286323521662}
   m_Layer: 0
   m_Name: MeteorShower
   m_TagString: Untagged
@@ -202,7 +230,7 @@ Transform:
   - {fileID: 3484470371450846416}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7850061849768432477
+--- !u!114 &6879811286323521662
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -211,10 +239,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1359538042669003011}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d34d37f6b7e55cc4ebf4a34bf17a8164, type: 3}
+  m_Script: {fileID: 11500000, guid: a2d475688abd6bf479ee752722b9ef33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.05
+  speed: 0.1
 --- !u!1 &1573938031256377323
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,6 +254,7 @@ GameObject:
   - component: {fileID: 9186890124792502825}
   - component: {fileID: 4986454678002768286}
   - component: {fileID: 3935508802912646351}
+  - component: {fileID: 4276500501930703617}
   m_Layer: 0
   m_Name: Rock (3)
   m_TagString: Comet
@@ -362,6 +391,33 @@ PolygonCollider2D:
       - {x: 0.22261028, y: 0.11339273}
       - {x: 0.21570095, y: 0.18793957}
   m_UseDelaunayMesh: 0
+--- !u!50 &4276500501930703617
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573938031256377323}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1737817209075963687
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,6 +429,7 @@ GameObject:
   - component: {fileID: 7852061956550788613}
   - component: {fileID: 3298749785219336259}
   - component: {fileID: 1420106097649399589}
+  - component: {fileID: 5594651573196901037}
   m_Layer: 0
   m_Name: Rock (12)
   m_TagString: Comet
@@ -509,6 +566,33 @@ PolygonCollider2D:
       - {x: 0.22261028, y: 0.11339273}
       - {x: 0.21570095, y: 0.18793957}
   m_UseDelaunayMesh: 0
+--- !u!50 &5594651573196901037
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737817209075963687}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2421902636973892180
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,6 +604,7 @@ GameObject:
   - component: {fileID: 5369134644647044604}
   - component: {fileID: 7975201452463914868}
   - component: {fileID: 3416517263223974285}
+  - component: {fileID: 8143977540709007268}
   m_Layer: 0
   m_Name: Rock (22)
   m_TagString: Comet
@@ -656,6 +741,33 @@ PolygonCollider2D:
       - {x: 0.22261028, y: 0.11339273}
       - {x: 0.21570095, y: 0.18793957}
   m_UseDelaunayMesh: 0
+--- !u!50 &8143977540709007268
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2421902636973892180}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2960104262494973156
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,6 +779,7 @@ GameObject:
   - component: {fileID: 80674918002685440}
   - component: {fileID: 2265907480557225759}
   - component: {fileID: 6702379563962907237}
+  - component: {fileID: 7328916549139041181}
   m_Layer: 0
   m_Name: Rock (4)
   m_TagString: Comet
@@ -803,6 +916,33 @@ PolygonCollider2D:
       - {x: 0.22261028, y: 0.11339273}
       - {x: 0.21570095, y: 0.18793957}
   m_UseDelaunayMesh: 0
+--- !u!50 &7328916549139041181
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2960104262494973156}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &3819127278601513243
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,6 +954,7 @@ GameObject:
   - component: {fileID: 6571153372970565073}
   - component: {fileID: 6310217848711994027}
   - component: {fileID: 2253645321779561462}
+  - component: {fileID: 6839625220534587849}
   m_Layer: 0
   m_Name: Rock (2)
   m_TagString: Comet
@@ -950,6 +1091,33 @@ PolygonCollider2D:
       - {x: 0.22261028, y: 0.11339273}
       - {x: 0.21570095, y: 0.18793957}
   m_UseDelaunayMesh: 0
+--- !u!50 &6839625220534587849
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3819127278601513243}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &4054146197460556269
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,6 +1129,7 @@ GameObject:
   - component: {fileID: 4555285982927012799}
   - component: {fileID: 5732825925907944099}
   - component: {fileID: 5355545014484969118}
+  - component: {fileID: 4609653914826114704}
   m_Layer: 0
   m_Name: Rock (19)
   m_TagString: Comet
@@ -1097,6 +1266,33 @@ PolygonCollider2D:
       - {x: 0.22261028, y: 0.11339273}
       - {x: 0.21570095, y: 0.18793957}
   m_UseDelaunayMesh: 0
+--- !u!50 &4609653914826114704
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4054146197460556269}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &4518311984649698674
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,6 +1304,7 @@ GameObject:
   - component: {fileID: 2334729089430704227}
   - component: {fileID: 4199442111724323982}
   - component: {fileID: 5236274358024462455}
+  - component: {fileID: 4147587145249470127}
   m_Layer: 0
   m_Name: Rock (21)
   m_TagString: Comet
@@ -1244,6 +1441,33 @@ PolygonCollider2D:
       - {x: 0.22261028, y: 0.11339273}
       - {x: 0.21570095, y: 0.18793957}
   m_UseDelaunayMesh: 0
+--- !u!50 &4147587145249470127
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4518311984649698674}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &4556406891777151131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,6 +1479,7 @@ GameObject:
   - component: {fileID: 7232532332730583803}
   - component: {fileID: 2731456508013447446}
   - component: {fileID: 4845607804393323729}
+  - component: {fileID: 9097871407737190225}
   m_Layer: 0
   m_Name: Rock (11)
   m_TagString: Comet
@@ -1391,6 +1616,33 @@ PolygonCollider2D:
       - {x: 0.22261028, y: 0.11339273}
       - {x: 0.21570095, y: 0.18793957}
   m_UseDelaunayMesh: 0
+--- !u!50 &9097871407737190225
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4556406891777151131}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &4613420837677806976
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,6 +1654,7 @@ GameObject:
   - component: {fileID: 8527057873634670621}
   - component: {fileID: 4613981408011427217}
   - component: {fileID: 5717703344685872323}
+  - component: {fileID: 3159552126620178696}
   m_Layer: 0
   m_Name: Rock (7)
   m_TagString: Comet
@@ -1538,6 +1791,33 @@ PolygonCollider2D:
       - {x: 0.22261028, y: 0.11339273}
       - {x: 0.21570095, y: 0.18793957}
   m_UseDelaunayMesh: 0
+--- !u!50 &3159552126620178696
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4613420837677806976}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5275654326920004101
 GameObject:
   m_ObjectHideFlags: 0
@@ -1549,6 +1829,7 @@ GameObject:
   - component: {fileID: 2141735850573942741}
   - component: {fileID: 6807283040886612987}
   - component: {fileID: 3116410784723404493}
+  - component: {fileID: 8173938705704759310}
   m_Layer: 0
   m_Name: Rock (9)
   m_TagString: Comet
@@ -1685,6 +1966,33 @@ PolygonCollider2D:
       - {x: 0.22261028, y: 0.11339273}
       - {x: 0.21570095, y: 0.18793957}
   m_UseDelaunayMesh: 0
+--- !u!50 &8173938705704759310
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5275654326920004101}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5408338885606500549
 GameObject:
   m_ObjectHideFlags: 0
@@ -1696,6 +2004,7 @@ GameObject:
   - component: {fileID: 824736616870050103}
   - component: {fileID: 6971853417813505187}
   - component: {fileID: 2402768017879211925}
+  - component: {fileID: 8494115146399769466}
   m_Layer: 0
   m_Name: Rock (6)
   m_TagString: Comet
@@ -1832,6 +2141,33 @@ PolygonCollider2D:
       - {x: 0.22261028, y: 0.11339273}
       - {x: 0.21570095, y: 0.18793957}
   m_UseDelaunayMesh: 0
+--- !u!50 &8494115146399769466
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408338885606500549}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5670943336193430411
 GameObject:
   m_ObjectHideFlags: 0
@@ -1843,6 +2179,7 @@ GameObject:
   - component: {fileID: 1771173251428674021}
   - component: {fileID: 8077027295608252874}
   - component: {fileID: 3510417344032185675}
+  - component: {fileID: 3323091673351190281}
   m_Layer: 0
   m_Name: Rock (14)
   m_TagString: Comet
@@ -1979,6 +2316,33 @@ PolygonCollider2D:
       - {x: 0.22261028, y: 0.11339273}
       - {x: 0.21570095, y: 0.18793957}
   m_UseDelaunayMesh: 0
+--- !u!50 &3323091673351190281
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5670943336193430411}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &6093344963087455543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1990,6 +2354,7 @@ GameObject:
   - component: {fileID: 8675856351958253140}
   - component: {fileID: 516264108661524807}
   - component: {fileID: 8759174724985351546}
+  - component: {fileID: 2402817928007928937}
   m_Layer: 0
   m_Name: Rock (13)
   m_TagString: Comet
@@ -2126,6 +2491,33 @@ PolygonCollider2D:
       - {x: 0.22261028, y: 0.11339273}
       - {x: 0.21570095, y: 0.18793957}
   m_UseDelaunayMesh: 0
+--- !u!50 &2402817928007928937
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093344963087455543}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &6865030210379113340
 GameObject:
   m_ObjectHideFlags: 0
@@ -2137,6 +2529,7 @@ GameObject:
   - component: {fileID: 8160628248065954985}
   - component: {fileID: 7577387877497681786}
   - component: {fileID: 5272230231288444134}
+  - component: {fileID: 6488240213847900848}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Comet
@@ -2273,6 +2666,33 @@ PolygonCollider2D:
       - {x: 0.22261028, y: 0.11339273}
       - {x: 0.21570095, y: 0.18793957}
   m_UseDelaunayMesh: 0
+--- !u!50 &6488240213847900848
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6865030210379113340}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &7022206834092938478
 GameObject:
   m_ObjectHideFlags: 0
@@ -2284,6 +2704,7 @@ GameObject:
   - component: {fileID: 5971155886497815351}
   - component: {fileID: 1710683210180537901}
   - component: {fileID: 6205244668829526577}
+  - component: {fileID: 2863919303268280585}
   m_Layer: 0
   m_Name: Rock (20)
   m_TagString: Comet
@@ -2420,6 +2841,33 @@ PolygonCollider2D:
       - {x: 0.22261028, y: 0.11339273}
       - {x: 0.21570095, y: 0.18793957}
   m_UseDelaunayMesh: 0
+--- !u!50 &2863919303268280585
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7022206834092938478}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &7805850936653131259
 GameObject:
   m_ObjectHideFlags: 0
@@ -2431,6 +2879,7 @@ GameObject:
   - component: {fileID: 1768254845168881807}
   - component: {fileID: 5559421297138423708}
   - component: {fileID: 4340416926592110290}
+  - component: {fileID: 7805072460466585174}
   m_Layer: 0
   m_Name: Rock (5)
   m_TagString: Comet
@@ -2567,6 +3016,33 @@ PolygonCollider2D:
       - {x: 0.22261028, y: 0.11339273}
       - {x: 0.21570095, y: 0.18793957}
   m_UseDelaunayMesh: 0
+--- !u!50 &7805072460466585174
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7805850936653131259}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &7996936365826153321
 GameObject:
   m_ObjectHideFlags: 0
@@ -2578,6 +3054,7 @@ GameObject:
   - component: {fileID: 854957723328141245}
   - component: {fileID: 4371848145435138966}
   - component: {fileID: 5223414994920383566}
+  - component: {fileID: 9204525751166327970}
   m_Layer: 0
   m_Name: Rock (1)
   m_TagString: Comet
@@ -2714,6 +3191,33 @@ PolygonCollider2D:
       - {x: 0.22261028, y: 0.11339273}
       - {x: 0.21570095, y: 0.18793957}
   m_UseDelaunayMesh: 0
+--- !u!50 &9204525751166327970
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7996936365826153321}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8178592688355951148
 GameObject:
   m_ObjectHideFlags: 0
@@ -2725,6 +3229,7 @@ GameObject:
   - component: {fileID: 3484470371450846416}
   - component: {fileID: 1177392217174957823}
   - component: {fileID: 2931539906486358074}
+  - component: {fileID: 8427170362909140404}
   m_Layer: 0
   m_Name: Rock (16)
   m_TagString: Comet
@@ -2861,6 +3366,33 @@ PolygonCollider2D:
       - {x: 0.22261028, y: 0.11339273}
       - {x: 0.21570095, y: 0.18793957}
   m_UseDelaunayMesh: 0
+--- !u!50 &8427170362909140404
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8178592688355951148}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8513017756893835339
 GameObject:
   m_ObjectHideFlags: 0
@@ -2872,6 +3404,7 @@ GameObject:
   - component: {fileID: 4829022209333194962}
   - component: {fileID: 7183908439212840764}
   - component: {fileID: 4053400939447493911}
+  - component: {fileID: 3521494710688681498}
   m_Layer: 0
   m_Name: Rock (8)
   m_TagString: Comet
@@ -3008,6 +3541,33 @@ PolygonCollider2D:
       - {x: 0.22261028, y: 0.11339273}
       - {x: 0.21570095, y: 0.18793957}
   m_UseDelaunayMesh: 0
+--- !u!50 &3521494710688681498
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8513017756893835339}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8744010435152566850
 GameObject:
   m_ObjectHideFlags: 0
@@ -3019,6 +3579,7 @@ GameObject:
   - component: {fileID: 7908951376475409092}
   - component: {fileID: 2483743743746545665}
   - component: {fileID: 8883461832621154751}
+  - component: {fileID: 5703691767571691089}
   m_Layer: 0
   m_Name: Rock (10)
   m_TagString: Comet
@@ -3155,6 +3716,33 @@ PolygonCollider2D:
       - {x: 0.22261028, y: 0.11339273}
       - {x: 0.21570095, y: 0.18793957}
   m_UseDelaunayMesh: 0
+--- !u!50 &5703691767571691089
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8744010435152566850}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &9022471783610810662
 GameObject:
   m_ObjectHideFlags: 0
@@ -3166,6 +3754,7 @@ GameObject:
   - component: {fileID: 8123776009586816736}
   - component: {fileID: 8730252488346483408}
   - component: {fileID: 316103670959228103}
+  - component: {fileID: 1057494257112631311}
   m_Layer: 0
   m_Name: Rock (17)
   m_TagString: Comet
@@ -3302,6 +3891,33 @@ PolygonCollider2D:
       - {x: 0.22261028, y: 0.11339273}
       - {x: 0.21570095, y: 0.18793957}
   m_UseDelaunayMesh: 0
+--- !u!50 &1057494257112631311
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9022471783610810662}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &9104428327575783467
 GameObject:
   m_ObjectHideFlags: 0
@@ -3313,6 +3929,7 @@ GameObject:
   - component: {fileID: 1160919484801626003}
   - component: {fileID: 6190467311059158654}
   - component: {fileID: 9144138282331089833}
+  - component: {fileID: 6857715076732995855}
   m_Layer: 0
   m_Name: Rock (15)
   m_TagString: Comet
@@ -3449,3 +4066,30 @@ PolygonCollider2D:
       - {x: 0.22261028, y: 0.11339273}
       - {x: 0.21570095, y: 0.18793957}
   m_UseDelaunayMesh: 0
+--- !u!50 &6857715076732995855
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9104428327575783467}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

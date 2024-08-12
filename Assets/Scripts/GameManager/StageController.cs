@@ -172,6 +172,7 @@ public class StageController : MonoBehaviour
         if (!checkSpaceStation && SpaceStationTime <= GameManager.Instance._currentProgress)
         {
             checkSpaceStation = true;
+            eventManager.OffEpicItems();
             eventManager.OnSpaceStation();
         }
     }
