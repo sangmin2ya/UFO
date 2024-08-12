@@ -217,6 +217,7 @@ public class UfoManager : MonoBehaviour
             AttachObject(collision.gameObject);
             if (Vector2.Distance(collision.transform.position, transform.position) > 2.5f)
             {
+
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name != "Main" ? "BadEnding" : "GameOver");
             }
         }
