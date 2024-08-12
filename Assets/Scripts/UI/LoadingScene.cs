@@ -25,6 +25,8 @@ public class LoadingScene : MonoBehaviour
     [SerializeField] TMP_Text StageText;
     [SerializeField] Button SkipButton;
 
+    public bool canSkip = true;
+
     private void Start()
     {
         if (instance != null)
@@ -40,7 +42,8 @@ public class LoadingScene : MonoBehaviour
 
     public void SkipStory()
     {
-        SkipButton.interactable = false;
+        if (!canSkip) return;
+        canSkip = false;
         anim.Play("Default");
         loadScene();
         StartCoroutine(SkipBtn());
@@ -73,8 +76,8 @@ public class LoadingScene : MonoBehaviour
         for (int i = 0; i < Ments.Length; i++) {
             Ments[i].text = Level_Ments[(idx==-1?0:idx)*3+i];
         }
-        StageText.text = $"{idx + 2}장";
         idx += 1;
+        StageText.text = $"{idx+1}장";
         anim.SetTrigger("Load");
     }
 

@@ -1665,6 +1665,10 @@ PrefabInstance:
       value: 0.015
       objectReference: {fileID: 0}
     - target: {fileID: 8140652062625441859, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
+      propertyPath: stagelength.Array.data[2]
+      value: 0.015
+      objectReference: {fileID: 0}
+    - target: {fileID: 8140652062625441859, guid: 6b155c80b1a7ea94ba816f63539875c1, type: 3}
       propertyPath: stagelength.Array.data[3]
       value: 0.015
       objectReference: {fileID: 0}

@@ -104,7 +104,7 @@ public class StageController : MonoBehaviour
     }
     IEnumerator MoveToNextStage()
     {
-        Debug.Log("실행");
+        LoadingScene.instance.canSkip = true;
         BackgroundRepeating[] backgrounds = GameObject.Find("Backgrounds").transform.GetComponentsInChildren<BackgroundRepeating>();
         foreach (var obj in backgrounds)
         {
