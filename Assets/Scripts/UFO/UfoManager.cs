@@ -57,7 +57,7 @@ public class UfoManager : MonoBehaviour
     private void AttachObject(GameObject obj)
     {
         GameObject.Find("Canvas").GetComponent<GameUIManager>().showDamaged();
-        gameObject.GetComponent<HPManager>().Damaged(3); //add 10% damage
+        gameObject.GetComponent<HPManager>().Damaged(10); //add 10% damage
         obj.GetComponent<ItemInfo>().Freeze();
         obj.transform.SetParent(transform);
         _AttacedObjects.Add(obj.GetComponent<ItemInfo>());
