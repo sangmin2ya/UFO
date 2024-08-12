@@ -20,6 +20,7 @@ public class EndingMenu : MonoBehaviour
     private Button[] buttons;
     private int selectedIndex = 0;
 
+
     private void OnEnable()
     {
         // 특정 씬에서만 활성화
