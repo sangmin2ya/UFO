@@ -4,6 +4,7 @@ using System.ComponentModel;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Blackhole : MonoBehaviour
 {
@@ -30,7 +31,7 @@ public class Blackhole : MonoBehaviour
                 float pullStrength;
 
                 // �÷��̾�� �Ϲ� ������Ʈ�� ���Է��� �ٸ��� �����մϴ�.
-                if (rb.CompareTag("Player"))
+                if (Obstacle.CompareTag("Player"))
                 {
                     pullStrength = playerPullStrength;
                     // �Ÿ� �ݺ�ʷ� ���Է��� ������ŵ�ϴ�.
@@ -73,6 +74,18 @@ public class Blackhole : MonoBehaviour
                 obstacle.gameObject.GetComponent<ItemInfo>().enabled = true;
                 obstacle.GetComponent<CircleCollider2D>().enabled = true;
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            SceneManager.LoadScene("GameOver");
+        }
+        else
+        {
+            Destroy(collision);
         }
     }
 }

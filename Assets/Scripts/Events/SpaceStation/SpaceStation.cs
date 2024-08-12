@@ -60,7 +60,6 @@ public class SpaceStation : MonoBehaviour
         if (currentHP <= 0)
         {
             Destroy(gameObject);
-            Debug.Log("게임 오버");
             SceneManager.LoadScene("GameOver");
         }
     }
