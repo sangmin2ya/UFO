@@ -183,7 +183,7 @@ public class UfoController : MonoBehaviour
         if (_ufoManager.CanUseBomb() && Time.timeScale != 0 && _movable && LoadingScene.instance.canBomb == true)
         {
             Debug.Log("bomb!!");
-            _ufoManager.DestroyEveryObstacle();
+            _ufoManager.DestroyEveryTrash();
             //폭탄 사용
             if(SceneManager.GetActiveScene().name == "Space_X")
             {

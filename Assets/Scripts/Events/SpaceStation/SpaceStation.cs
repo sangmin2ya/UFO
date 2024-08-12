@@ -49,9 +49,13 @@ public class SpaceStation : MonoBehaviour
         onSpaceShip = true;
     }
 
-    void UpdateHP(int amount)
+    public void UpdateHP(int amount)
     {
         currentHP += amount;
+        if(currentHP > maxHP)
+        {
+            currentHP = maxHP;
+        }
         currentHP = Mathf.Clamp(currentHP, 0, maxHP);
         hpImage.fillAmount = (float)currentHP / maxHP;
 
