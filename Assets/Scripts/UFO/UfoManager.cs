@@ -26,7 +26,7 @@ public class UfoManager : MonoBehaviour
     private List<Image> _bombImages = new List<Image>();
     private bool onComet;
     [SerializeField] HPManager hpManager;
-
+    private GameUIManager gameUIManager;
     void Start()
     {
         _AttacedObjects = new List<ItemInfo>();
@@ -36,6 +36,7 @@ public class UfoManager : MonoBehaviour
         _bombImages.Add(GameObject.Find("Bomb2Img").GetComponent<Image>()); //needs to change
         _bombImages.Add(GameObject.Find("Bomb1Img").GetComponent<Image>()); //needs to change
         _weightBar = GameObject.Find("Mass_Image").GetComponent<Image>();
+        gameUIManager = GameObject.Find("Canvas").GetComponent<GameUIManager>();
         _speed = _setSpeed;
         _accelSpeed = _setSpeed * 3f;
     }
@@ -202,6 +203,7 @@ public class UfoManager : MonoBehaviour
     {
         onComet = true;
         hpManager.Damaged(5.0f);
+        gameUIManager.showDamaged();
         yield return new WaitForSeconds(0.3f);
         onComet = false;
     }
@@ -224,9 +226,12 @@ public class UfoManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Comet") && !onComet)
+        if (collision != null)
         {
-            StartCoroutine(CometCrashed());
+            if (collision.gameObject.CompareTag("Comet") && !onComet)
+            {
+                StartCoroutine(CometCrashed());
+            }
         }
     }
 }
