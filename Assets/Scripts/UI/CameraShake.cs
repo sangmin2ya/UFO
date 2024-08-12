@@ -32,6 +32,8 @@ public class CameraShake : MonoBehaviour
 
         while (elapsed < shakeTime)
         {
+            if (Time.timeScale <= 0) StopAllCoroutines();
+
             float x = Random.Range(-1f, 1f) * shakeAmount;
             float y = Random.Range(-1f, 1f) * shakeAmount;
 
