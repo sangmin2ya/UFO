@@ -1,0 +1,253 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ItemInfo : MonoBehaviour
+{
+    public float size;
+    public bool onSpaceStation = false;
+
+    // type of item. (Item, Obstacle, Stuck)
+    public ItemType type;
+
+    // N, S, Off state
+    public MagnetState magnetState;
+
+    // ability of item (FuelFilling, SurfaceCleaning, PoleChange)
+    public ItemAbility ability;
+
+    public int direction;
+    public int index;
+    // Sprite Renderer
+    SpriteRenderer spriteRenderer;
+    private SpriteRenderer ChildSpriteRenderer;
+
+    // N, S sprite
+    public Sprite spriteN;
+    public Sprite spriteS;
+
+    // Item Type sprite
+    public Sprite spriteA;
+    public Sprite spriteB;
+    public Sprite spriteC;
+
+    public bool _notSpawned = false;
+
+    [SerializeField] Color ColorN, ColorS;
+
+    private void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        ChildSpriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        onSpaceStation = false;
+        // �������� N�� S�� ������
+        if (!_notSpawned)
+            magnetState = (Random.value > 0.5f) ? MagnetState.N : MagnetState.S;
+
+        // If the type is Item, set the ability randomly
+        if (type == ItemType.Item)
+        {
+            int currStageLv = GameManager.Instance._stage;
+            if (currStageLv >= 4)
+            {
+                float tempnum = Random.Range(0.0f, 1.0f);
+                if (tempnum <= 0.5f)
+                {
+                    ability = ItemAbility.Repair;
+                }else if (tempnum <= 0.75f)
+                {
+                    ability = ItemAbility.PoleChange;
+                }
+                else
+                {
+                    ability = ItemAbility.SurfaceCleaning;
+                }
+            }
+            else
+            {
+                ability = (ItemAbility)Random.Range(0, System.Enum.GetValues(typeof(ItemAbility)).Length);
+            }
+        }
+
+        // change sprite
+        UpdateSprite();
+    }
+
+    public void UpdateSprite()
+    {
+        if (type == ItemType.Obstacle || type == ItemType.Stuck)
+        {
+            switch (magnetState)
+            {
+                case MagnetState.N:
+                    spriteRenderer.sprite = spriteN;
+                    ChildSpriteRenderer.sprite = spriteN;
+                    break;
+                case MagnetState.S:
+                    spriteRenderer.sprite = spriteS;
+                    ChildSpriteRenderer.sprite = spriteS;
+                    break;
+                case MagnetState.Off:
+                    if (gameObject != null)
+                    {
+                        spriteRenderer.color = new Color(77f / 255f, 77f / 255f, 77f / 255f);
+                        //ChildSpriteRenderer.color = new Color(77f / 255f, 77f / 255f, 77f / 255f);
+                    }
+                    break;
+            }
+        }
+        else if (type == ItemType.Item)
+        {
+            switch (ability)
+            {
+                case ItemAbility.Repair:
+                    //spriteRenderer.sprite = spriteA;
+                    spriteRenderer.enabled = false;
+                    ChildSpriteRenderer.sprite = spriteA;
+
+                    if (magnetState == MagnetState.N) ChildSpriteRenderer.color = ColorN;
+                    else
+                        ChildSpriteRenderer.color = ColorS;
+                    break;
+                case ItemAbility.SurfaceCleaning:
+                    //spriteRenderer.sprite = spriteB;
+                    spriteRenderer.enabled = false;
+                    ChildSpriteRenderer.sprite = spriteB;
+                    if (magnetState == MagnetState.N)
+                        ChildSpriteRenderer.color = ColorN;
+                    else
+                        ChildSpriteRenderer.color = ColorS;
+                    break;
+                case ItemAbility.PoleChange:
+                    //spriteRenderer.sprite = spriteC;
+                    spriteRenderer.enabled = false;
+                    ChildSpriteRenderer.sprite = spriteC;
+                    if (magnetState == MagnetState.N)
+                        ChildSpriteRenderer.color = ColorN;
+                    else
+                        ChildSpriteRenderer.color = ColorS;
+                    break;
+            }
+        }
+
+    }
+
+
+    // �������� �ɷ¿� ���� �ൿ�� ����
+    public void ExecuteAbility()
+    {
+        switch (type)
+        {
+            case ItemType.Item: // Item
+                ExecuteItemAbility();
+                break;
+            case ItemType.Obstacle: // Obstacle
+                ExecuteObstacleAbility();
+                break;
+            default:
+                // Debug.Log("Type not specified");
+                break;
+        }
+    }
+
+    private void ExecuteItemAbility()
+    {
+        // index_ability�� ���� Item �ɷ� ����
+        switch (ability)
+        {
+            case ItemAbility.Repair: // ���� ����
+                FuelFilling();
+                break;
+            case ItemAbility.SurfaceCleaning: // ���� ��ֹ� ����
+                SurfaceCleaning();
+                break;
+            case ItemAbility.PoleChange: // �ʿ� �ִ� ��� ������Ʈ �ϳ��� pole���� ��ȯ
+                PoleChange();
+                break;
+        }
+    }
+
+    // ��ֹ��� ������ N �ذ� S �ظ� �������ָ� ��. ������ �ɷ� ����. �÷��̾�� �ٱ⸸ ��.
+    private void ExecuteObstacleAbility()
+    {
+        //Debug.Log(magnetState);
+    }
+
+
+    public void FuelFilling()
+    {
+        Debug.Log("Fuel Filling");
+
+        DestroyItem();
+    }
+
+    public void SurfaceCleaning()
+    {
+        Debug.Log("Surface Cleaning");
+
+        DestroyItem();
+    }
+
+    public void PoleChange()
+    {
+        Debug.Log("Pole Change");
+
+        DestroyItem();
+    }
+
+    // Change ItemType to stuck and stop moving
+    public void Freeze()
+    {
+        this.type = ItemType.Stuck;
+        this.magnetState = MagnetState.Off;
+        this.UpdateSprite();
+        GetComponent<ItemMovement>().enabled = false;
+        GetComponent<Rigidbody2D>().isKinematic = true;
+    }
+
+    public void DestroyItem()
+    {
+        switch (type)
+        {
+            case ItemType.Item: // Item
+                GameObject.Find("ItemSpawnController").GetComponent<ObstacleSpawner>().DestroyObstacle(direction, index);
+                Destroy(gameObject);
+                break;
+
+            case ItemType.Obstacle: // Obstacle
+                ExecuteObstacleAbility();
+                GameObject.Find("SpawnController").GetComponent<ObstacleSpawner>().DestroyObstacle(direction, index);
+                StartCoroutine(DestroyItem(gameObject));
+                break;
+            default:
+                Debug.Log("Type not specified");
+                if (gameObject != null)
+                {
+                    StartCoroutine(DestroyItem(gameObject));
+                }
+                break;
+        }
+        // Play Effect
+
+    }
+    IEnumerator DestroyItem(GameObject item)
+    {
+        item.transform.GetChild(0).gameObject.SetActive(true);
+        item.transform.GetChild(0).gameObject.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        yield return new WaitForSeconds(1f);
+        Destroy(item);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            ExecuteAbility();
+        }
+        if (collision.CompareTag("Item") && this.type == ItemType.Stuck)
+        {
+            transform.parent.SendMessage("OnChildTriggerEnter2D", collision, SendMessageOptions.DontRequireReceiver);
+        }
+    }
+}

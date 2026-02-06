@@ -6,6 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Ending/MainMenu.unity
+    guid: 5bc07fdbeea44c64eaf9b7cfa9bd1f90
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: efede77eff0c9bc48b73b32146a5c27f
+  - enabled: 1
+    path: Assets/Scenes/BossStage/Alien_Musk.unity
+    guid: d89f890b0f7e5c4468eef4e6258ab450
+  - enabled: 1
+    path: Assets/Scenes/BossStage/Space_X.unity
+    guid: 3c27bef093981864fa4d2782f7862af1
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 1f143181cda7a5749a678deab7d2db79
+  - enabled: 1
+    path: Assets/Scenes/Ending/BadEnding.unity
+    guid: 129e0c25a66a8674f95a1c545cec4c77
+  - enabled: 1
+    path: Assets/Scenes/Ending/HappyEnding.unity
+    guid: 4090a9fbbe13e03499450554c40438c3
   m_configObjects: {}
